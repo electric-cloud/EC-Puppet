@@ -1,0 +1,53 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunManifest</help>
+    <formElement>
+        <type>entry</type>
+        <label>Puppet Path:</label>
+		<value>/usr/local/bin/puppet</value>
+        <property>puppet_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Manifest Type:</label>
+        <property>manifest_type</property>
+        <required>1</required>
+        <documentation>Choose the manifest type to use, available opcions are: File, TextArea. (Required)</documentation>
+        <option><name>File</name><value>file</value></option>
+        <option><name>Text Area</name><value>text_area</value></option>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Manifest:</label>
+        <property>manifest</property>
+        <required>1</required>
+        <documentation>Provide the manifest to run. If the Manifest Type selected is File a path to a manifest file must be provided, if the Manifest Type selected is Text Area the content of the manifest must be typed directly in this field. (Required)</documentation>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Debug:</label>
+            <property>debug</property>
+            <required>0</required>
+            <documentation>If checked full debugging will be enabled.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Verbose Mode:</label>
+            <property>verbose_mode</property>
+            <required>0</required>
+            <documentation>If checked the verbose mode is activated.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Additional Commands:</label>
+        <property>additional_commands</property>
+        <required>0</required>
+        <documentation>Provide additional commands if needed.</documentation>
+    </formElement>
+</editor>
+

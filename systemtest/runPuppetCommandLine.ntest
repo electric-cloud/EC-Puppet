@@ -1,0 +1,446 @@
+# -*-Perl-*-
+
+# runPuppetCommandLine.ntest -
+#
+# EC-Puppet
+#
+# Copyright (c) 2005-2012 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use ECTest;
+use ECSelenium;
+
+ 
+# system tests
+
+
+require "$::gTestFileDir/../../EC-Puppet/systemtest/Puppet-common.ntest";
+
+
+$::grunMSBuildCreated = 0;
+$::gProjectImported = 0;
+$::gtestProjectName = 'PuppetProjectTest';
+
+#stores the result wheter the result of the procedure is success or error
+my $outcome = "";
+
+
+sub importProject() {
+    assertOK($::N->import(
+                     { file =>"$::gTestFileDir/Puppet.xml",
+               path  => "/projects/PuppetProjectTest",
+               force => 1
+             } ), "import PuppetProjectTest");
+   
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Manifest_File_NoOptions"),"Run_Manifest_File_NoOptions procedure doesn't exists");
+    #assertOK($::N->getProcedure($::gtestProjectName, "Run_Manifest_TextArea_NoOptions"),"Run_Manifest_TextArea_NoOptions procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Manifest_File_NoOptions_spaces"),"Run_Manifest_File_NoOptions_spaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Manifest_TextArea_NoOptions_spaces"),"Run_Manifest_TextArea_NoOptions_spaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Manifest_File_WithOptions"),"Run_Manifest_File_WithOptions procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Manifest_TextArea_WithOptions"),"Run_Manifest_TextArea_WithOptions procedure doesn't exists");
+    
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Command"),"Run_Command procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "Run_Command_spaces"),"Run_Command_spaces procedure doesn't exists");
+
+    $::gProjectImported = 1;
+}
+
+sub doSetup() {
+
+    if(! $::gProjectImported) {
+        importProject();
+    }
+}
+
+ntest "Run_Manifest_File_NoOptions", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Manifest_File_NoOptions",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $manifest_type    = $xpath->findvalue("//property[propertyName='manifest_type']/value");
+    my $manifest    = $xpath->findvalue("//property[propertyName='manifest']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('file', $manifest_type, "correct manifest type");
+    assertEq('/root/test/manifest.pp', $manifest, "correct manifest");
+};
+
+ntest "Run_Manifest_TextArea_NoOptions", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Manifest_TextArea_NoOptions",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $manifest_type    = $xpath->findvalue("//property[propertyName='manifest_type']/value");
+    my $manifest    = $xpath->findvalue("//property[propertyName='manifest']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('text_area', $manifest_type, "correct manifest type");
+    assertEq('file {"example-file":
+      path    => "/tmp/example-file",
+      ensure  => present,
+      mode    => 0640,
+      content => "I am a example file.",
+    } ', $manifest, "correct manifest");
+};
+
+ntest "Run_Manifest_File_NoOptions_spaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Manifest_File_NoOptions_spaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $manifest_type    = $xpath->findvalue("//property[propertyName='manifest_type']/value");
+    my $manifest    = $xpath->findvalue("//property[propertyName='manifest']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('file', $manifest_type, "correct manifest type");
+    assertEq('/root space other space/test spaces /manifest with space.pp', $manifest, "correct manifest");
+};
+
+ntest "Run_Manifest_TextArea_NoOptions_spaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Manifest_TextArea_NoOptions_spaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $manifest_type    = $xpath->findvalue("//property[propertyName='manifest_type']/value");
+    my $manifest    = $xpath->findvalue("//property[propertyName='manifest']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('text_area', $manifest_type, "correct manifest type");
+    assertEq('file {"example-file spaces":
+      path    => "/tmp with space/example-file space",
+
+      ensure  => present,
+
+      mode    => 0640,
+
+      content => "I am a example file.",
+
+    } ', $manifest, "correct manifest");
+};
+
+ntest "Run_Manifest_File_WithOptions", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Manifest_File_WithOptions",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $manifest_type    = $xpath->findvalue("//property[propertyName='manifest_type']/value");
+    my $manifest    = $xpath->findvalue("//property[propertyName='manifest']/value");
+    my $debug     = $xpath->findvalue("//property[propertyName='debug']/value");
+    my $verbose_mode    = $xpath->findvalue("//property[propertyName='verbose_mode']/value");
+    my $additional_commands    = $xpath->findvalue("//property[propertyName='additional_commands']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('file', $manifest_type, "correct manifest type");
+    assertEq('/root/test/manifest.pp', $manifest, "correct manifest");
+    assertEq('1', $debug, "correct debug parameter");
+    assertEq('1', $verbose_mode, "correct verbose_mode parameter");
+    assertEq('--detailed-exitcodes', $additional_commands, "correct additional_commands parameter");
+};
+
+ntest "Run_Manifest_TextArea_WithOptions", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Manifest_TextArea_WithOptions",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $manifest_type    = $xpath->findvalue("//property[propertyName='manifest_type']/value");
+    my $manifest    = $xpath->findvalue("//property[propertyName='manifest']/value");
+    my $debug     = $xpath->findvalue("//property[propertyName='debug']/value");
+    my $verbose_mode    = $xpath->findvalue("//property[propertyName='verbose_mode']/value");
+    my $additional_commands    = $xpath->findvalue("//property[propertyName='additional_commands']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('text_area', $manifest_type, "correct manifest type");
+    assertEq('file {"example-file":
+      path    => "/tmp/example-file",
+      ensure  => present,
+      mode    => 0640,
+      content => "I am a example file.",
+    } ', $manifest, "correct manifest");
+    assertEq('1', $debug, "correct debug parameter");
+    assertEq('1', $verbose_mode, "correct verbose_mode parameter");
+    assertEq('--detailed-exitcodes', $additional_commands, "correct additional_commands parameter");
+};
+
+ntest "Run_Command", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Command",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $puppet_command    = $xpath->findvalue("//property[propertyName='puppet_command']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('agent --test', $puppet_command, "correct puppet command");
+
+};
+
+
+ntest "Run_Command_spaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "Run_Command_spaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $puppet_path     = $xpath->findvalue("//property[propertyName='puppet_path']/value");
+    my $puppet_command    = $xpath->findvalue("//property[propertyName='puppet_command']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/local/bin/puppet', $puppet_path, "correct puppet path");
+    assertEq('agent 
+--test', $puppet_command, "correct puppet command");
+
+};
+

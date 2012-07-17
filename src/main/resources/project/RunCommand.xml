@@ -1,0 +1,19 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunCommand</help>
+    <formElement>
+        <type>entry</type>
+        <label>Puppet Path:</label>
+		<value>/usr/local/bin/puppet</value>
+        <property>puppet_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Puppet Command:</label>
+        <property>puppet_command</property>
+        <required>1</required>
+        <documentation>Provide the puppet command that you want to run. e.g agent --test.(Required)</documentation>
+    </formElement>
+</editor>
+
