@@ -104,6 +104,8 @@ sub main {
         
 		#Executes the command into puppet
 		system("$::g_command");
+        # Set outcome
+        if ($? != 0){ $ec->setProperty("outcome","error"); }
     }
     else
     {
@@ -124,6 +126,8 @@ sub main {
 		
 		#Executes the command into puppet
         system("$::g_command");
+        # Set outcome
+        if ($? != 0){ $ec->setProperty("outcome","error"); }
         
         #In case the generated file must be removed this line must be enabled
         #system("rm $file_name");

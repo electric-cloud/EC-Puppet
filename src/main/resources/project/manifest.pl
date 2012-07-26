@@ -4,6 +4,7 @@
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="RunCommand"]/value','RunCommandDriver.pl'],
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="RunManifest"]/value','RunManifestDriver.pl'],
  ['//property[propertyName="ec_setup"]/value', 'ec_setup.pl'],
+ ['//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl'],
  );
 
 

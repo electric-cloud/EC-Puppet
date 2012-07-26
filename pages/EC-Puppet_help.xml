@@ -139,7 +139,14 @@
        
         <h1>Release Notes</h1>
        
-        <h2>@PLUGIN_KEY@-@PLUGIN_VERSION@</h2>
+       <h2>@PLUGIN_KEY@-1.0.1</h2>
+            <ul>
+                <li>Added Postp implementation.</li>
+                
+                <li>Improve error handling from driver.</li>
+            </ul>
+       
+        <h2>@PLUGIN_KEY@-1.0.0</h2>
             <ul>
                 <li>New Integration ready: EC-Puppet</li>
             </ul>
