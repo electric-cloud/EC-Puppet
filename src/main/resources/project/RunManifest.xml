@@ -43,6 +43,15 @@
         <uncheckedValue>0</uncheckedValue>
     </formElement>
     <formElement>
+            <type>checkbox</type>
+            <label>Simulate run:</label>
+            <property>noop</property>
+            <required>0</required>
+            <documentation>If checked simulates a manifest run.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
         <type>textarea</type>
         <label>Additional Commands:</label>
         <property>additional_commands</property>

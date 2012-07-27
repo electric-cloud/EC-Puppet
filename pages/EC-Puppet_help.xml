@@ -1,155 +1,255 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta name="generator" content=
-        "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
-        <meta content="text/html; charset=us-ascii" http-equiv=
-        "content-type" />
-        <title>Electric Commander Plugin for Puppet</title>
-        <link rel="stylesheet" href=
-        "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media=
-        "screen" />
-    </head>
-    <body>
-        <div class="help">
-            <h1 class="pluginname">Puppet</h1>
-            <p>Plugin Version @PLUGIN_VERSION@</p>
-            <hr style=
-            "margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;"
+<head>
+    <meta name="generator"
+          content="HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+    <meta content="text/html; charset=us-ascii"
+          http-equiv="content-type" />
+
+    <title>Electric Commander Plugin for Puppet</title>
+    <link rel="stylesheet"
+          href="../../plugins/@PLUGIN_KEY@/pluginhelp.css"
+          type="text/css"
+          media="screen" />
+</head>
+
+<body>
+    <div class="help">
+        <h1 class="pluginname">Puppet</h1>
+
+        <p>Plugin Version @PLUGIN_VERSION@</p>
+        <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;"
             noshade="noshade" />
-           
-            <p>Puppet is a tool designed to manage the configuration of Unix-like and Microsoft Windows systems declaratively. The user describes system resources and their state, either using Puppet's declarative language or a Ruby DSL (domain-specific language). This information is stored in files called "Puppet manifests".</p>
-            <p>Puppet discovers the system information via a utility called Facter, and compiles the Puppet manifests into a system-specific catalog containing resources and resource dependency, which are applied against the target systems. Any actions taken by Puppet are then reported.</p>
-           
-            <p>Built to be cross-platform, it works on Linux distributions, including RHEL (and clones such as CentOS and Oracle Linux), Fedora, Debian, Mandriva, Ubuntu, and SUSE, as well as multiple Unix systems (Solaris, BSD, Mac OS X, AIX, HP-UX), and has Microsoft Windows support. It is a model-driven solution that requires limited programming knowledge to use.</p>
-           
-           
-            <h2>Puppet Links</h2>
-            <p>More information can be found at <a href=
-            "http://puppetlabs.com/">Puppet Home</a>.</p>
-           
-            <h2>Electric Commander Integration to Puppet</h2>
-            <p>The plugin interacts with the Puppet's shell trough  commander agent, the
-            Puppet utility allows you to perform different actions getting the
-            same results that you would get from the web-based interface and command line. This plugin offers two main funcionalities, first the ability to run manifest files easily from a file or from a text-area when the manifest content can be placed. Second it can run any desired Puppet command, extending the manifests funcionality.</p>
 
-            <p>Electric Commander itself provides some advantages like
-            parameters checking, easy functionality selection using only check
-            boxes, combo buttons, historical log reports, procedure duration
-            statistics, simple credentials attachment, real time analysis of
-            the log been generated, among others.</p>
-           
-            <h2>Integrated Version</h2>
-            <p>This plugin was developed and tested against Puppet Enterprise version 2.5</p>
-           
-            <h1>Plugin Procedures</h1>
-            <p>IMPORTANT: For all parameter descriptions below, required
-            parameters are shown in <span class='required'>bold
-            italics</span>.</p>
+        <p>Puppet is a tool designed to manage the configuration of
+        Unix-like and Microsoft Windows systems declaratively. The
+        user describes system resources and their state, either
+        using Puppet's declarative language or a Ruby DSL
+        (domain-specific language). This information is stored in
+        files called "Puppet manifests".</p>
 
-        <div id="RunManifest"><a name='RunManifest' id="RunManifest"></a>
+        <p>Puppet discovers the system information via a utility
+        called Facter, and compiles the Puppet manifests into a
+        system-specific catalog containing resources and resource
+        dependency, which are applied against the target systems.
+        Any actions taken by Puppet are then reported.</p>
+
+        <p>Built to be cross-platform, it works on Linux
+        distributions, including RHEL (and clones such as CentOS
+        and Oracle Linux), Fedora, Debian, Mandriva, Ubuntu, and
+        SUSE, as well as multiple Unix systems (Solaris, BSD, Mac
+        OS X, AIX, HP-UX), and has Microsoft Windows support. It is
+        a model-driven solution that requires limited programming
+        knowledge to use.</p>
+
+        <h2>Puppet Links</h2>
+
+        <p>More information can be found at
+        <a href="http://puppetlabs.com/">Puppet Home</a>.</p>
+
+        <h2>Electric Commander Integration to Puppet</h2>
+
+        <p>The plugin interacts with the Puppet's shell trough
+        commander agent, the Puppet utility allows you to perform
+        different actions getting the same results that you would
+        get from the web-based interface and command line. This
+        plugin offers two main funcionalities, first the ability to
+        run manifest files easily from a file or from a text-area
+        when the manifest content can be placed. Second it can run
+        any desired Puppet command, extending the manifests
+        funcionality.</p>
+
+        <p>Electric Commander itself provides some advantages like
+        parameters checking, easy functionality selection using
+        only check boxes, combo buttons, historical log reports,
+        procedure duration statistics, simple credentials
+        attachment, real time analysis of the log been generated,
+        among others.</p>
+
+        <h2>Integrated Version</h2>
+
+        <p>This plugin was developed and tested against Puppet
+        Enterprise version 2.5</p>
+
+        <h1>Plugin Procedures</h1>
+
+        <p>IMPORTANT: For all parameter descriptions below,
+        required parameters are shown in
+        <span class='required'>bold italics</span>.</p>
+
+        <div id="RunManifest">
+            <a name='RunManifest'
+                 id="RunManifest"></a> 
+
             <h3>RunManifest</h3>
+
             <p>Runs a manifest file on Puppet.</p>
-            <p>- Command to be executed: &lt;Puppet Path&gt; apply &lt;options&gt; &lt;manifest_file.pp&gt;.</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; apply
+            &lt;options&gt; &lt;manifest_file.pp&gt;.</p>
+
             <table class="grid">
                 <thead>
                     <tr>
                         <th>Parameter</th>
+
                         <th>Description</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <tr>
                         <td class='required'>Puppet Path</td>
-                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. This is the default value. (Required)</td>
+
+                        <td>Provide the path to the puppet
+                        executable e.g /usr/local/bin/puppet. This
+                        is the default value. (Required)</td>
                     </tr>
+
                     <tr>
                         <td class='required'>Manifest Type</td>
-                        <td>Choose the manifest type to use, available options are: File, Text Area. (Required)</td>
+
+                        <td>Choose the manifest type to use,
+                        available options are: File, Text Area.
+                        (Required)</td>
                     </tr>
+
                     <tr>
                         <td class='required'>Manifest</td>
-                        <td>Provide the manifest to run. If the Manifest Type selected is 'File' a path to a manifest file must be provided, if the Manifest Type selected is 'Text Area' the content of the manifest must be typed directly in this field. (Required)</td>
+
+                        <td>Provide the manifest to run. If the
+                        Manifest Type selected is 'File' a path to
+                        a manifest file must be provided, if the
+                        Manifest Type selected is 'Text Area' the
+                        content of the manifest must be typed
+                        directly in this field. (Required)</td>
                     </tr>
+
                     <tr>
                         <td>Debug</td>
-                        <td>If checked full debugging will be enabled.</td>
+
+                        <td>If checked full debugging will be
+                        enabled.</td>
                     </tr>
+
                     <tr>
                         <td>Verbose Mode</td>
-                        <td>If checked the verbose mode is activated.</td>
+
+                        <td>If checked the verbose mode is
+                        activated.</td>
                     </tr>
+
                     <tr>
-                        <td>Additional Commands)</td>
-                        <td>Provide additional commands if needed.</td>
+                        <td>Simulate Run</td>
+
+                        <td>If checked simulates a manifest
+                        run.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Additional Commands</td>
+
+                        <td>Provide additional commands if
+                        needed.</td>
                     </tr>
                 </tbody>
             </table>
-            <h2>Parameter form</h2>
-            <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-1.png" alt=
-            "form" />
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-1.png"
+                 alt="form" />
         </div>
-		
-		<div id="RunCommand"><a name='RunCommand' id="RunCommand"></a>
+
+        <div id="RunCommand">
+            <a name='RunCommand'
+                 id="RunCommand"></a> 
+
             <h3>RunCommand</h3>
+
             <p>Runs a command on Puppet.</p>
-			<p>- Command to be executed: &lt;Puppet Path&gt; &lt;Puppet Command&gt;.</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt;
+            &lt;Puppet Command&gt;.</p>
+
             <table class="grid">
                 <thead>
                     <tr>
                         <th>Parameter</th>
+
                         <th>Description</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <tr>
                         <td class='required'>Puppet Path</td>
-                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. This is the default value. (Required)</td>
+
+                        <td>Provide the path to the puppet
+                        executable e.g /usr/local/bin/puppet. This
+                        is the default value. (Required)</td>
                     </tr>
+
                     <tr>
                         <td class='required'>Puppet Command</td>
-                        <td>Provide the puppet command that you want to run. e.g agent --test. (Required)</td>
+
+                        <td>Provide the puppet command that you
+                        want to run. e.g agent --test.
+                        (Required)</td>
                     </tr>
                 </tbody>
             </table>
-            <h2>Parameter form</h2>
-            <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-7.png" alt=
-            "form" />
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-7.png"
+                 alt="form" />
         </div>
-		
+
         <h1>Examples and Use Cases</h1>
-       
-        <h2>Run manifest file example</h2>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-2.png" alt=
-        "screenshot" />
-        <h2>Log generated</h2>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-3.png" alt=
-        "screenshot" />
-        <h2>Run manifest text-area example</h2>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-4.png" alt=
-        "screenshot" />
-        <h2>Log generated</h2>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-5.png" alt=
-        "screenshot" />
-        <h2>Job Summary</h2>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Puppet-6.png" alt=
-        "screenshot" />       
-       
-       
+
+        <h2>Run manifest file
+        example</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-2.png"
+             alt="screenshot" /> 
+
+        <h2>Log
+        generated</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-3.png"
+             alt="screenshot" /> 
+
+        <h2>Run manifest text-area
+        example</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-4.png"
+             alt="screenshot" /> 
+
+        <h2>Log
+        generated</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-5.png"
+             alt="screenshot" /> 
+
+        <h2>Job
+        Summary</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-6.png"
+             alt="screenshot" /> 
+
         <h1>Release Notes</h1>
-       
-       <h2>@PLUGIN_KEY@-1.0.1</h2>
-            <ul>
-                <li>Added Postp implementation.</li>
-                
-                <li>Improve error handling from driver.</li>
-            </ul>
-       
+
+        <h2>@PLUGIN_KEY@-1.0.2</h2>
+
+        <ul>
+            <li>Added the possibility to simulate a manifest run
+            (through the "--noop" command).</li>
+        </ul>
+
+        <h2>@PLUGIN_KEY@-1.0.1</h2>
+
+        <ul>
+            <li>Added Postp implementation.</li>
+
+            <li>Improve error handling from driver.</li>
+        </ul>
+
         <h2>@PLUGIN_KEY@-1.0.0</h2>
-            <ul>
-                <li>New Integration ready: EC-Puppet</li>
-            </ul>
-        </div>
-    </body>
+
+        <ul>
+            <li>New Integration ready: EC-Puppet</li>
+        </ul>
+    </div>
+</body>
 </html>

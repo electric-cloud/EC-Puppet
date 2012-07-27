@@ -66,8 +66,9 @@ sub main {
     $::g_puppet_path = ($ec->getProperty( "puppet_path" ))->findvalue('//value')->string_value;
     $::g_manifest_type = ($ec->getProperty( "manifest_type" ))->findvalue('//value')->string_value;
     $::g_manifest = ($ec->getProperty( "manifest" ))->findvalue('//value')->string_value;
-    $::g_debug = ($ec->getProperty( "debug" ))->findvalue('//value')->string_value;
+    $::g_debug = ($ec->getProperty( "debug" ))->findvalue('//value')->string_value;    
     $::g_verbose_mode = ($ec->getProperty( "verbose_mode" ))->findvalue('//value')->string_value;
+    $::g_noop = ($ec->getProperty( "noop" ))->findvalue('//value')->string_value;
     $::g_additional_commands = ($ec->getProperty( "additional_commands" ))->findvalue('//value')->string_value;
     
 	#Variable that stores the command to be executed
@@ -89,6 +90,11 @@ sub main {
     if($::g_verbose_mode && $::g_verbose_mode ne '')
     {
         $::g_command = $::g_command . " --verbose";
+    }
+    
+    if($::g_noop && $::g_noop ne '')
+    {
+        $::g_command = $::g_command . " --noop";
     }
     
     if($::g_additional_commands && $::g_additional_commands ne '')

@@ -193,6 +193,31 @@
                                     </propertySheet>
                                 </property>
                                 <property>
+                                    <propertyName>noop</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
                                     <propertyName>additional_commands</propertyName>
                                     <propertySheet>
                                         <property>
@@ -245,6 +270,13 @@
                 <formalParameterName>verbose_mode</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>If checked the verbose mode is activated.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>noop</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>If checked simulate run by applying a manifest.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
