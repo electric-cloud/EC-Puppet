@@ -8,25 +8,16 @@
 # Purpose
 #    Perl script to create run a manifest file on Puppet
 #
-# Date
-#    07/05/2012
-#
-# Engineer
-#    Mario Carmona
-#
-# Copyright (c) 2012 Electric Cloud, Inc.
+# Copyright (c) 2014 Electric Cloud, Inc.
 # All rights reserved
 # -------------------------------------------------------------------------
 package RunManifestDriver;
-
 
 # -------------------------------------------------------------------------
 # Includes
 # -------------------------------------------------------------------------
 use Cwd;
-use Carp;
 use strict;
-use Data::Dumper;
 use utf8;
 use Encode;
 use warnings;
@@ -34,8 +25,8 @@ use diagnostics;
 use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
-use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/libs);
+use PuppetHelper;
 
 $|=1;
 
@@ -108,10 +99,14 @@ sub main {
         
         print "Command to be executed: \n$::g_command \n\n";
         
-		#Executes the command into puppet
+		# Executes the command into puppet
 		system("$::g_command");
+
+        # To get exit code of process shift right by 8
+        my $exitCode = $? >> 8;
+
         # Set outcome
-        if ($? != 0){ $ec->setProperty("outcome","error"); }
+        setOutcomeFromExitCode($ec, $exitCode);
     }
     else
     {
@@ -132,8 +127,12 @@ sub main {
 		
 		#Executes the command into puppet
         system("$::g_command");
+
+        # To get exit code of process shift right by 8
+        my $exitCode = $? >> 8;
+
         # Set outcome
-        if ($? != 0){ $ec->setProperty("outcome","error"); }
+        setOutcomeFromExitCode($ec, $exitCode);
         
         #In case the generated file must be removed this line must be enabled
         #system("rm $file_name");

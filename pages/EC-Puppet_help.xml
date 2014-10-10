@@ -230,6 +230,14 @@
 
         <h1>Release Notes</h1>
 
+        <h2>@PLUGIN_KEY@-1.0.3</h2>
+
+        <ul>
+            <li>Fixed bug where exit code 2 was not recognized as
+                success when --detailed-exitcodes is specified</li>
+            <li>Increase minimum version of Commander to be 4.2</li>
+        </ul>
+
         <h2>@PLUGIN_KEY@-1.0.2</h2>
 
         <ul>

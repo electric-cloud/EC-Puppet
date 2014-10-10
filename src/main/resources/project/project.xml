@@ -25,6 +25,20 @@
                 </propertySheet>
             </property>
             <property>
+                <propertyName>libs</propertyName>
+                <description/>
+                <expandable>0</expandable>
+                <value/>
+                <propertySheet>
+                    <property>
+                        <propertyName>PuppetHelper.pm</propertyName>
+                        <description></description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                </propertySheet>
+            </property>
+            <property>
                 <propertyName>ec_setup</propertyName>
                 <description/>
                 <expandable>0</expandable>
