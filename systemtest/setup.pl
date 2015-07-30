@@ -29,7 +29,7 @@ foreach (@prereqs) {
 
 foreach (@prereqs) {
     print "Installing $_\n";
-    my $file = "$outtop/$_/$_.jar";
+    my $file = "$::ENV{PLUGINS_ARTIFACTS}/$_/$_.jar";
     my $xpath = $N->installPlugin($file);
     my $msg = $N->getError();
     if ($msg ne "") {
