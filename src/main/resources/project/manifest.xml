@@ -1,0 +1,31 @@
+<?xml version='1.0' standalone='yes'?>
+<fileset>
+  <file>
+    <path>RunCommand.xml</path>
+    <xpath>//procedure[procedureName=&quot;RunCommand&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>RunManifest.xml</path>
+    <xpath>//procedure[procedureName=&quot;RunManifest&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>RunCommandDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;RunCommand&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>RunManifestDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;RunManifest&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>PuppetHelper.pm</path>
+    <xpath>//property[propertyName=&quot;libs&quot;]/propertySheet/property[propertyName=&quot;PuppetHelper.pm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>ec_setup.pl</path>
+    <xpath>//property[propertyName=&quot;ec_setup&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>postp_matchers.pl</path>
+    <xpath>//property[propertyName=&quot;postp_matchers&quot;]/value</xpath>
+  </file>
+</fileset>

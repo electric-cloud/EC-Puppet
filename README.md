@@ -1,7 +1,7 @@
-@PLUGIN_KEY@
+EC-Puppet
 ============
 
-The ElectricFlow @PLUGIN_NAME@ integration
+The ElectricFlow Puppet integration
 
 ## Compile ##
 
