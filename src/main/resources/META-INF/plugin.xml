@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
 
      Copyright 2015 Electric Cloud, Inc.
@@ -27,8 +27,9 @@
     <help>EC-Puppet_help.xml</help>
     <commander-version min="4.2"/>
     <components>
-        <component name="configure">
-        	
+        <component name="ConfigurationManagement">
+            <javascript>war/ecplugins.puppet.ConfigurationManagement/ecplugins.puppet.ConfigurationManagement.nocache.js</javascript>
         </component>
     </components>
+    <configure>configurations.xml</configure>
 </plugin>
