@@ -230,6 +230,12 @@
 
         <h1>Release Notes</h1>
 
+        <h2>@PLUGIN_KEY@-1.0.4</h2>
+
+        <ul>
+            <li>Added configuration to plugin.</li>
+        </ul>
+
         <h2>@PLUGIN_KEY@-1.0.3</h2>
 
         <ul>

@@ -1,4 +1,4 @@
-<?xml version='1.0' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
 
      Copyright 2015 Electric Cloud, Inc.
@@ -15,34 +15,49 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 
--->
-<fileset>
+--><fileset>
   <file>
     <path>RunCommand.xml</path>
-    <xpath>//procedure[procedureName=&quot;RunCommand&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+    <xpath>//procedure[procedureName="RunCommand"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
   </file>
   <file>
     <path>RunManifest.xml</path>
-    <xpath>//procedure[procedureName=&quot;RunManifest&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+    <xpath>//procedure[procedureName="RunManifest"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
   </file>
   <file>
     <path>RunCommandDriver.pl</path>
-    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;RunCommand&quot;]/value</xpath>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunCommand"]/value</xpath>
   </file>
   <file>
     <path>RunManifestDriver.pl</path>
-    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;RunManifest&quot;]/value</xpath>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunManifest"]/value</xpath>
   </file>
   <file>
     <path>PuppetHelper.pm</path>
-    <xpath>//property[propertyName=&quot;libs&quot;]/propertySheet/property[propertyName=&quot;PuppetHelper.pm&quot;]/value</xpath>
+    <xpath>//property[propertyName="libs"]/propertySheet/property[propertyName="PuppetHelper.pm"]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>
-    <xpath>//property[propertyName=&quot;ec_setup&quot;]/value</xpath>
+    <xpath>//property[propertyName="ec_setup"]/value</xpath>
   </file>
   <file>
     <path>postp_matchers.pl</path>
-    <xpath>//property[propertyName=&quot;postp_matchers&quot;]/value</xpath>
+    <xpath>//property[propertyName="postp_matchers"]/value</xpath>
+  </file>
+<file>
+    <path>ui_forms/CreateConfigForm.xml</path>
+    <xpath>//property[propertyName='ui_forms']/propertySheet/property[propertyName='CreateConfigForm']/value</xpath>
+  </file>
+  <file>
+    <path>ui_forms/EditConfigForm.xml</path>
+    <xpath>//property[propertyName='ui_forms']/propertySheet/property[propertyName='EditConfigForm']/value</xpath>
+  </file>
+  <file>
+    <path>conf/createcfg.pl</path>
+    <xpath>//procedure[procedureName='CreateConfiguration']/step[stepName='CreateConfiguration']/command</xpath>
+  </file>
+  <file>
+    <path>conf/deletecfg.pl</path>
+    <xpath>//procedure[procedureName='DeleteConfiguration']/step[stepName='DeleteConfiguration']/command</xpath>
   </file>
 </fileset>
