@@ -1,0 +1,99 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ManageCertificatesAndRequests</help>
+    <formElement>
+        <type>entry</type>
+        <label>Puppet Path:</label>
+        <value>/usr/local/bin/puppet</value>
+        <property>puppet_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Action:</label>
+        <property>action</property>
+        <required>1</required>
+        <documentation>Every action except 'list' and 'generate' requires a hostname to act on, unless the '--all' option is set. [clean]: Revoke a host's certificate (if applicable) and remove all files related to that host from puppet cert's storage.  This is useful when rebuilding hosts, since new certificate signing requests will only be honored if puppet cert does not have a copy of a      signed certificate for that host. If '--all' is specified then all host certificates, both signed and unsigned, will be removed. [fingerprint]: Print the DIGEST (defaults to the signing algorithm) fingerprint of a host's certificate. [generate]: Generate a certificate for a named client. A certificate/keypair will be generated for each client named on the command line. [list]: List outstanding certificate requests. If '--all' is specified, signed certificates are also listed, prefixed by '+ ', and revoked or invalid certificates are prefixed by '-' (the verification outcome is  printed in parenthesis). [print]: Print the full-text version of a host's certificate. [revoke]: Revoke the certificate of a client. The certificate can be specified either by its serial number (given as a hexadecimal number prefixed by '0x') or by its hostname. The certificate is revoked by adding it to the Certificate Revocation List given by the 'cacrl' configuration option. Note that the puppet master needs to be restarted after revoking certificates. [sign]: Sign an outstanding certificate request. [verify]: Verify the named certificate against the local CA certificate. [reinventory]: Build an inventory of the issued certificates. This will destroy the current inventory file specified by   'cert_inventory' and recreate it from the certificates found in the 'certdir'. Ensure the puppet master is stopped before running this action.</documentation>
+        <option><name>Clean</name><value>clean</value></option>
+        <option><name>Finger Print</name><value>fingerprint</value></option>
+        <option><name>Generate</name><value>generate</value></option>
+        <option><name>List</name><value>list</value></option>
+        <option><name>Print</name><value>print</value></option>
+        <option><name>Revoke</name><value>revoke</value></option>
+        <option><name>Sign</name><value>sign</value></option>
+        <option><name>Verify</name><value>verify</value></option>
+        <option><name>Reinventory</name><value>reinventory</value></option>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>All:</label>
+        <property>all</property>
+        <required>0</required>
+        <documentation>Operate on all items. Currently only makes sense with the 'sign', 'clean', 'list', and 'fingerprint' actions.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Digest:</label>
+        <property>digest</property>
+        <required>0</required>
+        <documentation>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on your openssl and openssl ruby extension version.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Debug:</label>
+        <property>debug</property>
+        <required>0</required>
+        <documentation>Enable full debugging.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Help:</label>
+        <property>help</property>
+        <required>0</required>
+        <documentation>Print this help message.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Verbose:</label>
+        <property>verbose</property>
+        <required>0</required>
+        <documentation>Enable verbosity.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Version:</label>
+        <property>version</property>
+        <required>0</required>
+        <documentation>Print the puppet version number and exit.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+</editor>
+

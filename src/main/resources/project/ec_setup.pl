@@ -28,11 +28,21 @@ my %RunCommand = (
     category    => "Resource Management"
 );
 
+my %ManageCertificatesAndRequests = (
+    label       => "Puppet - ManageCertificatesAndRequests",
+    procedure   => "ManageCertificatesAndRequests",
+    description => "Manage certificates and requests. Standalone certificate authority. Capable of generating certificates, but mostly     used for signing certificate requests from puppet clients.Because the puppet master service defaults to not signing client certificate          requests, this script is available for signing outstanding requests. It can be used to list outstanding requests and then either sign them      individually or sign all of them.",
+    category    => "Resource Management"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Manifest");
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - RunCommand");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Command");
 
-@::createStepPickerSteps = (\%RunManifest, \%RunCommand);
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - ManageCertificatesAndRequests");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - ManageCertificatesAndRequests");
+
+@::createStepPickerSteps = (\%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests);
 
