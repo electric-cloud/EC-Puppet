@@ -35,6 +35,14 @@ my %ManageCertificatesAndRequests = (
     category    => "Resource Management"
 );
 
+my %PuppetParser = (
+    label       => "Puppet - parser",
+    procedure   => "PuppetParser",
+    description => "validates Puppet DSL syntax without compiling a catalog or
+syncing any resources.",
+    category    => "Resource Management"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Manifest");
 
@@ -44,5 +52,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Command
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - ManageCertificatesAndRequests");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - ManageCertificatesAndRequests");
 
-@::createStepPickerSteps = (\%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests);
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - PuppetParser");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - PuppetParser");
+
+@::createStepPickerSteps = (\%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests , \%PuppetParser );
 
