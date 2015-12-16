@@ -33,6 +33,10 @@
         <xpath>//procedure[procedureName="PuppetParser"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
     <file>
+        <path>procedures/RunAgent/form.xml</path>
+        <xpath>//procedure[procedureName="RunAgent"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+    </file>
+    <file>
         <path>procedures/RunCommand/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunCommand"]/value</xpath>
     </file>
@@ -47,6 +51,10 @@
     <file>
         <path>procedures/PuppetParser/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="PuppetParser"]/value</xpath>
+    </file>
+    <file>
+        <path>procedures/RunAgent/driver.pl</path>
+        <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunAgent"]/value</xpath>
     </file>
     <file>
         <path>procedures/PuppetHelper.pm</path>

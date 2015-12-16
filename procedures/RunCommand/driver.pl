@@ -13,6 +13,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
+package RunCommandDriver;
+
 # -------------------------------------------------------------------------
 # Includes
 # -------------------------------------------------------------------------
@@ -51,69 +53,32 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    my $puppet_path =
+    $::g_puppet_path =
       ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
-    my $host = ( $ec->getProperty("host") )->findvalue('//value')->string_value;
-    my $action =
-      ( $ec->getProperty("action") )->findvalue('//value')->string_value;
-    my $all = ( $ec->getProperty("all") )->findvalue('//value')->string_value;
-    my $digest =
-      ( $ec->getProperty("digest") )->findvalue('//value')->string_value;
-    my $debug =
-      ( $ec->getProperty("debug") )->findvalue('//value')->string_value;
-    my $help = ( $ec->getProperty("help") )->findvalue('//value')->string_value;
-    my $verbose =
-      ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
-    my $version =
-      ( $ec->getProperty("version") )->findvalue('//value')->string_value;
-    my $additional_options =
-      ( $ec->getProperty("additional_options") )->findvalue('//value')
+    $::g_puppet_command =
+      ( $ec->getProperty("puppet_command") )->findvalue('//value')
       ->string_value;
-
-    $ec->abortOnError(1);
 
     my @cmd;
     my %props;
 
     #Prints procedure and parameters information
     print "EC-Puppet: ";
-    print "ManageCertificatesAndRequests procedure \n\n";
+    print "Run Command procedure \n\n";
 
     #Parameters are checked to see which should be included
-    if ( $puppet_path && $puppet_path ne '' && $action && $action ne '' ) {
-
+    if (   $::g_puppet_path
+        && $::g_puppet_path ne ''
+        && $::g_puppet_command
+        && $::g_puppet_command ne '' )
+    {
         #Variable that stores the command to be executed
-        my $command = $puppet_path . " cert " . $action;
+        $::g_command = $::g_puppet_path . " " . $::g_puppet_command;
 
-        if ( $host && $host ne '' ) {
-            $command = $command . " " . $host;
-        }
-        if ( $all && $all ne '' ) {
-            $command = $command . " --all";
-        }
-        if ( $digest && $digest ne '' ) {
-            $command = $command . " --digest " . $digest;
-        }
-        if ( $debug && $debug ne '' ) {
-            $command = $command . " --debug";
-        }
-        if ( $help && $help ne '' ) {
-            $command = $command . " --help";
-        }
-        if ( $verbose && $verbose ne '' ) {
-            $command = $command . " --verbose";
-        }
-        if ( $version && &version ne '' ) {
-            $command = $command . " --version";
-        }
-        if ( $additional_options && $additional_options ne '' ) {
-            $command = $command . " " . $additional_options;
-        }
-
-        print "Command to be executed: \n$command \n\n";
+        print "Command to be executed: \n$::g_command \n\n";
 
         #Executes the command into puppet
-        system("$command");
+        system("$::g_command");
 
         # To get exit code of process shift right by 8
         my $exitCode = $? >> 8;
@@ -121,9 +86,6 @@ sub main {
         # Set outcome
         setOutcomeFromExitCode( $ec, $exitCode );
 
-    }
-    else {
-        print "Invalid Command";
     }
 }
 
