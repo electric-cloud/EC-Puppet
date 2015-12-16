@@ -53,7 +53,6 @@ sub main {
     # -------------------------------------------------------------------------
     my $puppet_path =
       ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
-    my $host = ( $ec->getProperty("host") )->findvalue('//value')->string_value;
     my $action =
       ( $ec->getProperty("action") )->findvalue('//value')->string_value;
     my $all = ( $ec->getProperty("all") )->findvalue('//value')->string_value;
@@ -66,9 +65,6 @@ sub main {
       ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
     my $version =
       ( $ec->getProperty("version") )->findvalue('//value')->string_value;
-    my $additional_options =
-      ( $ec->getProperty("additional_options") )->findvalue('//value')
-      ->string_value;
 
     $ec->abortOnError(1);
 
@@ -84,15 +80,11 @@ sub main {
 
         #Variable that stores the command to be executed
         my $command = $puppet_path . " cert " . $action;
-
-        if ( $host && $host ne '' ) {
-            $command = $command . " " . $host;
-        }
         if ( $all && $all ne '' ) {
             $command = $command . " --all";
         }
         if ( $digest && $digest ne '' ) {
-            $command = $command . " --digest " . $digest;
+            $command = $command . " --digest";
         }
         if ( $debug && $debug ne '' ) {
             $command = $command . " --debug";
@@ -106,10 +98,6 @@ sub main {
         if ( $version && &version ne '' ) {
             $command = $command . " --version";
         }
-        if ( $additional_options && $additional_options ne '' ) {
-            $command = $command . " " . $additional_options;
-        }
-
         print "Command to be executed: \n$command \n\n";
 
         #Executes the command into puppet

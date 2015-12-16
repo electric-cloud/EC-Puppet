@@ -26,22 +26,6 @@
         <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
     </formElement>
     <formElement>
-        <type>entry</type>
-        <label>Host:</label>
-        <value></value>
-        <property>host</property>
-        <required>0</required>
-        <documentation>Provide the name of the host on which action has to be performed. </documentation>
-    </formElement>
-    <formElement>
-        <type>entry</type>
-        <label>Digest:</label>
-        <value></value>
-        <property>digest</property>
-        <required>0</required>
-        <documentation>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on your openssl and openssl ruby extension version.</documentation>
-    </formElement>
-    <formElement>
         <type>select</type>
         <label>Action:</label>
         <property>action</property>
@@ -63,6 +47,15 @@
         <property>all</property>
         <required>0</required>
         <documentation>Operate on all items. Currently only makes sense with the 'sign', 'clean', 'list', and 'fingerprint' actions.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Digest:</label>
+        <property>digest</property>
+        <required>0</required>
+        <documentation>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on your openssl and openssl ruby extension version.</documentation>
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
     </formElement>
@@ -101,14 +94,6 @@
         <documentation>Print the puppet version number and exit.</documentation>
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
-    </formElement>
-    <formElement>
-        <type>entry</type>
-        <label>Additional-Options:</label>
-        <value></value>
-        <property>additional_options</property>
-        <required>0</required>
-        <documentation>The additional arguments/options which need to be passed to the command. </documentation>
     </formElement>
 </editor>
 
