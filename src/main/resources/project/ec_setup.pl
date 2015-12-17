@@ -43,6 +43,13 @@ syncing any resources.",
     category    => "Resource Management"
 );
 
+my %PuppetModules = (
+    label       => "Puppet - modules",
+    procedure   => "PuppetModules",
+    description => "Find, install, and manage modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generate empty modules, and prepare locally developed modules for release on the Forge.",
+    category    => "Resource Management"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Manifest");
 
@@ -55,5 +62,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - ManageCerti
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - PuppetParser");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - PuppetParser");
 
-@::createStepPickerSteps = (\%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests , \%PuppetParser );
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - PuppetModules");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - PuppetModules");
+
+@::createStepPickerSteps = (\%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests , \%PuppetParser , \%PuppetModules );
 

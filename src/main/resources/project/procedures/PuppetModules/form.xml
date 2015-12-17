@@ -1,0 +1,132 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#PuppetModules</help>
+    <formElement>
+        <type>entry</type>
+        <label>Puppet Path:</label>
+        <value>/usr/local/bin/puppet</value>
+        <property>puppet_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Action:</label>
+        <property>action</property>
+        <required>1</required>
+        <documentation>Choose an action to be performed on puppet modules.Available options are :build,changes,generate,install,list,search,uninstall,upgrade. (Required)</documentation>
+        <option><name>Build</name><value>build</value></option>
+        <option><name>Changes</name><value>changes</value></option>
+        <option><name>Generate</name><value>generate</value></option>
+        <option><name>Install</name><value>install</value></option>
+        <option><name>List</name><value>list</value></option>
+        <option><name>Search</name><value>search</value></option>
+        <option><name>Uninstall</name><value>uninstall</value></option>
+        <option><name>Upgrade</name><value>upgrade</value></option>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Module Name:</label>
+		<value></value>
+        <property>module_name</property>
+        <required>0</required>
+        <documentation>Provide the name of the puppet module.(Required except for list module action).
+        </documentation>
+    </formElement> 
+    <formElement>
+        <type>entry</type>
+        <label>Module Path:</label>
+        <value></value>
+        <property>module_path</property>
+        <required>0</required>
+        <documentation>Provide the path for the puppet module to be installed.
+        </documentation>
+    </formElement> 
+    <formElement>
+        <type>entry</type>
+        <label>Environment:</label>
+        <value></value>
+        <property>environment</property>
+        <required>0</required>
+        <documentation>Environment puppet is installed in.
+        </documentation>
+    </formElement> 
+    <formElement>
+        <type>entry</type>
+        <label>Render as:</label>
+        <value></value>
+        <property>render_as</property>
+        <required>0</required>
+        <documentation>Rendering format to use.
+        </documentation>
+    </formElement> 
+    <formElement>
+            <type>checkbox</type>
+            <label>Version:</label>
+            <property>version</property>
+            <required>0</required>
+            <documentation>If checked version will be displayed.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Debug:</label>
+            <property>debug</property>
+            <required>0</required>
+            <documentation>If checked full debugging will be enabled.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Force:</label>
+            <property>force</property>
+            <required>0</required>
+            <documentation>If checked same module will be reinstalled without dependencies.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Ignore Dependencies:</label>
+            <property>ignore_dependencies</property>
+            <required>0</required>
+            <documentation>If checked ignores dependencies.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Ignore Changes:</label>
+            <property>ignore_changes</property>
+            <required>0</required>
+            <documentation>If checked ignores changes.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Additional Options:</label>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Provide additional options if needed.</documentation>
+    </formElement>
+</editor>
+
