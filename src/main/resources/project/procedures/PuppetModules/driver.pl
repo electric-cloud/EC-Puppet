@@ -30,14 +30,14 @@ use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/libs);
 use PuppetHelper;
 
-$|=1;
-
+$| = 1;
 
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
- 
+
 ###########################################################################
+
 =head2 main
  
   Title    : main
@@ -46,102 +46,107 @@ $|=1;
   Returns  : none
   Args     : named arguments: none
 =cut
+
 ###########################################################################
 
-sub main{
-	my $ec = ElectricCommander ->new();
+sub main {
+    my $ec = ElectricCommander->new();
 
-	$ec = abortOnError(0);
-    my $puppet_path = ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
-    my $action = ($ec->getProperty( "action" ))->findvalue('//value')->string_value;
-	my $module_name = ($ec->getProperty( "module_name" ))->findvalue('//value')->string_value;
-    my $version = ($ec->getProperty( "version" ))->findvalue('//value')->string_value;
-    my $force = ($ec->getProperty( "force" ))->findvalue('//value')->string_value;
-    my $debug = ($ec->getProperty( "debug" ))->findvalue('//value')->string_value;    
-    my $ignore_dependencies = ($ec->getProperty( "ignore_dependencies" ))->findvalue('//value')->string_value;
-    my $module_path = ($ec->getProperty( "module_path" ))->findvalue('//value')->string_value;
-    my $environment = ($ec->getProperty( "environment" ))->findvalue('//value')->string_value;
-    my $render_as = ($ec->getProperty( "render_as" ))->findvalue('//value')->string_value;
-    my $ignore_changes = ($ec->getProperty( "ignore_changes" ))->findvalue('//value')->string_value;
-    my $additional_options = ($ec->getProperty( "additional_options" ))->findvalue('//value')->string_value;
-    
-    $ec = abortOnError(1);
+    $ec->abortOnError(0);
+    my $puppet_path =
+      ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
+    my $action =
+      ( $ec->getProperty("action") )->findvalue('//value')->string_value;
+    my $module_name =
+      ( $ec->getProperty("module_name") )->findvalue('//value')->string_value;
+    my $version =
+      ( $ec->getProperty("version") )->findvalue('//value')->string_value;
+    my $force =
+      ( $ec->getProperty("force") )->findvalue('//value')->string_value;
+    my $debug =
+      ( $ec->getProperty("debug") )->findvalue('//value')->string_value;
+    my $ignore_dependencies =
+      ( $ec->getProperty("ignore_dependencies") )->findvalue('//value')
+      ->string_value;
+    my $module_path =
+      ( $ec->getProperty("module_path") )->findvalue('//value')->string_value;
+    my $environment =
+      ( $ec->getProperty("environment") )->findvalue('//value')->string_value;
+    my $render_as =
+      ( $ec->getProperty("render_as") )->findvalue('//value')->string_value;
+    my $ignore_changes =
+      ( $ec->getProperty("ignore_changes") )->findvalue('//value')
+      ->string_value;
+    my $additional_options =
+      ( $ec->getProperty("additional_options") )->findvalue('//value')
+      ->string_value;
 
-	#Variable that stores the command to be executed
-    my $command = $puppet_path . " puppet module ";
- 
+    $ec->abortOnError(1);
+
+    #Variable that stores the command to be executed
+    my $command = $puppet_path . " module";
+
     my @cmd;
     my %props;
-    
+
     #Prints procedure and parameters information
     print "EC-Puppet: ";
     print "Perform puppet module operations \n\n";
-    
-	#Parameters are checked to see which should be included
-    if($action && $action ne '')
-    {
-        $command = $command . " " . $action  ;
+
+    #Parameters are checked to see which should be included
+    if ( $action && $action ne '' ) {
+        $command = $command . " " . $action;
     }
 
-    if($module_path && $module_path ne '')
-    {
+    if ( $module_path && $module_path ne '' ) {
         $command = $command . " --target-dir " . $module_path;
     }
-    
-    if($module_name && $module_name ne '')
-    {
+
+    if ( $module_name && $module_name ne '' ) {
         $command = $command . " " . $module_name;
     }
 
-    if($version && $version ne '')
-    {
+    if ( $version && $version ne '' ) {
         $command = $command . " --version";
     }
 
-    if($debug && $debug ne '')
-    {
-        $command = $command .  " --debug";
+    if ( $debug && $debug ne '' ) {
+        $command = $command . " --debug";
     }
-    
-    if($force && $force ne '')
-    {
+
+    if ( $force && $force ne '' ) {
         $command = $command . " --force";
     }
-    
-    if($ignore_dependencies && $ignore_dependencies ne '')
-    {
+
+    if ( $ignore_dependencies && $ignore_dependencies ne '' ) {
         $command = $command . " --ignore-dependencies";
     }
 
-    if($ignore_changes && $ignore_changes ne '')
-    {
+    if ( $ignore_changes && $ignore_changes ne '' ) {
         $command = $command . " --ignore-changes";
     }
-    
-    if($render_as && $render_as ne '')
-    {
+
+    if ( $render_as && $render_as ne '' ) {
         $command = $command . " --render-as " . $render_as;
     }
 
-    if($environment && $environment ne '')
-    {
+    if ( $environment && $environment ne '' ) {
         $command = $command . " --environment " . $environment;
     }
 
-    if($additional_options && $additional_options ne '')
-    {
+    if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
     }
 
-        
     print "Command to be executed: \n$command \n\n";
-        
-	# Executes the command into puppet
-	system("$command");
+
+    # Executes the command into puppet
+    system("$command");
 
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
 
     # Set outcome
-    setOutcomeFromExitCode($ec, $exitCode);
+    setOutcomeFromExitCode( $ec, $exitCode );
 }
+main();
