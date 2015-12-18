@@ -29,10 +29,11 @@ my %RunCommand = (
 );
 
 my %ManageCertificatesAndRequests = (
-    label       => "Puppet - ManageCertificatesAndRequests",
-    procedure   => "ManageCertificatesAndRequests",
-    description => "Manage certificates and requests. Standalone certificate authority. Capable of generating certificates, but mostly     used for signing certificate requests from puppet clients.Because the puppet master service defaults to not signing client certificate          requests, this script is available for signing outstanding requests. It can be used to list outstanding requests and then either sign them      individually or sign all of them.",
-    category    => "Resource Management"
+    label     => "Puppet - ManageCertificatesAndRequests",
+    procedure => "ManageCertificatesAndRequests",
+    description =>
+"Manage certificates and requests. Standalone certificate authority. Capable of generating certificates, but mostly     used for signing certificate requests from puppet clients.Because the puppet master service defaults to not signing client certificate          requests, this script is available for signing outstanding requests. It can be used to list outstanding requests and then either sign them      individually or sign all of them.",
+    category => "Resource Management"
 );
 
 my %PuppetParser = (
@@ -40,30 +41,58 @@ my %PuppetParser = (
     procedure   => "PuppetParser",
     description => "validates Puppet DSL syntax without compiling a catalog or
 syncing any resources.",
-    category    => "Resource Management"
+    category => "Resource Management"
 );
 
 my %PuppetModules = (
-    label       => "Puppet - modules",
-    procedure   => "PuppetModules",
-    description => "Find, install, and manage modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generate empty modules, and prepare locally developed modules for release on the Forge.",
+    label     => "Puppet - modules",
+    procedure => "PuppetModules",
+    description =>
+"Find, install, and manage modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generate empty modules, and prepare locally developed modules for release on the Forge.",
+    category => "Resource Management"
+);
+
+my %PuppetLint = (
+    label       => "Puppet - Lint",
+    procedure   => "PuppetLint",
+    description => "Puppet linting",
     category    => "Resource Management"
 );
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Manifest");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - Run Manifest");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - RunCommand");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - Run Command");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - RunCommand");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - Run Command");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - ManageCertificatesAndRequests");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - ManageCertificatesAndRequests");
+$batch->deleteProperty(
+"/server/ec_customEditors/pickerStep/EC-Puppet - ManageCertificatesAndRequests"
+);
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - ManageCertificatesAndRequests"
+);
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - PuppetParser");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - PuppetParser");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - PuppetParser");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - PuppetParser");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Puppet - PuppetModules");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - PuppetModules");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - PuppetModules");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - PuppetModules");
 
-@::createStepPickerSteps = (\%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests , \%PuppetParser , \%PuppetModules );
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - PuppetLint");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - PuppetLint");
+
+@::createStepPickerSteps = (
+    \%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests,
+    \%PuppetParser, \%PuppetModules, \%PuppetLint
+);
 
