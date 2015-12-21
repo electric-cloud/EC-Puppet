@@ -16,9 +16,16 @@ limitations under the License.
 
 package ecplugins.puppet;
 
-import org.apache.http.client.methods.HttpGet;
+import static org.junit.Assert.assertEquals;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
@@ -27,11 +34,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.*;
-import java.util.Properties;
-
-import static org.junit.Assert.*;
 
 
 public class TestUtils {
@@ -68,15 +70,14 @@ public class TestUtils {
             jo.put("resourceName", StringConstants.RESOURCE_NAME);
             jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
 
-            HttpPut httpPutRequest = new HttpPut("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+            HttpPut httpPutRequest = new HttpPut("http://" + StringConstants.COMMANDER_SERVER
                     + ":8000/rest/v1.0/projects/" + "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
             
             String encoding = new String(
     				org.apache.commons.codec.binary.Base64
-    						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
-    								.getProperty(StringConstants.COMMANDER_USER)
+    						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
     								+ ":"
-    								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+    								+ StringConstants.COMMANDER_PASSWORD)));
 
 
             StringEntity input = new StringEntity(jo.toString());
@@ -109,13 +110,12 @@ public class TestUtils {
         try {
         	 String encoding = new String(
      				org.apache.commons.codec.binary.Base64
-     						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
-     								.getProperty(StringConstants.COMMANDER_USER)
+     						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
      								+ ":"
-     								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+     								+ StringConstants.COMMANDER_PASSWORD)));
 
         	
-            HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+            HttpPost httpPostRequest = new HttpPost("http://" + StringConstants.COMMANDER_SERVER
                     + ":8000/rest/v1.0/jobs?request=runProcedure");
             
             StringEntity input = new StringEntity(jo.toString());
@@ -144,7 +144,7 @@ public class TestUtils {
 
         long timeTaken = 0;
 
-        String url = "http://" + props.getProperty(StringConstants.COMMANDER_USER) + ":8000/rest/v1.0/jobs/" +
+        String url = "http://" + StringConstants.COMMANDER_USER + ":8000/rest/v1.0/jobs/" +
                 jobId + "?request=getJobStatus";
         JSONObject jsonObject = performHTTPGet(url);
 
@@ -176,14 +176,13 @@ public class TestUtils {
 
             try {
 
-                String url = "http://" + StringConstants.COMMANDER_USER
+                String url = "http://" + StringConstants.COMMANDER_SERVER
                                                 + ":8000/rest/v1.0/workspaces/";
                 String encoding = new String(
         				org.apache.commons.codec.binary.Base64
-        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
-        								.getProperty(StringConstants.COMMANDER_USER)
+        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
         								+ ":"
-        								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+        								+ StringConstants.COMMANDER_PASSWORD)));
 
                 HttpPost httpPostRequest = new HttpPost(url);
                 jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
@@ -229,14 +228,13 @@ public class TestUtils {
             JSONObject jo = new JSONObject();
 
             try {
-                HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                HttpPost httpPostRequest = new HttpPost("http://" + StringConstants.COMMANDER_SERVER
                         + ":8000/rest/v1.0/resources/");
                 String encoding = new String(
         				org.apache.commons.codec.binary.Base64
-        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
-        								.getProperty(StringConstants.COMMANDER_USER)
+        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
         								+ ":"
-        								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+        								+ StringConstants.COMMANDER_PASSWORD)));
 
                 jo.put("resourceName", StringConstants.RESOURCE_NAME);
                 jo.put("description", "Resource created for test automation");
@@ -279,10 +277,9 @@ public class TestUtils {
         HttpClient httpClient = new DefaultHttpClient();
         String encoding = new String(
 				org.apache.commons.codec.binary.Base64
-						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
-								.getProperty(StringConstants.COMMANDER_USER)
+						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
 								+ ":"
-								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+								+ StringConstants.COMMANDER_PASSWORD)));
         try {
             HttpGet httpGetRequest = new HttpGet(url);
             httpGetRequest.setHeader("Authorization", "Basic " + encoding);
