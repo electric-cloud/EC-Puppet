@@ -212,8 +212,8 @@ public class TestUtils {
 
                 jo.put("resourceName", StringConstants.RESOURCE_NAME);
                 jo.put("description", "Resource created for test automation");
-                jo.put("hostName", props.getProperty(StringConstants.WEBSPHERE_AGENT_IP));
-                jo.put("port", props.getProperty(StringConstants.WEBSPHERE_AGENT_PORT));
+                jo.put("hostName", props.getProperty(StringConstants.EC_AGENT_IP));
+                jo.put("port", props.getProperty(StringConstants.EC_AGENT_PORT));
                 jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
                 jo.put("pools", "default");
                 jo.put("local", true);
@@ -281,18 +281,6 @@ public class TestUtils {
              parentJSONObject.put("procedureName", "CreateConfiguration");
 
              actualParameterArray.put(new JSONObject()
-                     .put("value", "WebCfg")
-                     .put("actualParameterName", "config"));
-
-             actualParameterArray.put(new JSONObject()
-                     .put("actualParameterName", "websphere_url")
-                     .put("value", props.getProperty(StringConstants.WEBSPHERE_URL)));
-
-             actualParameterArray.put(new JSONObject()
-                     .put("actualParameterName", "websphere_port")
-                     .put("value", props.getProperty(StringConstants.WEBSPHERE_PORT)));
-
-             actualParameterArray.put(new JSONObject()
                      .put("actualParameterName", "credential")
                      .put("value", "web_credentials"));
 
@@ -302,8 +290,8 @@ public class TestUtils {
 
              credentialArray.put(new JSONObject()
                      .put("credentialName", "web_credentials")
-                     .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
-                     .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
+                     .put("userName", props.getProperty(StringConstants.USER))
+                     .put("password", props.getProperty(StringConstants.PASSWORD)));
 
              parentJSONObject.put("credential", credentialArray);
 
@@ -333,9 +321,6 @@ public class TestUtils {
              jo.put("procedureName", "DeleteConfiguration");
 
              JSONArray actualParameterArray = new JSONArray();
-             actualParameterArray.put(new JSONObject()
-                     .put("value", "WebCfg")
-                     .put("actualParameterName", "config"));
 
              jo.put("actualParameter", actualParameterArray);
 
@@ -343,8 +328,8 @@ public class TestUtils {
 
              credentialArray.put(new JSONObject()
                      .put("credentialName", "web_credentials")
-                     .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
-                     .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
+                     .put("userName", props.getProperty(StringConstants.USER))
+                     .put("password", props.getProperty(StringConstants.PASSWORD)));
 
              jo.put("credential", credentialArray);
 

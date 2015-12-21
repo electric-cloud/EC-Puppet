@@ -22,6 +22,10 @@ public class StringConstants {
      final static String COMMANDER_SERVER = "192.168.102.36";
      final static String PLUGIN_VERSION = "1.0.4.0";
      final static String COMMANDER_USER = "admin";
+     final static String EC_AGENT_IP = "admin";
+     final static String EC_AGENT_PORT = "8443";
+     final static String USER = "admin";
+     final static String PASSWORD = "changeme";
      final static String COMMANDER_PASSWORD = "changeme";
      final static String RESOURCE_NAME = "testAutomationResource";
      final static String WORKSPACE_NAME = "testAutomationWorkspace";

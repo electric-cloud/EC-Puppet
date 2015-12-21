@@ -36,7 +36,7 @@ public class ConfigurationsParser {
         try {
             HashMap<String, HashMap<String, String>> runs;
             HashMap<String, String> runProperties;
-            BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/test/java/ecplugins/EC_Puppet/Configurations.json"));
+            BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/test/java/ecplugins/puppet/Configurations.json"));
             String line = null, configuration = "";
             while ((line = reader.readLine()) != null) {
                 if (line.contains("*/"))
