@@ -15,26 +15,26 @@ limitations under the License.
 */
 
 package ecplugins.puppet;
-import static org.junit.Assert.assertEquals;
 
-import java.util.HashMap;
 import java.util.Map;
-
+import org.junit.Test;
+import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 
 public class ManageCertificatesAndRequests {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// actions is a HashMap having primary key as procedure to run and secondary key as property name
 		ConfigurationsParser.configurationParser();
-        TestUtils.createCommanderWorkspace();
-        TestUtils.createCommanderResource();
-        TestUtils.deleteConfiguration();
-        TestUtils.createConfiguration();
-        TestUtils.setDefaultResourceAndWorkspace();
+        TestUtils.createCommanderWorkspace("onlyForPuppetWorkspace");
+        TestUtils.createCommanderResource("onlyForPuppetResource", "onlyForPuppetWorkspace", "192.168.102.53");
+        //TestUtils.deleteConfiguration();
+        //TestUtils.createConfiguration();
+        //TestUtils.setResourceAndWorkspace("onlyForPuppetResource", "onlyForPuppetWorkspace");
 		System.out.println("Inside ManageCertificatesAndRequests");
 	}
 
@@ -74,11 +74,18 @@ public class ManageCertificatesAndRequests {
                 String jobId = TestUtils.callRunProcedure(jsonObject);
                 String response = TestUtils.waitForJob(jobId, StringConstants.jobTimeoutMillis);
                 // Check job status
+
                 assertEquals("Job completed with errors", "success", response);
 
 				System.out.println("JobId:" + jobId
 						+ ", Completed ManageCertificatesAndRequests Unit Test Successfully for "
 						+ objectCursor.getKey());
 			}
-		}
 	}
+
+    @AfterClass
+    public static void tearDown() {
+        System.out.println("tearing down");
+        //Clean temorarily created resources and workspaces
+    }
+}

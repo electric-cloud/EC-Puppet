@@ -19,13 +19,18 @@ package ecplugins.puppet;
 
 public class StringConstants {
 
+     //final static String COMMANDER_SERVER = "COMMANDER_SERVER";
+     //final static String PLUGIN_VERSION = "PLUGIN_VERSION";
+     //final static String COMMANDER_USER = "COMMANDER_USER";
+
      final static String COMMANDER_SERVER = "192.168.102.36";
      final static String PLUGIN_VERSION = "1.0.4.0";
      final static String COMMANDER_USER = "admin";
-     final static String EC_AGENT_IP = "admin";
-     final static String EC_AGENT_PORT = "8443";
+     final static String EC_AGENT_IP = "";
+     final static String EC_AGENT_PORT = "7800";
      final static String USER = "admin";
      final static String PASSWORD = "changeme";
+     //final static String COMMANDER_PASSWORD = "COMMANDER_PASSWORD";
      final static String COMMANDER_PASSWORD = "changeme";
      final static String RESOURCE_NAME = "testAutomationResource";
      final static String WORKSPACE_NAME = "testAutomationWorkspace";

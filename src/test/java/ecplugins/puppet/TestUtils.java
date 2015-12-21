@@ -22,7 +22,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
+import java.io.PrintWriter;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -47,55 +47,52 @@ public class TestUtils {
     private static boolean isResourceSetSuccessfully = false;
 
     public static Properties getProperties() throws Exception {
-
-        if(props == null){
+        System.out.println("HELOOOOOOOOOOOOOOOOOOOOOoo");
+        //if(props == null){
             props = new Properties();
             InputStream is = null;
             is = new FileInputStream("ecplugin.properties");
             props.load(is);
+            props.list(new PrintWriter(System.out));
             is.close();
-        }
+        //}
 
         return props;
     }
 
-    public static void setDefaultResourceAndWorkspace() throws Exception {
+    public static void setResourceAndWorkspace( String resourceName, String workspaceName ) throws Exception {
 
-        if(!isResourceSetSuccessfully){
+        HttpClient httpClient = new DefaultHttpClient();
+        JSONObject jo = new JSONObject();
+        System.out.println( props.getProperty(StringConstants.PLUGIN_VERSION));
+        jo.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
+        jo.put("resourceName", resourceName);
+        jo.put("workspaceName", workspaceName);
 
-            HttpClient httpClient = new DefaultHttpClient();
-            JSONObject jo = new JSONObject();
+        HttpPut httpPutRequest = new HttpPut("http://" + StringConstants.COMMANDER_SERVER
+                + ":8000/rest/v1.0/projects/" + "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
 
-            jo.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
-            jo.put("resourceName", StringConstants.RESOURCE_NAME);
-            jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
-
-            HttpPut httpPutRequest = new HttpPut("http://" + StringConstants.COMMANDER_SERVER
-                    + ":8000/rest/v1.0/projects/" + "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
-            
-            String encoding = new String(
-    				org.apache.commons.codec.binary.Base64
-    						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
-    								+ ":"
-    								+ StringConstants.COMMANDER_PASSWORD)));
+        String encoding = new String(
+                org.apache.commons.codec.binary.Base64
+                .encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
+                        + ":" + StringConstants.COMMANDER_PASSWORD)));
 
 
-            StringEntity input = new StringEntity(jo.toString());
+        StringEntity input = new StringEntity(jo.toString());
 
-            input.setContentType("application/json");
-            httpPutRequest.setEntity(input);
-            httpPutRequest.setHeader("Authorization", "Basic " + encoding);
-            HttpResponse httpResponse = httpClient.execute(httpPutRequest);
+        input.setContentType("application/json");
+        httpPutRequest.setEntity(input);
+        httpPutRequest.setHeader("Authorization", "Basic " + encoding);
+        HttpResponse httpResponse = httpClient.execute(httpPutRequest);
 
-            if (httpResponse.getStatusLine().getStatusCode() >= 400) {
-                throw new RuntimeException("Failed to set default resource  " +
-                        StringConstants.RESOURCE_NAME + " to project " +
-                        "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
-            }
-            System.out.println("Set the default resource as " + StringConstants.RESOURCE_NAME + " and default workspace as " + StringConstants.WORKSPACE_NAME + " successfully.");
-            isResourceSetSuccessfully = true;
+        if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+            throw new RuntimeException("Failed to set resource  " +
+                    resourceName + " to project " +
+                    "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
         }
+        System.out.println("Set the resource as " + resourceName + " and workspace as " + workspaceName + " successfully.");
     }
+
     /**
      * callRunProcedure
      *
@@ -108,23 +105,23 @@ public class TestUtils {
         JSONObject result = null;
 
         try {
-        	 String encoding = new String(
-     				org.apache.commons.codec.binary.Base64
-     						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
-     								+ ":"
-     								+ StringConstants.COMMANDER_PASSWORD)));
+            String encoding = new String(
+                    org.apache.commons.codec.binary.Base64
+                    .encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
+                            + ":"
+                            + StringConstants.COMMANDER_PASSWORD)));
 
-        	
+
             HttpPost httpPostRequest = new HttpPost("http://" + StringConstants.COMMANDER_SERVER
                     + ":8000/rest/v1.0/jobs?request=runProcedure");
-            
+
             StringEntity input = new StringEntity(jo.toString());
 
             input.setContentType("application/json");
             httpPostRequest.setEntity(input);
             httpPostRequest.setHeader("Authorization", "Basic " + encoding);
             HttpResponse httpResponse = httpClient.execute(httpPostRequest);
-            
+
 
             result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
             return result.getString("jobId");
@@ -140,12 +137,12 @@ public class TestUtils {
      * @param jobId
      * @return outcome of job
      */
-     static String waitForJob(String jobId, long jobTimeOutMillis) throws Exception {
+    static String waitForJob(String jobId, long jobTimeOutMillis) throws Exception {
 
         long timeTaken = 0;
 
         String url = "http://" + StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/" +
-                jobId + "?request=getJobStatus";
+            jobId + "?request=getJobStatus";
         JSONObject jsonObject = performHTTPGet(url);
 
 
@@ -166,214 +163,201 @@ public class TestUtils {
      *  Creates a new workspace. If the workspace already exists,It continues.
      *
      */
-    static void createCommanderWorkspace() throws Exception {
+    static void createCommanderWorkspace( String workspaceName ) throws Exception {
 
+        HttpClient httpClient = new DefaultHttpClient();
+        JSONObject jo = new JSONObject();
 
-        /*if( !isCommanderWorkspaceCreatedSuccessfully ) {
-*/
-            HttpClient httpClient = new DefaultHttpClient();
-            JSONObject jo = new JSONObject();
+        try {
 
-            try {
+            String url = "http://" + StringConstants.COMMANDER_SERVER
+                + ":8000/rest/v1.0/workspaces/";
+            String encoding = new String(
+                    org.apache.commons.codec.binary.Base64
+                    .encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
+                            + ":"
+                            + StringConstants.COMMANDER_PASSWORD)));
 
-                String url = "http://" + StringConstants.COMMANDER_SERVER
-                                                + ":8000/rest/v1.0/workspaces/";
-                String encoding = new String(
-        				org.apache.commons.codec.binary.Base64
-        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
-        								+ ":"
-        								+ StringConstants.COMMANDER_PASSWORD)));
+            HttpPost httpPostRequest = new HttpPost(url);
+            jo.put("workspaceName", workspaceName);
+            jo.put("description", workspaceName);
+            jo.put("agentDrivePath", "C:/Program Files/Electric Cloud/ElectricCommander");
+            jo.put("agentUncPath", "C:/Program Files/Electric Cloud/ElectricCommander");
+            jo.put("agentUnixPath", "/opt/electriccloud/electriccommander");
+            jo.put("local", true);
 
-                HttpPost httpPostRequest = new HttpPost(url);
-                jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
-                jo.put("description", "testAutomationWorkspace");
-                jo.put("agentDrivePath", "C:/Program Files/Electric Cloud/ElectricCommander");
-                jo.put("agentUncPath", "C:/Program Files/Electric Cloud/ElectricCommander");
-                jo.put("agentUnixPath", "/opt/electriccloud/electriccommander");
-                jo.put("local", true);
+            StringEntity input = new StringEntity(jo.toString());
 
-                StringEntity input = new StringEntity(jo.toString());
+            input.setContentType("application/json");
+            httpPostRequest.setEntity(input);
+            httpPostRequest.setHeader("Authorization", "Basic " + encoding);
+            HttpResponse httpResponse = httpClient.execute(httpPostRequest);
 
-                input.setContentType("application/json");
-                httpPostRequest.setEntity(input);
-                httpPostRequest.setHeader("Authorization", "Basic " + encoding);
-                HttpResponse httpResponse = httpClient.execute(httpPostRequest);
-
-                if (httpResponse.getStatusLine().getStatusCode() == 409) {
-                    System.out.println("Commander workspace already exists.Continuing....");
-                } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
-                    throw new RuntimeException("Failed to create commander workspace " +
-                            httpResponse.getStatusLine().getStatusCode() + "-" +
-                            httpResponse.getStatusLine().getReasonPhrase());
-                }
-                // Indicate successful creating of workspace
-                isCommanderWorkspaceCreatedSuccessfully = true;
-
-            } finally {
-                httpClient.getConnectionManager().shutdown();
+            if (httpResponse.getStatusLine().getStatusCode() == 409) {
+                System.out.println("Commander workspace already exists.Continuing....");
+            } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                throw new RuntimeException("Failed to create commander workspace " +
+                        httpResponse.getStatusLine().getStatusCode() + "-" +
+                        httpResponse.getStatusLine().getReasonPhrase());
             }
-       // }
-
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
     }
 
     /**
      *
      * @return
      */
-    static void createCommanderResource() throws Exception {
-
-        if (!isCommanderResourceCreatedSuccessfully) {    // If CommanderResource not created before
-
-            HttpClient httpClient = new DefaultHttpClient();
-            JSONObject jo = new JSONObject();
-
-            try {
-                HttpPost httpPostRequest = new HttpPost("http://" + StringConstants.COMMANDER_SERVER
-                        + ":8000/rest/v1.0/resources/");
-                String encoding = new String(
-        				org.apache.commons.codec.binary.Base64
-        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
-        								+ ":"
-        								+ StringConstants.COMMANDER_PASSWORD)));
-
-                jo.put("resourceName", StringConstants.RESOURCE_NAME);
-                jo.put("description", "Resource created for test automation");
-                jo.put("hostName", props.getProperty(StringConstants.EC_AGENT_IP));
-                jo.put("port", props.getProperty(StringConstants.EC_AGENT_PORT));
-                jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
-                jo.put("pools", "default");
-                jo.put("local", true);
-
-                StringEntity input = new StringEntity(jo.toString());
-
-                input.setContentType("application/json");
-                httpPostRequest.setEntity(input);
-                httpPostRequest.setHeader("Authorization", "Basic " + encoding);
-                HttpResponse httpResponse = httpClient.execute(httpPostRequest);
-
-                if (httpResponse.getStatusLine().getStatusCode() == 409) {
-                    System.out.println("Commander resource already exists.Continuing....");
-
-                } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
-                    throw new RuntimeException("Failed to create commander workspace " +
-                            httpResponse.getStatusLine().getStatusCode() + "-" +
-                            httpResponse.getStatusLine().getReasonPhrase());
-                }
-                // Indicate successful creation commander resource.
-                isCommanderResourceCreatedSuccessfully = true;
-            } finally {
-                httpClient.getConnectionManager().shutdown();
-            }
-        }
-    }
-    /**
-     * Wrapper around a HTTP GET to a REST service
-     *
-     * @param url
-     * @return JSONObject
-     */
-     static JSONObject performHTTPGet(String url) throws IOException, JSONException {
+    static void createCommanderResource( String resourceName, String workspaceName, String resourceIP ) throws Exception {
 
         HttpClient httpClient = new DefaultHttpClient();
-        String encoding = new String(
-				org.apache.commons.codec.binary.Base64
-						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
-								+ ":"
-								+ StringConstants.COMMANDER_PASSWORD)));
+        JSONObject jo = new JSONObject();
+
         try {
-            HttpGet httpGetRequest = new HttpGet(url);
-            httpGetRequest.setHeader("Authorization", "Basic " + encoding);
-            HttpResponse httpResponse = httpClient.execute(httpGetRequest);
-            if (httpResponse.getStatusLine().getStatusCode() >= 400) {
-                throw new RuntimeException("HTTP GET failed with " +
+            HttpPost httpPostRequest = new HttpPost("http://" + StringConstants.COMMANDER_SERVER
+                    + ":8000/rest/v1.0/resources/");
+            String encoding = new String(
+                    org.apache.commons.codec.binary.Base64
+                    .encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
+                            + ":"
+                            + StringConstants.COMMANDER_PASSWORD)));
+
+            jo.put("resourceName", resourceName);
+            jo.put("description", "Resource created for test automation");
+            jo.put("hostName", resourceIP);
+            jo.put("port", StringConstants.EC_AGENT_PORT);
+            jo.put("workspaceName", workspaceName);
+            jo.put("pools", "default");
+            jo.put("local", true);
+
+            StringEntity input = new StringEntity(jo.toString());
+
+            input.setContentType("application/json");
+            httpPostRequest.setEntity(input);
+            httpPostRequest.setHeader("Authorization", "Basic " + encoding);
+            HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+            if (httpResponse.getStatusLine().getStatusCode() == 409) {
+                System.out.println("Commander resource already exists.Continuing....");
+
+            } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                throw new RuntimeException("Failed to create commander workspace " +
                         httpResponse.getStatusLine().getStatusCode() + "-" +
                         httpResponse.getStatusLine().getReasonPhrase());
             }
-            return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
-
         } finally {
             httpClient.getConnectionManager().shutdown();
         }
+    }
+/**
+ * Wrapper around a HTTP GET to a REST service
+ *
+ * @param url
+ * @return JSONObject
+ */
+static JSONObject performHTTPGet(String url) throws IOException, JSONException {
 
+    HttpClient httpClient = new DefaultHttpClient();
+    String encoding = new String(
+            org.apache.commons.codec.binary.Base64
+            .encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(StringConstants.COMMANDER_USER
+                    + ":"
+                    + StringConstants.COMMANDER_PASSWORD)));
+    try {
+        HttpGet httpGetRequest = new HttpGet(url);
+        httpGetRequest.setHeader("Authorization", "Basic " + encoding);
+        HttpResponse httpResponse = httpClient.execute(httpGetRequest);
+        if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+            throw new RuntimeException("HTTP GET failed with " +
+                    httpResponse.getStatusLine().getStatusCode() + "-" +
+                    httpResponse.getStatusLine().getReasonPhrase());
+        }
+        return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+
+    } finally {
+        httpClient.getConnectionManager().shutdown();
     }
 
-    /**
-     * Create the puppet configuration used for this test suite
-     */
-     static void createConfiguration() throws Exception {
+}
 
-         long jobTimeoutMillis = 3 * 60 * 1000;
-         if(isConfigCreatedSuccessfully == false) {
+/**
+ * Create the puppet configuration used for this test suite
+ */
+static void createConfiguration() throws Exception {
 
-             String response = "";
-             JSONObject parentJSONObject = new JSONObject();
-             JSONArray actualParameterArray = new JSONArray();
+    long jobTimeoutMillis = 3 * 60 * 1000;
+    if(isConfigCreatedSuccessfully == false) {
 
-             parentJSONObject.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
-             parentJSONObject.put("procedureName", "CreateConfiguration");
+        String response = "";
+        JSONObject parentJSONObject = new JSONObject();
+        JSONArray actualParameterArray = new JSONArray();
 
-             actualParameterArray.put(new JSONObject()
-                     .put("actualParameterName", "credential")
-                     .put("value", "web_credentials"));
+        parentJSONObject.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
+        parentJSONObject.put("procedureName", "CreateConfiguration");
 
-             parentJSONObject.put("actualParameter", actualParameterArray);
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "credential")
+                .put("value", "web_credentials"));
 
-             JSONArray credentialArray = new JSONArray();
+        parentJSONObject.put("actualParameter", actualParameterArray);
 
-             credentialArray.put(new JSONObject()
-                     .put("credentialName", "web_credentials")
-                     .put("userName", props.getProperty(StringConstants.USER))
-                     .put("password", props.getProperty(StringConstants.PASSWORD)));
+        JSONArray credentialArray = new JSONArray();
 
-             parentJSONObject.put("credential", credentialArray);
+        credentialArray.put(new JSONObject()
+                .put("credentialName", "web_credentials")
+                .put("userName", props.getProperty(StringConstants.USER))
+                .put("password", props.getProperty(StringConstants.PASSWORD)));
 
-             String jobId = callRunProcedure(parentJSONObject);
+        parentJSONObject.put("credential", credentialArray);
 
-             response = waitForJob(jobId,jobTimeoutMillis);
+        String jobId = callRunProcedure(parentJSONObject);
 
-             // Check job status
-             assertEquals("Job completed without errors", "success", response);
+        response = waitForJob(jobId,jobTimeoutMillis);
 
-             isConfigCreatedSuccessfully = true;
-         }
+        // Check job status
+        assertEquals("Job completed without errors", "success", response);
+
+        isConfigCreatedSuccessfully = true;
+    }
+}
+
+/**
+ * Delete the Puppet configuration used for this test suite (clear previous runs)
+ */
+static void deleteConfiguration() throws Exception {
+
+    long jobTimeoutMillis = 3 * 60 * 1000;
+    if (isConfigDeletedSuccessfully == false) {
+
+        String jobId = "";
+        JSONObject param1 = new JSONObject();
+        JSONObject jo = new JSONObject();
+        jo.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
+        jo.put("procedureName", "DeleteConfiguration");
+
+        JSONArray actualParameterArray = new JSONArray();
+
+        jo.put("actualParameter", actualParameterArray);
+
+        JSONArray credentialArray = new JSONArray();
+
+        credentialArray.put(new JSONObject()
+                .put("credentialName", "web_credentials")
+                .put("userName", props.getProperty(StringConstants.USER))
+                .put("password", props.getProperty(StringConstants.PASSWORD)));
+
+        jo.put("credential", credentialArray);
+
+        jobId = callRunProcedure(jo);
+
+        // Block on job completion
+        waitForJob(jobId,jobTimeoutMillis);
+        // Do not check job status. Delete will error if it does not exist
+        // which is OK since that is the expected state.
+
+        isConfigDeletedSuccessfully = true;
     }
 
-    /**
-     * Delete the Puppet configuration used for this test suite (clear previous runs)
-     */
-     static void deleteConfiguration() throws Exception {
-
-         long jobTimeoutMillis = 3 * 60 * 1000;
-         if (isConfigDeletedSuccessfully == false) {
-
-             String jobId = "";
-             JSONObject param1 = new JSONObject();
-             JSONObject jo = new JSONObject();
-             jo.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
-             jo.put("procedureName", "DeleteConfiguration");
-
-             JSONArray actualParameterArray = new JSONArray();
-
-             jo.put("actualParameter", actualParameterArray);
-
-             JSONArray credentialArray = new JSONArray();
-
-             credentialArray.put(new JSONObject()
-                     .put("credentialName", "web_credentials")
-                     .put("userName", props.getProperty(StringConstants.USER))
-                     .put("password", props.getProperty(StringConstants.PASSWORD)));
-
-             jo.put("credential", credentialArray);
-
-             jobId = callRunProcedure(jo);
-
-             // Block on job completion
-             waitForJob(jobId,jobTimeoutMillis);
-             // Do not check job status. Delete will error if it does not exist
-             // which is OK since that is the expected state.
-
-            isConfigDeletedSuccessfully = true;
-         }
-
-     }
+}
 }
