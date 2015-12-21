@@ -69,13 +69,21 @@ public class TestUtils {
             jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
 
             HttpPut httpPutRequest = new HttpPut("http://" + props.getProperty(StringConstants.COMMANDER_USER)
-                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
                     + ":8000/rest/v1.0/projects/" + "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
+            
+            String encoding = new String(
+    				org.apache.commons.codec.binary.Base64
+    						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
+    								.getProperty(StringConstants.COMMANDER_USER)
+    								+ ":"
+    								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+
 
             StringEntity input = new StringEntity(jo.toString());
 
             input.setContentType("application/json");
             httpPutRequest.setEntity(input);
+            httpPutRequest.setHeader("Authorization", "Basic " + encoding);
             HttpResponse httpResponse = httpClient.execute(httpPutRequest);
 
             if (httpResponse.getStatusLine().getStatusCode() >= 400) {
@@ -99,14 +107,24 @@ public class TestUtils {
         JSONObject result = null;
 
         try {
+        	 String encoding = new String(
+     				org.apache.commons.codec.binary.Base64
+     						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
+     								.getProperty(StringConstants.COMMANDER_USER)
+     								+ ":"
+     								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+
+        	
             HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
-                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
                     + ":8000/rest/v1.0/jobs?request=runProcedure");
+            
             StringEntity input = new StringEntity(jo.toString());
 
             input.setContentType("application/json");
             httpPostRequest.setEntity(input);
+            httpPostRequest.setHeader("Authorization", "Basic " + encoding);
             HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+            
 
             result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
             return result.getString("jobId");
@@ -126,8 +144,7 @@ public class TestUtils {
 
         long timeTaken = 0;
 
-        String url = "http://" + props.getProperty(StringConstants.COMMANDER_USER) + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) +
-                "@" + StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/" +
+        String url = "http://" + props.getProperty(StringConstants.COMMANDER_USER) + ":8000/rest/v1.0/jobs/" +
                 jobId + "?request=getJobStatus";
         JSONObject jsonObject = performHTTPGet(url);
 
@@ -160,8 +177,13 @@ public class TestUtils {
             try {
 
                 String url = "http://" + StringConstants.COMMANDER_USER
-                                                + ":" + StringConstants.COMMANDER_PASSWORD + "@" + StringConstants.COMMANDER_SERVER
-                                                                        + ":8000/rest/v1.0/workspaces/";
+                                                + ":8000/rest/v1.0/workspaces/";
+                String encoding = new String(
+        				org.apache.commons.codec.binary.Base64
+        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
+        								.getProperty(StringConstants.COMMANDER_USER)
+        								+ ":"
+        								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
 
                 HttpPost httpPostRequest = new HttpPost(url);
                 jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
@@ -175,6 +197,7 @@ public class TestUtils {
 
                 input.setContentType("application/json");
                 httpPostRequest.setEntity(input);
+                httpPostRequest.setHeader("Authorization", "Basic " + encoding);
                 HttpResponse httpResponse = httpClient.execute(httpPostRequest);
 
                 if (httpResponse.getStatusLine().getStatusCode() == 409) {
@@ -207,8 +230,13 @@ public class TestUtils {
 
             try {
                 HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
-                        + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
                         + ":8000/rest/v1.0/resources/");
+                String encoding = new String(
+        				org.apache.commons.codec.binary.Base64
+        						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
+        								.getProperty(StringConstants.COMMANDER_USER)
+        								+ ":"
+        								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
 
                 jo.put("resourceName", StringConstants.RESOURCE_NAME);
                 jo.put("description", "Resource created for test automation");
@@ -222,6 +250,7 @@ public class TestUtils {
 
                 input.setContentType("application/json");
                 httpPostRequest.setEntity(input);
+                httpPostRequest.setHeader("Authorization", "Basic " + encoding);
                 HttpResponse httpResponse = httpClient.execute(httpPostRequest);
 
                 if (httpResponse.getStatusLine().getStatusCode() == 409) {
@@ -248,9 +277,15 @@ public class TestUtils {
      static JSONObject performHTTPGet(String url) throws IOException, JSONException {
 
         HttpClient httpClient = new DefaultHttpClient();
+        String encoding = new String(
+				org.apache.commons.codec.binary.Base64
+						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
+								.getProperty(StringConstants.COMMANDER_USER)
+								+ ":"
+								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
         try {
             HttpGet httpGetRequest = new HttpGet(url);
-
+            httpGetRequest.setHeader("Authorization", "Basic " + encoding);
             HttpResponse httpResponse = httpClient.execute(httpGetRequest);
             if (httpResponse.getStatusLine().getStatusCode() >= 400) {
                 throw new RuntimeException("HTTP GET failed with " +
