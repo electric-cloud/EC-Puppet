@@ -144,7 +144,7 @@ public class TestUtils {
 
         long timeTaken = 0;
 
-        String url = "http://" + StringConstants.COMMANDER_USER + ":8000/rest/v1.0/jobs/" +
+        String url = "http://" + StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/" +
                 jobId + "?request=getJobStatus";
         JSONObject jsonObject = performHTTPGet(url);
 
