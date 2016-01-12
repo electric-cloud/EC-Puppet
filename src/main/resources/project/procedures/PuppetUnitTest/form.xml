@@ -1,0 +1,69 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#PuppetUnitTest</help>
+    <formElement>
+        <type>entry</type>
+        <label>Rake Path:</label>
+        <value>/usr/local/bin/rake</value>
+        <property>rake_path</property>
+        <required>0</required>
+        <documentation>Provide the path to the rake binary.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Rake File Path:</label>
+        <value></value>
+        <property>file_path</property>
+        <required>0</required>
+        <documentation>Provide the path to the rake file </documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Rake Tasks:</label>
+        <property>task</property>
+        <required>1</required>
+        <documentation>Select the task for rake.</documentation>
+        <option><name>Beaker</name><value>beaker</value></option>
+        <option><name>Beaker Nodes</name><value>beaker_nodes</value></option>
+        <option><name>Build</name><value>build</value></option>
+        <option><name>Clean</name><value>clean</value></option>
+        <option><name>Coverage</name><value>coverage</value></option>
+        <option><name>Help</name><value>help</value></option>
+        <option><name>Lint</name><value>lint</value></option>
+        <option><name>Metadata</name><value>metadata</value></option>
+        <option><name>Spec</name><value>spec</value></option>
+        <option><name>Spec Clean</name><value>spec_clean</value></option>
+        <option><name>Spec Prep</name><value>spec_prep</value></option>
+        <option><name>Spec Standalone</name><value>spec_standalone</value></option>
+        <option><name>Syntax</name><value>syntax</value></option>
+        <option><name>Syntax Hiera</name><value>syntax:hiera</value></option>
+        <option><name>Syntax Manifests</name><value>syntax:manifests</value></option>
+        <option><name>Syntax Templates</name><value>syntax:templates</value></option>
+        <option><name>Validate</name><value>validate</value></option>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional-Options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>The additional arguments/options which need to be passed to the command. </documentation>
+    </formElement>
+</editor>
+
