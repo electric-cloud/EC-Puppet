@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package ecplugins.puppet;
+package test.java.ecplugins.puppet;
 
 import java.io.FileReader;
 import java.io.BufferedReader;

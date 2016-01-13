@@ -12,19 +12,27 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
- */
+   */
 
 package test.java.ecplugins.puppet;
 
-public class StringConstants {
-
-	final static String COMMANDER_SERVER = "COMMANDER_SERVER";
-	final static String PLUGIN_VERSION = System.getProperty("PLUGIN_VERSION");
-	final static String COMMANDER_USER = "COMMANDER_USER";
-	final static String COMMANDER_PASSWORD = "COMMANDER_PASSWORD";
-	final static String EC_AGENT_IP = "EC_AGENT_IP";
-	final static String EC_AGENT_PORT = "7800";
-	final static String RESOURCE_NAME = "testAutomationResource";
-	final static String WORKSPACE_NAME = "testAutomationWorkspace";
-	final static long jobTimeoutMillis = 5 * 60 * 1000;
+public enum ProcedureNames {
+	
+	PUPPET_PARSER("PuppetParser"),
+    RUN_AGENT("RunAgent"),
+	MANAGE_CERTIFICATE("ManageCertificatesAndRequests"),
+	PUPPET_MODULES("PuppetModules"),
+	PUPPET_LINT("PuppetLint");
+	
+	private String procedures;
+	
+	private ProcedureNames(String procedures)
+	{
+	   this.procedures = procedures;	
+	}
+	
+    public String getProcedures()
+    {
+    	return this.procedures;
+    }
 }
