@@ -40,10 +40,10 @@ public class TestProcedures {
 		Properties props = TestUtils.getProperties();
 		ConfigurationsParser.configurationParser();
 		TestUtils.createCommanderWorkspace(StringConstants.WORKSPACE_NAME);
-		TestUtils.createCommanderResource(StringConstants.RESOURCE_NAME,
-				StringConstants.WORKSPACE_NAME, props.getProperty(StringConstants.EC_AGENT_IP));
-		TestUtils.setResourceAndWorkspace(StringConstants.RESOURCE_NAME,
-				StringConstants.WORKSPACE_NAME);
+		TestUtils.createCommanderResource(StringConstants.PUPPET_AGENT_RESOURCE_NAME,
+				StringConstants.WORKSPACE_NAME, props.getProperty(StringConstants.PUPPET_AGENT_IP));
+		TestUtils.createCommanderResource(StringConstants.PUPPET_MASTER_RESOURCE_NAME,
+				StringConstants.WORKSPACE_NAME, props.getProperty(StringConstants.PUPPET_MASTER_IP));
 
 		System.out.println("Starting unit tests");
 	}
@@ -56,12 +56,21 @@ public class TestProcedures {
 		
 		// This HashMap is populated by reading configurations.json file
 		for (ProcedureNames procedures : ProcedureNames.values()) {
-
 			JSONObject jsonObject = createJsonObject(procedures.getProcedures());
-
 			if (jsonObject == null)
 				continue;
-
+			String resourceName = "";
+			//Check job should run on puppet agent or puppet master
+			if ( jsonObject.getString("procedureName") == "ManageCertificatesAndRequests" )
+			{
+			    resourceName = StringConstants.PUPPET_MASTER_RESOURCE_NAME;
+			}
+			else
+			{
+			    resourceName = StringConstants.PUPPET_AGENT_RESOURCE_NAME;
+			}
+			TestUtils.setResourceAndWorkspace(resourceName,
+					StringConstants.WORKSPACE_NAME);
 			addActualParameters(procedures.getProcedures(), jsonObject);
 
 			String jobId = TestUtils.callRunProcedure(jsonObject);
