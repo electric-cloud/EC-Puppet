@@ -59,7 +59,7 @@ sub main {
     my $rake_path =
       ( $ec->getProperty("rake_path") )->findvalue('//value')->string_value;
     my $file_path =
-      ( $ec->getProperty("file_path") )->findvalue('//value')->string_value;
+      ( $ec->getProperty("rakefile_path") )->findvalue('//value')->string_value;
     my $task =
       ( $ec->getProperty("task") )->findvalue('//value')->string_value;
     my $additional_options =
@@ -82,8 +82,13 @@ sub main {
         $command = $command . " " . $task;
     }
     #Parameters are checked to see which should be included
+    #
     if ( $file_path && $file_path ne '' ) {
-        $command = $command . " -f " . $file_path;
+        my $dir = dirname($file_path);
+        my $file = basename($file_path);
+        #This is required as rake runs from that directory only, otherwise not able to find Rakefile
+        chdir($dir);
+        $command = $command . " -f " . $file;
     }
 
     if ( $additional_options && $additional_options ne '' ) {
@@ -91,7 +96,6 @@ sub main {
     }
 
     print "Command to be executed: \n$command \n\n";
-
     #Executes the command into puppet
     system("$command");
 

@@ -53,31 +53,60 @@ public class TestProcedures {
 
 	@Test
 	public void test() throws Exception {
-		
 		// This HashMap is populated by reading configurations.json file
+		boolean temporaryResourcesCreated = false;
+		String pythonJobId = "";
+		String pythonResponse = "";
+		String pythonCode = "";
+		String resourceName = "";
 		for (ProcedureNames procedures : ProcedureNames.values()) {
 			JSONObject jsonObject = createJsonObject(procedures.getProcedures());
 			if (jsonObject == null)
 				continue;
-			String resourceName = "";
 			//Check job should run on puppet agent or puppet master
-			if ( jsonObject.getString("procedureName") == "ManageCertificatesAndRequests" )
+			if ( jsonObject.getString("procedureName") == "RunAgent")
 			{
-			    resourceName = StringConstants.PUPPET_MASTER_RESOURCE_NAME;
+				resourceName = StringConstants.PUPPET_AGENT_RESOURCE_NAME;
 			}
 			else
 			{
-			    resourceName = StringConstants.PUPPET_AGENT_RESOURCE_NAME;
+				resourceName = StringConstants.PUPPET_MASTER_RESOURCE_NAME;
+			}
+			//Create temporary manifest which will be used in unit test
+			if ( !temporaryResourcesCreated && resourceName.equals(StringConstants.PUPPET_MASTER_RESOURCE_NAME))
+			{
+				TestUtils.setResourceAndWorkspace(resourceName,
+				StringConstants.WORKSPACE_NAME, "EC-Python-" + StringConstants.PYTHON_VERSION);
+				JSONObject pythonJson = new JSONObject();
+				pythonJson.put("projectName", "EC-Python-" + StringConstants.PYTHON_VERSION);
+				pythonJson.put("procedureName", "runPython");
+				JSONArray pythonActualParameterArray = new JSONArray();
+				pythonCode = "import os\r\nos.system(\"cd /tmp;"
+					+ "puppet module generate unit-test --skip-interview;"
+					+ "cd unit-test;"
+					+ "rspec-puppet-init;"
+					+ "echo \\\"class test {\\nfile {'/foo':\\n  ensure  => present,\\n  content => 'bar'\\n}\\n}\\\"> manifests/init.pp;"
+					+ "echo \\\"require 'spec_helper'\\ndescribe 'test' do\\ncontext 'with defaults for all parameters' do\\nit {should contain_class('test') }\\nend\\nit do\\nshould contain_file('/foo').with({\\n'ensure'  => 'present',\\n'content' => %r{^bar}\\n})\\nend\\nend\\\"> spec/classes/init_spec.rb\")";
+				pythonActualParameterArray.put(new JSONObject().put("value",pythonCode).put("actualParameterName", "pythonCode"));
+				pythonJson.put("actualParameter", pythonActualParameterArray);
+
+				pythonJobId = TestUtils.callRunProcedure(pythonJson);
+				pythonResponse = TestUtils.waitForJob(pythonJobId,
+				StringConstants.jobTimeoutMillis);
+				// Add the job status to the collector.
+				// All the failures will be printed displayed in the end.
+				errorCollector.checkThat("Job completed with errors", pythonResponse,
+						equalTo("success"));
+                temporaryResourcesCreated = true;
 			}
 			TestUtils.setResourceAndWorkspace(resourceName,
-					StringConstants.WORKSPACE_NAME);
+					StringConstants.WORKSPACE_NAME, "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
 			addActualParameters(procedures.getProcedures(), jsonObject);
 
 			String jobId = TestUtils.callRunProcedure(jsonObject);
 			String response = TestUtils.waitForJob(jobId,
 					StringConstants.jobTimeoutMillis);
-			
-            // Add the job status to the collector.
+			// Add the job status to the collector.
 			// All the failures will be printed displayed in the end.
 			errorCollector.checkThat("Job completed with errors", response,
 					equalTo("success"));
@@ -89,10 +118,24 @@ public class TestProcedures {
 			else if(jobId!=null && !jobId.isEmpty())
 				System.out.println("JobId:" + jobId
 						+ ", Unit test failed for  "
-						+ procedures.getProcedures());		
+						+ procedures.getProcedures());
 		}
-	}
-
+		//Cleaning
+		JSONObject pythonJson = new JSONObject();
+		pythonJson.put("projectName", "EC-Python-" + StringConstants.PYTHON_VERSION);
+		pythonJson.put("procedureName", "runPython");
+		JSONArray pythonActualParameterArray = new JSONArray();
+		pythonCode = "import os\r\nos.system(\"rm -rf /tmp/unit-test;\")";
+		pythonActualParameterArray.put(new JSONObject().put("value", pythonCode).put("actualParameterName", "pythonCode"));
+		pythonJson.put("actualParameter", pythonActualParameterArray);
+		pythonJobId = TestUtils.callRunProcedure(pythonJson);
+		pythonResponse = TestUtils.waitForJob(pythonJobId,
+				StringConstants.jobTimeoutMillis);
+		// Add the job status to the collector.
+		// All the failures will be printed displayed in the end.
+		errorCollector.checkThat("Job completed with errors", pythonResponse,
+				equalTo("success"));
+		}
 	@AfterClass
 	public static void tearDown() {
 		System.out.println("tearing down");
@@ -130,8 +173,7 @@ public class TestProcedures {
 				if (propertyCursor != null
 						&& !propertyCursor.getValue().isEmpty()) {
 					actualParameterArray.put(new JSONObject().put("value",
-							propertyCursor.getValue()).put(
-							"actualParameterName", propertyCursor.getKey()));
+							propertyCursor.getValue()).put("actualParameterName", propertyCursor.getKey()));
 				}
 			}
 			jsonObject.put("actualParameter", actualParameterArray);

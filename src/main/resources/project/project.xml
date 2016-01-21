@@ -2964,7 +2964,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>file_path</propertyName>
+                                    <propertyName>rakefile_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -3282,10 +3282,10 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>file_path</formalParameterName>
+                <formalParameterName>rakefile_path</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>Provide the path to the rake file. </description>
-                <required>0</required>
+                <description>Provide the absolute path to the rake file(It should have rake file name also). </description>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>

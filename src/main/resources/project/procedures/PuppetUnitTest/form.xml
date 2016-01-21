@@ -22,16 +22,16 @@
         <label>Rake Path:</label>
         <value>/usr/local/bin/rake</value>
         <property>rake_path</property>
-        <required>0</required>
+        <required>1</required>
         <documentation>Provide the path to the rake binary.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>
         <label>Rake File Path:</label>
         <value></value>
-        <property>file_path</property>
-        <required>0</required>
-        <documentation>Provide the path to the rake file </documentation>
+        <property>rakefile_path</property>
+        <required>1</required>
+        <documentation>Provide the absolute path of the rake file(along with the rake file name)</documentation>
     </formElement>
     <formElement>
         <type>select</type>

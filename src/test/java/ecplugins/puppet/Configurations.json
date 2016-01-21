@@ -27,7 +27,7 @@
 		"additional_options": ""
 	}],
 	"PuppetLint": [{
-			"file_path": "site.pp",
+			"file_path": "/tmp/unit-test",
 			"config_file": "",
 			"checks_file": "",
 			"error_level": "",
@@ -40,7 +40,7 @@
 			"relative": "",
 			"fix": "",
 			"only_checks": "",
-			"additional_options": ""
+			"additional_options": "--no-autoloader_layout-check --no-documentation-check"
 		}
 
 	],
@@ -64,9 +64,9 @@
 	],
 
 	"PuppetUnitTest": [{
-		"rake_path": "",
-		"file_path": "",
-		"task": "",
+		"rake_path": "rake",
+		"rakefile_path": "/tmp/unit-test/Rakefile",
+		"task": "spec",
 		"additional_options": ""
 
 	}],
@@ -95,7 +95,7 @@
 	}],
 	"PuppetParser": [{
 		"puppet_path": "puppet",
-		"file_path": "site.pp",
+		"file_path": "/tmp/unit-test",
 		"debug": "",
 		"verbose_mode": "",
 		"format": "",

@@ -19,9 +19,10 @@ package test.java.ecplugins.puppet;
 public enum ProcedureNames {
 	
 	PUPPET_PARSER("PuppetParser"),
-    RUN_AGENT("RunAgent"),
+	RUN_AGENT("RunAgent"),
 	MANAGE_CERTIFICATE("ManageCertificatesAndRequests"),
 	PUPPET_MODULES("PuppetModules"),
+	PUPPET_UNITTEST("PuppetUnitTest"),
 	PUPPET_LINT("PuppetLint");
 	
 	private String procedures;

@@ -19,7 +19,6 @@ package test.java.ecplugins.puppet;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -32,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class TestUtils {
-
 	public static Properties props;
 	private static final long jobStatusPollIntervalMillis = 15000;
 
@@ -50,19 +48,18 @@ public class TestUtils {
 	}
 	
 	public static void setResourceAndWorkspace(String resourceName,
-			String workspaceName) throws Exception {
+			String workspaceName, String pluginName) throws Exception {
         
 		props = getProperties();
 		HttpClient httpClient = new DefaultHttpClient();
 		JSONObject jo = new JSONObject();
-		jo.put("projectName", "EC-Puppet-" + StringConstants.PLUGIN_VERSION);
+		jo.put("projectName", pluginName);
 		jo.put("resourceName", resourceName);
 		jo.put("workspaceName", workspaceName);
 
 		HttpPut httpPutRequest = new HttpPut("http://"
 				+ props.getProperty(StringConstants.COMMANDER_SERVER)
-				+ ":8000/rest/v1.0/projects/" + "EC-Puppet-"
-				+ StringConstants.PLUGIN_VERSION);
+				+ ":8000/rest/v1.0/projects/" + pluginName);
 
 		String encoding = new String(
 				org.apache.commons.codec.binary.Base64
@@ -70,7 +67,6 @@ public class TestUtils {
 								.getBytesUtf8(props.getProperty(StringConstants.COMMANDER_USER)
 										+ ":"
 										+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
-
 		StringEntity input = new StringEntity(jo.toString());
 
 		input.setContentType("application/json");
@@ -80,12 +76,12 @@ public class TestUtils {
 
 		if (httpResponse.getStatusLine().getStatusCode() >= 400) {
 			throw new RuntimeException("Failed to set resource  "
-					+ resourceName + " to project " + "EC-Puppet-"
-					+ StringConstants.PLUGIN_VERSION);
+					+ resourceName + " to project " + pluginName);
 		}
 		System.out.println("Set the resource as " + resourceName
-				+ " and workspace as " + workspaceName + " successfully.");
+				+ " and workspace as " + workspaceName + " successfully for " + pluginName);
 	}
+
 
 	/**
 	 * callRunProcedure
