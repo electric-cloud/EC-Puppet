@@ -23,7 +23,7 @@
         <value></value>
         <property>file_path</property>
         <required>1</required>
-        <documentation>Provide the path to the file for linting. (Required) </documentation>
+        <documentation>Absolute path of the Puppet manifest. (Required) </documentation>
     </formElement>
     <formElement>
         <type>entry</type>
@@ -31,7 +31,7 @@
         <value></value>
         <property>config_file</property>
         <required>0</required>
-        <documentation>Load puppet-lint options from file. </documentation>
+        <documentation>Absolute path of the puppet-lint configuration file. </documentation>
     </formElement>
     <formElement>
         <type>entry</type>
@@ -39,7 +39,7 @@
         <value></value>
         <property>checks_file</property>
         <required>0</required>
-        <documentation>Load a file containing custom puppet-lint checks. </documentation>
+        <documentation>Absolute path of the file containing custom puppet-lint checks. </documentation>
     </formElement>
     <formElement>
         <type>entry</type>
