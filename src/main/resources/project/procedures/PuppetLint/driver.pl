@@ -96,7 +96,7 @@ sub main {
 
     #Prints procedure and parameters information
     print "EC-Puppet: ";
-    print "Puppet parser procedure \n\n";
+    print "Puppet lint procedure \n\n";
 
     #Parameters are checked to see which should be included
     if ( $file_path && $file_path ne '' ) {

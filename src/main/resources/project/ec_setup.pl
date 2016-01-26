@@ -59,6 +59,13 @@ my %PuppetLint = (
     category    => "Resource Management"
 );
 
+my %PuppetUnitTest = (
+    label       => "Puppet - UnitTest",
+    procedure   => "PuppetUnitTest",
+    description => "Puppet Unit Testing with rspec",
+    category    => "Resource Management"
+);
+
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
 $batch->deleteProperty(
@@ -91,8 +98,13 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Puppet - PuppetLint");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - PuppetUnitTest");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - PuppetUnitTest");
+
 @::createStepPickerSteps = (
     \%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests,
-    \%PuppetParser, \%PuppetModules, \%PuppetLint
+    \%PuppetParser, \%PuppetModules, \%PuppetLint, \%PuppetUnitTest
 );
 
