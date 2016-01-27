@@ -29,7 +29,7 @@ my %RunCommand = (
 );
 
 my %ManageCertificatesAndRequests = (
-    label     => "Puppet - ManageCertificatesAndRequests",
+    label     => "Puppet - Manage Certificates And Requests",
     procedure => "ManageCertificatesAndRequests",
     description =>
 "Manage certificates and requests. Standalone certificate authority. Capable of generating certificates, but mostly     used for signing certificate requests from puppet clients.Because the puppet master service defaults to not signing client certificate          requests, this script is available for signing outstanding requests. It can be used to list outstanding requests and then either sign them      individually or sign all of them.",
@@ -37,7 +37,7 @@ my %ManageCertificatesAndRequests = (
 );
 
 my %PuppetParser = (
-    label       => "Puppet - parser",
+    label       => "Puppet - Parser",
     procedure   => "PuppetParser",
     description => "validates Puppet DSL syntax without compiling a catalog or
 syncing any resources.",
@@ -45,7 +45,7 @@ syncing any resources.",
 );
 
 my %PuppetModules = (
-    label     => "Puppet - modules",
+    label     => "Puppet - Modules",
     procedure => "PuppetModules",
     description =>
 "Find, install, and manage modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generate empty modules, and prepare locally developed modules for release on the Forge.",
@@ -60,9 +60,16 @@ my %PuppetLint = (
 );
 
 my %PuppetUnitTest = (
-    label       => "Puppet - UnitTest",
+    label       => "Puppet - Unit Test",
     procedure   => "PuppetUnitTest",
     description => "Puppet Unit Testing with rspec",
+    category    => "Resource Management"
+);
+
+my %RunAgent = (
+    label       => "Puppet- Run Agent",
+    procedure   => "RunAgent",
+    description => "Puppet run agent",
     category    => "Resource Management"
 );
 
@@ -115,9 +122,15 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Puppet - PuppetVersion");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - RunAgent");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - RunAgent");
+
 @::createStepPickerSteps = (
-    \%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests,
-    \%PuppetParser, \%PuppetModules, \%PuppetLint, \%PuppetUnitTest,
-    \%PuppetVersion
+    \%RunManifest,                   \%RunCommand,
+    \%ManageCertificatesAndRequests, \%PuppetParser,
+    \%PuppetModules,                 \%PuppetLint,
+    \%PuppetUnitTest,                \%PuppetVersion,
+    \%RunAgent
 );
 
