@@ -90,8 +90,6 @@ sub main {
     my $help = ( $ec->getProperty("help") )->findvalue('//value')->string_value;
     my $verbose =
       ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
-    my $version =
-      ( $ec->getProperty("version") )->findvalue('//value')->string_value;
 
     $ec->abortOnError(1);
 
@@ -159,9 +157,6 @@ sub main {
     }
     if ( $verbose && $verbose ne '' ) {
         $command = $command . " --verbose";
-    }
-    if ( $version && &version ne '' ) {
-        $command = $command . " --version";
     }
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;

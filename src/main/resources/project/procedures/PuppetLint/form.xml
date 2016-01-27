@@ -68,15 +68,6 @@
     </formElement>
     <formElement>
             <type>checkbox</type>
-            <label>Version:</label>
-            <property>version</property>
-            <required>0</required>
-            <documentation>Displays the current version.</documentation>
-            <checkedValue>1</checkedValue>
-        <uncheckedValue>0</uncheckedValue>
-    </formElement>
-    <formElement>
-            <type>checkbox</type>
             <label>With filename:</label>
             <property>with_filename</property>
             <required>0</required>

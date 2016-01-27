@@ -58,6 +58,12 @@
                         <expandable>1</expandable>
                         <value/>
                     </property>
+                    <property>
+                        <propertyName>PuppetVersion</propertyName>
+                        <description>Puppet version.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -1084,31 +1090,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>version</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
@@ -1182,13 +1163,6 @@
                 <formalParameterName>verbose</formalParameterName>
                 <defaultValue/>
                 <description>Enable verbosity.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>version</formalParameterName>
-                <defaultValue/>
-                <description>Print the puppet version number and exit.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
@@ -1824,31 +1798,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>version</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
@@ -2006,13 +1955,6 @@
                 <formalParameterName>verbose</formalParameterName>
                 <defaultValue/>
                 <description>Enable verbosity.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>version</formalParameterName>
-                <defaultValue/>
-                <description>Print the puppet version number and exit.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
@@ -2295,31 +2237,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>version</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>force</propertyName>
                                     <propertySheet>
                                         <property>
@@ -2465,13 +2382,6 @@
                 <type>checkbox</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>version</formalParameterName>
-                <defaultValue/>
-                <description>If checked version will be displayed.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
                 <formalParameterName>force</formalParameterName>
                 <defaultValue/>
                 <description>If checked same module will be reinstalled without dependencies.</description>
@@ -2601,31 +2511,6 @@
                                 </property>
                                 <property>
                                     <propertyName>with_context</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>version</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>checkedValue</propertyName>
@@ -2844,13 +2729,6 @@
                 <formalParameterName>with_context</formalParameterName>
                 <defaultValue/>
                 <description>Show where in the manifest the problem is.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>version</formalParameterName>
-                <defaultValue/>
-                <description>Displays the current version.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
@@ -3323,6 +3201,84 @@
                 <workingDirectory/>
                 <workspaceName/>
                 <procedureName>PuppetUnitTest</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>PuppetVersion</procedureName>
+            <description>Displays puppet version.</description>
+            <jobNameTemplate/>
+            <resourceName/>
+            <workspaceName/>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>puppet_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runPuppet</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetVersion];</command>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <procedureName>PuppetVersion</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>

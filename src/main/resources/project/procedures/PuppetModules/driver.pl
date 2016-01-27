@@ -59,8 +59,6 @@ sub main {
       ( $ec->getProperty("action") )->findvalue('//value')->string_value;
     my $module_name =
       ( $ec->getProperty("module_name") )->findvalue('//value')->string_value;
-    my $version =
-      ( $ec->getProperty("version") )->findvalue('//value')->string_value;
     my $force =
       ( $ec->getProperty("force") )->findvalue('//value')->string_value;
     my $debug =
@@ -104,10 +102,6 @@ sub main {
 
     if ( $module_name && $module_name ne '' ) {
         $command = $command . " " . $module_name;
-    }
-
-    if ( $version && $version ne '' ) {
-        $command = $command . " --version";
     }
 
     if ( $debug && $debug ne '' ) {

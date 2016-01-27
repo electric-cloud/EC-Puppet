@@ -66,6 +66,13 @@ my %PuppetUnitTest = (
     category    => "Resource Management"
 );
 
+my %PuppetVersion = (
+    label       => "Puppet - Version",
+    procedure   => "PuppetVersion",
+    description => "Puppet version",
+    category    => "Resource Management"
+);
+
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
 $batch->deleteProperty(
@@ -103,8 +110,14 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Puppet - PuppetUnitTest");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - PuppetVersion");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - PuppetVersion");
+
 @::createStepPickerSteps = (
     \%RunManifest, \%RunCommand, \%ManageCertificatesAndRequests,
-    \%PuppetParser, \%PuppetModules, \%PuppetLint, \%PuppetUnitTest
+    \%PuppetParser, \%PuppetModules, \%PuppetLint, \%PuppetUnitTest,
+    \%PuppetVersion
 );
 

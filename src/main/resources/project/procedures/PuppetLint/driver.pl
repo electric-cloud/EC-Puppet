@@ -68,8 +68,6 @@ sub main {
       ( $ec->getProperty("format") )->findvalue('//value')->string_value;
     my $with_context =
       ( $ec->getProperty("with_context") )->findvalue('//value')->string_value;
-    my $version =
-      ( $ec->getProperty("version") )->findvalue('//value')->string_value;
     my $with_filename =
       ( $ec->getProperty("with_filename") )->findvalue('//value')->string_value;
     my $fail_on_warnings =
@@ -125,10 +123,6 @@ sub main {
 
     if ( $with_filename && $with_filename ne '' ) {
         $command = $command . " --with-filename ";
-    }
-
-    if ( $version && $version ne '' ) {
-        $command = $command . " --version ";
     }
 
     if ( $fail_on_warnings && $fail_on_warnings ne '' ) {
