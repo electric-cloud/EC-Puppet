@@ -13,20 +13,25 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-package RunCommandDriver;
+package PuppetParser;
+
 # -------------------------------------------------------------------------
 # Includes
 # -------------------------------------------------------------------------
+use Cwd;
 use strict;
 use utf8;
 use Encode;
 use warnings;
+use diagnostics;
 use open IO => ':encoding(utf8)';
+use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/libs);
 use PuppetHelper;
 
 $|=1;
+
 
 # -------------------------------------------------------------------------
 # Main functions
@@ -37,11 +42,12 @@ $|=1;
  
   Title    : main
   Usage    : main();
-  Function : Runs a command into Puppet
+  Function : Runs a manifest into Puppet
   Returns  : none
   Args     : named arguments: none
 =cut
 ###########################################################################
+
 
 sub main {
     my $ec = ElectricCommander->new();
@@ -50,35 +56,63 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_puppet_path = ($ec->getProperty( "puppet_path" ))->findvalue('//value')->string_value;
-    $::g_puppet_command = ($ec->getProperty( "puppet_command" ))->findvalue('//value')->string_value;
-
+    my $puppet_path = ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
+    my $file_path = ( $ec->getProperty("file_path") )->findvalue('//value')->string_value;
+    my $debug = ($ec->getProperty( "debug" ))->findvalue('//value')->string_value;    
+    my $verbose_mode = ($ec->getProperty( "verbose_mode" ))->findvalue('//value')->string_value;
+    my $format = ($ec->getProperty( "format" ))->findvalue('//value')->string_value;
+    my $additional_options = ($ec->getProperty( "additional_options" ))->findvalue('//value')->string_value;
     
+    $ec->abortOnError(1);
+
+	#Variable that stores the command to be executed
+    my $command = $puppet_path . " parser validate ";
+
     my @cmd;
     my %props;
     
     #Prints procedure and parameters information
     print "EC-Puppet: ";
-    print "Run Command procedure \n\n";
+    print "Puppet parser procedure \n\n";
     
 	#Parameters are checked to see which should be included
-    if($::g_puppet_path && $::g_puppet_path ne '' && $::g_puppet_command && $::g_puppet_command ne '')
+
+    if($file_path && $file_path ne '')
     {
-        #Variable that stores the command to be executed
-		$::g_command = $::g_puppet_path . " " .$::g_puppet_command;
-	
-		print "Command to be executed: \n$::g_command \n\n";
-        
-		#Executes the command into puppet
-		system("$::g_command");
-
-        # To get exit code of process shift right by 8
-        my $exitCode = $? >> 8;
-
-        # Set outcome
-        setOutcomeFromExitCode($ec, $exitCode);
-
+        $command = $command .  " " .$file_path;
     }
+
+    if($debug && $debug ne '')
+    {
+        $command = $command .  " --debug";
+    }
+    
+    if($verbose_mode && $verbose_mode ne '')
+    {
+        $command = $command . " --verbose";
+    }
+    
+    if($format && $format ne '')
+    {
+        $command = $command . " --render-as " . $format;
+    }
+
+    if($additional_options && $additional_options ne '')
+    {
+        $command = $command . " " . $additional_options;
+    }
+
+    print "Command to be executed: \n$command \n\n";
+
+    #Executes the command into puppet
+    system("$command");
+
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+
+    # Set outcome
+    setOutcomeFromExitCode($ec, $exitCode);
+        
 }
   
 main();

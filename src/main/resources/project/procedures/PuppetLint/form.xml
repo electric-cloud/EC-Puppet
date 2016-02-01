@@ -1,0 +1,130 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunManifest</help>
+    <formElement>
+        <type>entry</type>
+        <label>File Path:</label>
+        <value></value>
+        <property>file_path</property>
+        <required>1</required>
+        <documentation>Absolute path of the Puppet manifest. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Config file(path):</label>
+        <value></value>
+        <property>config_file</property>
+        <required>0</required>
+        <documentation>Absolute path of the puppet-lint configuration file. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Checks file(path):</label>
+        <value></value>
+        <property>checks_file</property>
+        <required>0</required>
+        <documentation>Absolute path of the file containing custom puppet-lint checks. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Error level:</label>
+        <value></value>
+        <property>error_level</property>
+        <required>0</required>
+        <documentation>The level of error to return (warning, error or all). </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Log format:</label>
+        <value></value>
+        <property>format</property>
+        <required>0</required>
+        <documentation>Change the log format.</documentation>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>With context:</label>
+            <property>with_context</property>
+            <required>0</required>
+            <documentation>Show where in the manifest the problem is.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>With filename:</label>
+            <property>with_filename</property>
+            <required>0</required>
+            <documentation>Display the filename before the warning.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Fail on warnings:</label>
+            <property>fail_on_warnings</property>
+            <required>0</required>
+            <documentation>Return a non-zero exit status for warnings.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Show ignored:</label>
+            <property>show_ignored</property>
+            <required>0</required>
+            <documentation>Show problems that have been ignored by control comments.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Relative:</label>
+            <property>relative</property>
+            <required>0</required>
+            <documentation>Compare module layout relative to the module root.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Fix:</label>
+            <property>fix</property>
+            <required>0</required>
+            <documentation>Attempt to automatically fix errors.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Only checks:</label>
+        <property>only_checks</property>
+        <required>0</required>
+        <documentation>A comma separated list of checks that should be run.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional Options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Provide additional commands if needed.</documentation>
+    </formElement>
+</editor>
+

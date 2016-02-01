@@ -22,6 +22,48 @@
                         <expandable>1</expandable>
                         <value/>
                     </property>
+                    <property>
+                        <propertyName>ManageCertificatesAndRequests</propertyName>
+                        <description>Manage certificates and requests on Puppet master.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>PuppetParser</propertyName>
+                        <description>validates Puppet DSL syntax without compiling a catalog or syncing any resources. If no manifest files are provided, it will validate the default site manifest.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>RunAgent</propertyName>
+                        <description>Retrieves the client configuration from the puppet master and applies it to the local host.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>PuppetModules</propertyName>
+                        <description>Finds, installs, and manages modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generates empty modules, and prepare locally developed modules for release on the Forge.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>PuppetLint</propertyName>
+                        <description>Puppet linting.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>PuppetUnitTest</propertyName>
+                        <description>Puppet unit testing.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>PuppetVersion</propertyName>
+                        <description>Puppet version.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -569,118 +611,6 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>desc</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>master_server_url</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <!-- Insert your form properties definitions here -->
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>desc</formalParameterName>
-                <defaultValue/>
-                <description>Simple description for configuration</description>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>master_server_url</formalParameterName>
-                <defaultValue/>
-                <description>URL for Puppet's master server</description>
-                <type>entry</type>
-            </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
-            <step>
-                <stepName>CreateConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Create a Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
             <procedureName>DeleteConfiguration</procedureName>
             <description>Delete an Puppet configuration</description>
             <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
@@ -856,19 +786,13 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>ManageCertificatesAndRequests</procedureName>
+            <description>Manage certificates and requests. Standalone certificate authority. Capable of generating certificates, but mostly used for signing certificate requests from puppet clients.Because the puppet master service defaults to not signing client certificate requests, this script is available for signing outstanding requests. It can be used to list outstanding requests and then either sign them individually or sign all of them.</description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -876,7 +800,297 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>puppet_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>host</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>action</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+                                                <property>
+                                                    <propertyName>Clean</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Clean</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>clean</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Finger Print</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Finger Print</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>fingerprint</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Generate</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Generate</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>generate</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>List</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>List</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>list</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Print</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Print</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>print</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Revoke</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Revoke</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>revoke</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Sign</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Sign</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>sign</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Verify</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Verify</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>verify</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Reinventory</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Reinventory</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>reinventory</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>9</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>all</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>digest</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>help</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>verbose</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -889,36 +1103,97 @@
                         </property>
                     </propertySheet>
                 </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
+            <formalParameter>
+                <formalParameterName>host</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the name of the host on which action has to be performed. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>action</formalParameterName>
+                <defaultValue/>
+                <description>Every action except 'list' and 'generate' requires a hostname to act on, unless the '--all' option is set. [clean]:Revoke a host's certificate (if applicable) and remove all files related to that host from puppet cert's storage.  This is useful when rebuilding hosts, since new certificate signing requests will only be honored if puppet cert does not have a copy of a      signed certificate  for that host. If '--all' is specified then all host certificates, both signed and unsigned, will be removed. [fingerprint]: Print the DIGEST (defaults to the signing algorithm) fingerprint of a host's certificate. [generate]: Generate a certificate for a named client. A certificate/ keypair will be generated for each client named on the command line. [list]: List outstanding certificate requests. If '--all' is specified, signed certificates are also listed, prefixed by '+ ', and revoked or invalid certificates are prefixed by '-' (the verification outcome is printed in parenthesis). [print]: Print the full-text version of a host's certificate. [revoke]: Revoke the certificate of a client. The certificate can be specified either by its serial number (given as a hexadecimal number prefixed by '0x') or by its hostname. The certificate is revoked by adding it to the Certificate Revocation List given by the 'cacrl' configuration option. Note that the puppet master needs to be restarted after revoking certificates. [sign]: Sign an outstanding certificate request. [verify]: Verify the named certificate against the local CA certificate. [reinventory]: Build an inventory of the issued certificates. This will destroy the current inventory file specified by 'cert_inventory' and recreate it from the certificates found in the 'certdir'. Ensure the puppet master is stopped before running this action.</description>
+                <required>1</required>
+                <type>select</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>all</formalParameterName>
+                <defaultValue/>
+                <description>Operate on all items. Currently only makes sense with the 'sign', 'clean', 'list', and 'fingerprint' actions.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>digest</formalParameterName>
+                <defaultValue/>
+                <description>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on your openssl and openssl ruby extension version.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>Enable full debugging.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>help</formalParameterName>
+                <defaultValue/>
+                <description>Print this help message.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>verbose</formalParameterName>
+                <defaultValue/>
+                <description>Enable verbosity.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide additional commands if needed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
-                <stepName>DeleteConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ManageCertificatesAndRequests];</command>
                 <condition/>
-                <description>Delete an Puppet configuration
-                </description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
+                <procedureName>ManageCertificatesAndRequests</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -935,19 +1210,14 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>PuppetParser</procedureName>
+            <description>Validates Puppet DSL syntax without compiling a catalog or syncing any resources. If no manifest files are provided, it will validate the default site manifest.
+            </description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -955,7 +1225,7 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>puppet_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -965,7 +1235,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>desc</propertyName>
+                                    <propertyName>file_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -974,47 +1244,150 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <!-- Insert your form properties definitions here -->
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>verbose_mode</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>format</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
                 </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>desc</formalParameterName>
-                <defaultValue/>
-                <description>Simple description for configuration</description>
+                <formalParameterName>file_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path to the file. (Required)</description>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>If checked full debugging will be enabled.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>verbose_mode</formalParameterName>
+                <defaultValue/>
+                <description>If checked full debugging will be enabled.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>format</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The rendering format to use.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide additional commands if needed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
-                <stepName>CreateConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetParser];</command>
                 <condition/>
-                <description>Create a Puppet configuration</description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
+                <procedureName>PuppetParser</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -1031,19 +1404,13 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>RunAgent</procedureName>
+            <description>Retrieves the client configuration from the puppet master and applies it to the local host.</description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -1051,7 +1418,387 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>puppet_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>certname</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>digest</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>waitforcert</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>disable</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>logdest</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>masterport</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>daemonize</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>no_daemonize</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>enable</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>fingerprint</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>no_client</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>noop</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>test</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>onetime</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>digest</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>detailed_exitcodes</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>help</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>verbose</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1064,35 +1811,181 @@
                         </property>
                     </propertySheet>
                 </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
+            <formalParameter>
+                <formalParameterName>certname</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Set the certname (unique ID) of the client. The master reads this unique identifying string, which is usually set to the node's fully-qualified domain name, to determine which configurations the node will receive. Use this option to debug setup problems or implement unusual node identification schemes.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>digest</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on your      openssl and openssl ruby extension version.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>waitforcert</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>This option only matters for daemons that do not yet have certificates and it is enabled by default, with a value of 120 (seconds). This causes 'puppet agent' to connect to the server every 2 minutes and ask it to sign a certificate request. This is useful for the initial setup of a puppet client. You can turn off waiting for certificates by specifying a time of 0.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>disable</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Disable working on the local system. This puts a lock file in place, causing 'puppet agent' not to work on the system until the lock file is removed. This is useful if you are testing a configuration and do not want the central configuration to override the local state until everything is tested and committed. Disable can also take an optional message that will be reported by the 'puppet agent' at the next disabled run. 'puppet agent' uses the same lock file while it is running, so no more than one 'puppet agent' process is working at a time. 'puppet agent' exits after executing this.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>logdest</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Where to send messages. Choose between syslog, the console, and a log file. Defaults to sending messages to syslog, or the console if debugging or verbosity is enabled.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>masterport</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The port on which to contact the puppet master. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>daemonize</formalParameterName>
+                <defaultValue/>
+                <description>Send the process into the background. This is the default.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>no_daemonize</formalParameterName>
+                <defaultValue/>
+                <description>Do not send the process into the background.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>detailed_exitcodes</formalParameterName>
+                <defaultValue/>
+                <description>Provide transaction information via exit codes. If this is enabled, an exit code of '2' means there were changes, an exit code of '4' means there were failures during the transaction, and an exit code of '6' means there were both changes and failures.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>enable</formalParameterName>
+                <defaultValue/>
+                <description>Enable working on the local system. This removes any lock file, causing 'puppet agent' to start managing the local system again (although it will continue to use its normal scheduling, so it might not start for another half hour).</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>fingerprint</formalParameterName>
+                <defaultValue/>
+                <description>Display the current certificate or certificate signing request fingerprint and then exit. Use the '--digest' option to change the digest algorithm used.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>no_client</formalParameterName>
+                <defaultValue/>
+                <description>Do not create a config client. This will cause the daemon to start but not check configuration unless it is triggered with puppet kick. This only makes sense when puppet agent is being run with listen = true in puppet.conf or was started with the --listen option.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>noop</formalParameterName>
+                <defaultValue/>
+                <description>Use 'noop' mode where the daemon runs in a no-op or dry-run mode. This is useful for seeing what changes Puppet will make without actually executing the changes.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>test</formalParameterName>
+                <defaultValue/>
+                <description>Enable the most common options used for testing. These are 'onetime', 'verbose', 'ignorecache', 'no-daemonize', 'no-usecacheonfailure', 'detailed-exitcodes', 'no-splay', and 'show_diff'.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>onetime</formalParameterName>
+                <defaultValue/>
+                <description>Run the configuration once. Runs a single (normally daemonized) Puppet run. Useful for interactively running puppet agent when used in conjunction with the --no-daemonize option. </description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>digest</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on     your      openssl and openssl ruby extension version.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>Enable full debugging.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>help</formalParameterName>
+                <defaultValue/>
+                <description>Print this help message.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>verbose</formalParameterName>
+                <defaultValue/>
+                <description>Enable verbosity.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The additional arguments/options which need to be passed to the command. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
-                <stepName>DeleteConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/RunAgent];</command>
                 <condition/>
-                <description>Delete an Puppet configuration</description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
+                <procedureName>RunAgent</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -1109,19 +2002,14 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>PuppetModules</procedureName>
+            <description>Find, install, and manage modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generate empty modules, and prepare locally developed modules for release on the Forge.
+            </description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -1129,7 +2017,7 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>puppet_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1139,7 +2027,152 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>desc</propertyName>
+                                    <propertyName>action</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+                                                <property>
+                                                    <propertyName>Build</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Build</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>build</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Changes</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Changes</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>changes</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Generate</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Generate</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>generate</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>List</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>List</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>list</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Install</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Install</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>install</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Uninstall</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Uninstall</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>uninstall</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Search</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Search</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>search</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Upgrade</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Upgrade</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>upgrade</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>8</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>module_name</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1148,47 +2181,255 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <!-- Insert your form properties definitions here -->
+                                <property>
+                                    <propertyName>module_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>environment</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>render_as</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>force</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>ignore_dependencies</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>ignore_changes</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
                 </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>desc</formalParameterName>
+                <formalParameterName>action</formalParameterName>
                 <defaultValue/>
-                <description>Simple description for configuration</description>
+                <description>Choose an action to be performed on puppet modules.Available options are :build,changes,generate,install,list,search,uninstall,upgrade. (Required)</description>
+                <required>1</required>
+                <type>select</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>module_name</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the name of the puppet module.(Required except for list module action).</description>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
+            <formalParameter>
+                <formalParameterName>module_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path for the puppet module to be installed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>environment</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Environment puppet is installed in.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>render_as</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Rendering format to use.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>If checked full debugging will be enabled.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>force</formalParameterName>
+                <defaultValue/>
+                <description>If checked same module will be reinstalled without dependencies.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>ignore_dependencies</formalParameterName>
+                <defaultValue/>
+                <description>If checked ignores dependencies.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>ignore_changes</formalParameterName>
+                <defaultValue/>
+                <description>If checked ignores changes.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide additional commands if needed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
-                <stepName>CreateConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetModules];</command>
                 <condition/>
-                <description>Create a Puppet configuration</description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
+                <procedureName>PuppetModules</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -1205,19 +2446,13 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>PuppetLint</procedureName>
+            <description>Puppet linting.</description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -1225,7 +2460,217 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>puppet_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>config_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>checks_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>error_level</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>format</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>with_context</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>with_filename</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>fail_on_warnings</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>show_ignored</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>relative</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>fix</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>only_checks</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1238,35 +2683,125 @@
                         </property>
                     </propertySheet>
                 </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
+                <formalParameterName>file_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path to the file for linting. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
+            <formalParameter>
+                <formalParameterName>config_file</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Load puppet-lint options from file.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>checks_file</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Load a file containing custom puppet-lint checks.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>error_level</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The level of error to return (warning, error or all).</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>format</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Change the log format.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>with_context</formalParameterName>
+                <defaultValue/>
+                <description>Show where in the manifest the problem is.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>with_filename</formalParameterName>
+                <defaultValue/>
+                <description>Display the filename before the warning.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>fail_on_warnings</formalParameterName>
+                <defaultValue/>
+                <description>Return a non-zero exit status for warnings.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>show_ignored</formalParameterName>
+                <defaultValue/>
+                <description>Show problems that have been ignored by control comments.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>relative</formalParameterName>
+                <defaultValue/>
+                <description>Compare module layout relative to the module root.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>fix</formalParameterName>
+                <defaultValue/>
+                <description>Attempt to automatically fix errors.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>only_checks</formalParameterName>
+                <defaultValue/>
+                <description>A comma separated list of checks that should be run.</description>
+                <required>0</required>
+                <type>select</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide additional commands if needed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
-                <stepName>DeleteConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetLint];</command>
                 <condition/>
-                <description>Delete an Puppet configuration</description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
+                <procedureName>PuppetLint</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -1283,19 +2818,13 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>PuppetUnitTest</procedureName>
+            <description>Runs rake spec for unit testing manifests.</description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -1303,7 +2832,7 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>rake_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1313,7 +2842,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>desc</propertyName>
+                                    <propertyName>rakefile_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1322,47 +2851,356 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <!-- Insert your form properties definitions here -->
+                                <property>
+                                    <propertyName>task</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+                                                <property>
+                                                    <propertyName>Beaker</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Beaker</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>beaker</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Beaker Nodes</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Beaker Nodes</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>beaker_nodes</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Build</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Build</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>build</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Clean</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Clean</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>clean</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Coverage</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Coverage</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>coverage</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Help</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Help</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>help</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Lint</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Lint</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>lint</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Metadata</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Metadata</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>metadata</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Spec</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Spec</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>spec</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Spec Clean</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Spec Clean</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>spec_clean</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Spec Prep</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Spec Prep</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>spec_prep</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Spec Standalone</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Spec Standalone</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>spec_standalone</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Syntax</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Syntax</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>syntax</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Syntax Hiera</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Syntax Hiera</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>syntax:hiera</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Syntax Manifests</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Syntax Manifests</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>syntax:manifests</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Syntax Templates</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Syntax Templates</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>syntax:templates</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>Validate</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Validate</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>validate</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>17</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
                 </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
+                <formalParameterName>rake_path</formalParameterName>
+                <defaultValue>/usr/local/bin/rake</defaultValue>
+                <description>Provide the path to the rake executable e.g /usr/local/bin/rake. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>desc</formalParameterName>
-                <defaultValue/>
-                <description>Simple description for configuration</description>
+                <formalParameterName>rakefile_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the absolute path to the rake file(It should have rake file name also). </description>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
+            <formalParameter>
+                <formalParameterName>task</formalParameterName>
+                <defaultValue/>
+                <description>Select the rake task to be performed.</description>
+                <required>1</required>
+                <type>select</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide additional commands if needed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
-                <stepName>CreateConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetUnitTest];</command>
                 <condition/>
-                <description>Create a Puppet configuration</description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
+                <procedureName>PuppetUnitTest</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -1379,19 +3217,13 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
+            <procedureName>PuppetVersion</procedureName>
+            <description>Displays puppet version.</description>
+            <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
@@ -1399,7 +3231,7 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>
+                                    <propertyName>puppet_path</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -1412,557 +3244,41 @@
                         </property>
                     </propertySheet>
                 </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <step>
-                <stepName>DeleteConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Delete an Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
                 <property>
-                    <propertyName>ec_visibility</propertyName>
+                    <propertyName>ec_parameterForm</propertyName>
                     <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>desc</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <!-- Insert your form properties definitions here -->
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
+                    <expandable>0</expandable>
+                    <value/>
                 </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>desc</formalParameterName>
-                <defaultValue/>
-                <description>Simple description for configuration</description>
-                <type>entry</type>
-            </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
-            <step>
-                <stepName>CreateConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Create a Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <step>
-                <stepName>DeleteConfiguration</stepName>
+                <stepName>runPuppet</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command/>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetVersion];</command>
                 <condition/>
-                <description>Delete an Puppet configuration</description>
+                <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
+                <resourceName/>
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>desc</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <!-- Insert your form properties definitions here -->
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>desc</formalParameterName>
-                <defaultValue/>
-                <description>Simple description for configuration</description>
-                <type>entry</type>
-            </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
-            <step>
-                <stepName>CreateConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Create a Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <step>
-                <stepName>DeleteConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Delete an Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>CreateConfiguration</procedureName>
-            <description>Create a Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>desc</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <!-- Insert your form properties definitions here -->
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>Configuration Name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>desc</formalParameterName>
-                <defaultValue/>
-                <description>Simple description for configuration</description>
-                <type>entry</type>
-            </formalParameter>
-            <!-- Insert your formal parameters definitions here -->
-            <step>
-                <stepName>CreateConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Create a Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>DeleteConfiguration</procedureName>
-            <description>Delete an Puppet configuration</description>
-            <jobNameTemplate>puppet-cfg-$[jobId]</jobNameTemplate>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_visibility</propertyName>
-                    <description/>
-                    <expandable>1</expandable>
-                    <value>hidden</value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>config</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue/>
-                <description>The configuration name</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <step>
-                <stepName>DeleteConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command/>
-                <condition/>
-                <description>Delete an Puppet configuration</description>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName>local</resourceName>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>DeleteConfiguration</procedureName>
+                <procedureName>PuppetVersion</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>

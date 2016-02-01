@@ -1,0 +1,193 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunAgent</help>
+    <formElement>
+        <type>entry</type>
+        <label>Puppet Path:</label>
+        <value>/usr/local/bin/puppet</value>
+        <property>puppet_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>CertName:</label>
+        <value></value>
+        <property>certname</property>
+        <required>0</required>
+        <documentation>Set the certname (unique ID) of the client. The master reads this unique identifying string, which is usually set to the node's fully-qualified domain name, to determine which configurations the node will receive. Use this option to debug setup problems or implement unusual node identification schemes.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Digest:</label>
+        <value></value>
+        <property>digest</property>
+        <required>0</required>
+        <documentation>Set the digest for fingerprinting (defaults to the digest used when signing the cert). Valid values depends on your      openssl and openssl ruby extension version. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>WaitForCert:</label>
+        <value></value>
+        <property>waitforcert</property>
+        <required>0</required>
+        <documentation>This option only matters for daemons that do not yet have certificates and it is enabled by default, with a value of 120 (seconds). This causes 'puppet agent' to connect to the server every 2 minutes and ask it to sign a certificate request. This is useful for the initial setup of a puppet client. You can turn off waiting for certificates by specifying a time of 0.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>MasterPort:</label>
+        <value></value>
+        <property>masterport</property>
+        <required>0</required>
+        <documentation>The port on which to contact the puppet master. </documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Daemonize:</label>
+        <property>daemonize</property>
+        <required>0</required>
+        <documentation>Send the process into the background. This is the default.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>No-Daemonize:</label>
+        <property>no_daemonize</property>
+        <required>0</required>
+        <documentation>Do not send the process into the background.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Enable:</label>
+        <property>enable</property>
+        <required>0</required>
+        <documentation>Enable working on the local system. This removes any lock file, causing 'puppet agent' to start managing the local system again (although it will continue to use its normal scheduling, so it might not start for another half hour).</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Disable:</label>
+        <value></value>
+        <property>disable</property>
+        <required>0</required>
+        <documentation>Disable working on the local system. This puts a lock file in place, causing 'puppet agent' not to work on the system until the lock file is removed. This is useful if you are testing a configuration and do not want the central configuration to override the local state until everything is tested and committed. Disable can also take an optional message that will be reported by the 'puppet agent' at the next disabled run. 'puppet agent' uses the same lock file while it is running, so no more than one 'puppet agent' process is working at a time. 'puppet agent' exits after executing this.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>LogDest:</label>
+        <value></value>
+        <property>logdest</property>
+        <required>0</required>
+        <documentation>Where to send messages. Choose between syslog, the console, and a log file. Defaults to sending messages to syslog, or the console if debugging or verbosity is enabled.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Detailed-Exitcodes:</label>
+        <property>detailed_exitcodes</property>
+        <required>0</required>
+        <documentation>Provide transaction information via exit codes. If this is enabled, an exit code of '2' means there were changes, an exit code of '4' means there were failures during the transaction, and an exit code of '6' means there were both changes and failures.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Fingerprint:</label>
+        <property>fingerprint</property>
+        <required>0</required>
+        <documentation>Display the current certificate or certificate signing request fingerprint and then exit. Use the '--digest' option to change the digest algorithm used.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>No-Client:</label>
+        <property>no_client</property>
+        <required>0</required>
+        <documentation>Do not create a config client. This will cause the daemon to start but not check configuration unless it is triggered with puppet kick. This only makes sense when puppet agent is being run with listen = true in puppet.conf or was started with the --listen option.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Noop:</label>
+        <property>noop</property>
+        <required>0</required>
+        <documentation>Use 'noop' mode where the daemon runs in a no-op or dry-run mode. This is useful for seeing what changes Puppet will make without actually executing the changes. </documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Test:</label>
+        <property>test</property>
+        <required>0</required>
+        <documentation>Enable the most common options used for testing. These are 'onetime', 'verbose', 'ignorecache', 'no-daemonize', 'no-usecacheonfailure', 'detailed-exitcodes', 'no-splay', and 'show_diff'.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>OneTime:</label>
+        <property>onetime</property>
+        <required>0</required>
+        <documentation>Run the configuration once. Runs a single (normally daemonized) Puppet run. Useful for interactively running puppet agent when used in conjunction with the --no-daemonize option. </documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Debug:</label>
+        <property>debug</property>
+        <required>0</required>
+        <documentation>Enable full debugging.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Help:</label>
+        <property>help</property>
+        <required>0</required>
+        <documentation>Print this help message.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Verbose:</label>
+        <property>verbose</property>
+        <required>0</required>
+        <documentation>Enable verbosity.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional-Options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>The additional arguments/options which need to be passed to the command. </documentation>
+    </formElement>
+</editor>
+

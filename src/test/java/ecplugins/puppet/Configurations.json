@@ -1,0 +1,105 @@
+/*
+   Copyright 2015 Electric Cloud, Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+{
+	"ManageCertificatesAndRequests": [{
+		"puppet_path": "puppet",
+		"action": "list",
+		"host": "",
+		"digest": "",
+		"all": "",
+		"debug": "",
+		"help": "",
+		"verbose": "",
+		"version": "",
+		"additional_options": ""
+	}],
+	"PuppetLint": [{
+			"file_path": "/tmp/unit-test",
+			"config_file": "",
+			"checks_file": "",
+			"error_level": "",
+			"format": "",
+			"with_context": "",
+			"version": "",
+			"with_filename": "",
+			"fail_on_warnings": "",
+			"show_ignored": "",
+			"relative": "",
+			"fix": "",
+			"only_checks": "",
+			"additional_options": "--no-autoloader_layout-check --no-documentation-check"
+		}
+
+	],
+	"PuppetModules": [
+
+		{
+			"puppet_path": "puppet",
+			"action": "list",
+			"module_name": "",
+			"module_path": "",
+			"environment": "",
+			"render_as": "",
+			"version": "",
+			"debug": "",
+			"force": "",
+			"ignore_dependencies": "",
+			"ignore_changes": "",
+			"additional_options": ""
+
+		}
+	],
+
+	"PuppetUnitTest": [{
+		"rake_path": "rake",
+		"rakefile_path": "/tmp/unit-test/Rakefile",
+		"task": "spec",
+		"additional_options": ""
+
+	}],
+	"RunAgent": [{
+		"puppet_path": "puppet",
+		"certname": "",
+		"digest": "",
+		"waitforcert": "",
+		"masterport": "",
+		"daemonize": "",
+		"no_daemonize": "",
+		"enable": "",
+		"disable": "",
+		"logdest": "",
+		"detailed_exitcodes": "",
+		"fingerprint": "",
+		"no_client": "",
+		"noop": "1",
+		"test": "",
+		"onetime": "",
+		"debug": "",
+		"help": "",
+		"verbose": "",
+		"version": "",
+		"additional_options": ""
+	}],
+	"PuppetParser": [{
+		"puppet_path": "puppet",
+		"file_path": "/tmp/unit-test",
+		"debug": "",
+		"verbose_mode": "",
+		"format": "",
+		"additional_options": ""
+
+	}]
+}
