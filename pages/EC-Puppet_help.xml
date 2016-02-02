@@ -840,6 +840,12 @@
 
         <h1>Release Notes</h1>
 
+        <h2>@PLUGIN_KEY@-1.2</h2>
+
+        <ul>
+            <li>Added procedure <i>PuppetUnitTest</i> for unit testing puppet modules.</li>
+        </ul>
+
         <h2>@PLUGIN_KEY@-1.0.4</h2>
 
         <ul>
