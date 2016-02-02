@@ -29,5 +29,7 @@ public class StringConstants {
 	final static String WORKSPACE_NAME = "UTWorkspace";
 	final static String PUPPET_AGENT_RESOURCE_NAME = "puppetAgent";
 	final static String PUPPET_MASTER_RESOURCE_NAME = "puppetMaster";
+	final static String RAKE_FILE_PATH = "rakefile_path";
+	final static String FILE_PATH = "file_path";
 	final static long jobTimeoutMillis = 5 * 60 * 1000;
 }
