@@ -7,6 +7,61 @@
         <workspaceName/>
         <propertySheet>
             <property>
+                <propertyName>ec_configurationmanagement_plugin</propertyName>
+                <description></description>
+                <propertySheet>
+                    <property>
+                        <propertyName>operations</propertyName>
+                        <description></description>
+                        <propertySheet>
+                            <property>
+                                <propertyName>converge</propertyName>
+                                <description></description>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>procedureName</propertyName>
+                                        <description></description>
+                                        <expandable>1</expandable>
+                                        <value>RunAgent</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>ui_formRefs</propertyName>
+                                        <description></description>
+                                        <propertySheet>
+                                            <property>
+                                                <propertyName>parameterForm</propertyName>
+                                                <description></description>
+                                                <expandable>1</expandable>
+                                                <value>ec_parameterForm</value>
+                                            </property>
+                                        </propertySheet>
+                                    </property>
+                                    <property>
+                                        <propertyName>parameterRefs</propertyName>
+                                        <description></description>
+                                        <propertySheet>
+                                            <!--Place-holder-->
+                                        </propertySheet>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                        </propertySheet>
+                    </property>
+                    <property>
+                        <propertyName>hasConfiguration</propertyName>
+                        <description></description>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>displayName</propertyName>
+                        <description></description>
+                        <expandable>1</expandable>
+                        <value>Puppet</value>
+                    </property>
+                </propertySheet>
+            </property>
+            <property>
                 <propertyName>scripts</propertyName>
                 <description/>
                 <propertySheet>
