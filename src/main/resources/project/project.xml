@@ -1304,7 +1304,7 @@
                 <formalParameterName>file_path</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>Provide the path to the file. (Required)</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
