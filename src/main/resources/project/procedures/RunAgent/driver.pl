@@ -53,10 +53,6 @@ sub main {
     # -------------------------------------------------------------------------
     my $puppet_path =
       ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
-    my $daemonize =
-      ( $ec->getProperty("daemonize") )->findvalue('//value')->string_value;
-    my $no_daemonize =
-      ( $ec->getProperty("no_daemonize") )->findvalue('//value')->string_value;
     my $certname =
       ( $ec->getProperty("certname") )->findvalue('//value')->string_value;
     my $waitforcert =
@@ -87,7 +83,6 @@ sub main {
       ( $ec->getProperty("digest") )->findvalue('//value')->string_value;
     my $debug =
       ( $ec->getProperty("debug") )->findvalue('//value')->string_value;
-    my $help = ( $ec->getProperty("help") )->findvalue('//value')->string_value;
     my $verbose =
       ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
 
@@ -104,9 +99,6 @@ sub main {
     my $command = $puppet_path . " agent";
 
     #Variable that stores the command to be executed
-    if ( $daemonize && $daemonize ne '' ) {
-        $command = $command . " --daemonize";
-    }
     if ( $no_daemonize && $no_daemonize ne '' ) {
         $command = $command . " --no-daemonize";
     }
@@ -151,9 +143,6 @@ sub main {
     }
     if ( $debug && $debug ne '' ) {
         $command = $command . " --debug";
-    }
-    if ( $help && $help ne '' ) {
-        $command = $command . " --help";
     }
     if ( $verbose && $verbose ne '' ) {
         $command = $command . " --verbose";

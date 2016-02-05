@@ -59,7 +59,7 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>Additional-Options:</label>
+        <label>Additional Options:</label>
         <value></value>
         <property>additional_options</property>
         <required>0</required>

@@ -142,7 +142,7 @@ sub main {
     }
 
     if ( $only_checks && $only_checks ne '' ) {
-        $command = $command . " " . $only_checks;
+        $command = $command . " --only-checks " . $only_checks;
     }
 
     if ( $additional_options && $additional_options ne '' ) {
