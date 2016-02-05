@@ -85,6 +85,8 @@ sub main {
       ( $ec->getProperty("debug") )->findvalue('//value')->string_value;
     my $verbose =
       ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
+    my $no_daemonize =
+      ( $ec->getProperty("no_daemonize") )->findvalue('//value')->string_value;
 
     $ec->abortOnError(1);
 
