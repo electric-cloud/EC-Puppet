@@ -30,7 +30,7 @@
         <label>File Path:</label>
         <value></value>
         <property>file_path</property>
-        <required>1</required>
+        <required>0</required>
         <documentation>Provide the path to the file </documentation>
     </formElement>
     <formElement>

@@ -27,7 +27,7 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>CertName:</label>
+        <label>Certificate Name for the client:</label>
         <value></value>
         <property>certname</property>
         <required>0</required>
@@ -43,7 +43,7 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>WaitForCert:</label>
+        <label>Wait for the client certificate to be signed:</label>
         <value></value>
         <property>waitforcert</property>
         <required>0</required>
@@ -51,20 +51,11 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>MasterPort:</label>
+        <label>Master Port:</label>
         <value></value>
         <property>masterport</property>
         <required>0</required>
         <documentation>The port on which to contact the puppet master. </documentation>
-    </formElement>
-    <formElement>
-        <type>checkbox</type>
-        <label>Daemonize:</label>
-        <property>daemonize</property>
-        <required>0</required>
-        <documentation>Send the process into the background. This is the default.</documentation>
-        <checkedValue>1</checkedValue>
-        <uncheckedValue>0</uncheckedValue>
     </formElement>
     <formElement>
         <type>checkbox</type>
@@ -85,16 +76,18 @@
         <uncheckedValue>0</uncheckedValue>
     </formElement>
     <formElement>
-        <type>entry</type>
+        <type>checkbox</type>
         <label>Disable:</label>
-        <value></value>
         <property>disable</property>
         <required>0</required>
-        <documentation>Disable working on the local system. This puts a lock file in place, causing 'puppet agent' not to work on the system until the lock file is removed. This is useful if you are testing a configuration and do not want the central configuration to override the local state until everything is tested and committed. Disable can also take an optional message that will be reported by the 'puppet agent' at the next disabled run. 'puppet agent' uses the same lock file while it is running, so no more than one 'puppet agent' process is working at a time. 'puppet agent' exits after executing this.</documentation>
+        <documentation>Disable working on the local system. This puts a lock file in place, causing 'puppet agent' not to work on the system until the lock file is removed. This is useful if you are testing a configuration and do not want the central configuration to override the local state until everything is tested and committed. Disable can also take an optional message that will be reported by the 'puppet agent' at the next disabled run. 'puppet agent' uses the same lock file while it is running, so no more than one 'puppet agent' process is working at a time. 'puppet agent' exits after executing this.
+        </documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>LogDest:</label>
+        <label>Log Destination:</label>
         <value></value>
         <property>logdest</property>
         <required>0</required>
@@ -102,7 +95,7 @@
     </formElement>
     <formElement>
         <type>checkbox</type>
-        <label>Detailed-Exitcodes:</label>
+        <label>Detailed Exitcodes:</label>
         <property>detailed_exitcodes</property>
         <required>0</required>
         <documentation>Provide transaction information via exit codes. If this is enabled, an exit code of '2' means there were changes, an exit code of '4' means there were failures during the transaction, and an exit code of '6' means there were both changes and failures.</documentation>
@@ -120,7 +113,7 @@
     </formElement>
     <formElement>
         <type>checkbox</type>
-        <label>No-Client:</label>
+        <label>No Client:</label>
         <property>no_client</property>
         <required>0</required>
         <documentation>Do not create a config client. This will cause the daemon to start but not check configuration unless it is triggered with puppet kick. This only makes sense when puppet agent is being run with listen = true in puppet.conf or was started with the --listen option.</documentation>
@@ -147,7 +140,7 @@
     </formElement>
     <formElement>
         <type>checkbox</type>
-        <label>OneTime:</label>
+        <label>One time run:</label>
         <property>onetime</property>
         <required>0</required>
         <documentation>Run the configuration once. Runs a single (normally daemonized) Puppet run. Useful for interactively running puppet agent when used in conjunction with the --no-daemonize option. </documentation>
@@ -165,15 +158,6 @@
     </formElement>
     <formElement>
         <type>checkbox</type>
-        <label>Help:</label>
-        <property>help</property>
-        <required>0</required>
-        <documentation>Print this help message.</documentation>
-        <checkedValue>1</checkedValue>
-        <uncheckedValue>0</uncheckedValue>
-    </formElement>
-    <formElement>
-        <type>checkbox</type>
         <label>Verbose:</label>
         <property>verbose</property>
         <required>0</required>
@@ -183,7 +167,7 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>Additional-Options:</label>
+        <label>Additional Options:</label>
         <value></value>
         <property>additional_options</property>
         <required>0</required>
