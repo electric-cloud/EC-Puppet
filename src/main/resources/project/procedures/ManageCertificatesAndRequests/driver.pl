@@ -61,7 +61,6 @@ sub main {
       ( $ec->getProperty("digest") )->findvalue('//value')->string_value;
     my $debug =
       ( $ec->getProperty("debug") )->findvalue('//value')->string_value;
-    my $help = ( $ec->getProperty("help") )->findvalue('//value')->string_value;
     my $verbose =
       ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
     my $additional_options =
@@ -94,9 +93,6 @@ sub main {
         }
         if ( $debug && $debug ne '' ) {
             $command = $command . " --debug";
-        }
-        if ( $help && $help ne '' ) {
-            $command = $command . " --help";
         }
         if ( $verbose && $verbose ne '' ) {
             $command = $command . " --verbose";

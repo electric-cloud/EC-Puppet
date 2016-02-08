@@ -1040,31 +1040,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>help</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>verbose</propertyName>
                                     <propertySheet>
                                         <property>
@@ -1149,13 +1124,6 @@
                 <formalParameterName>debug</formalParameterName>
                 <defaultValue/>
                 <description>Enable full debugging.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>help</formalParameterName>
-                <defaultValue/>
-                <description>Print this help message.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
@@ -1336,7 +1304,7 @@
                 <formalParameterName>file_path</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>Provide the path to the file. (Required)</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
@@ -1461,9 +1429,24 @@
                                     <propertyName>disable</propertyName>
                                     <propertySheet>
                                         <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -1484,31 +1467,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>daemonize</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -1748,31 +1706,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>help</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>verbose</propertyName>
                                     <propertySheet>
                                         <property>
@@ -1851,7 +1784,7 @@
                 <defaultValue></defaultValue>
                 <description>Disable working on the local system. This puts a lock file in place, causing 'puppet agent' not to work on the system until the lock file is removed. This is useful if you are testing a configuration and do not want the central configuration to override the local state until everything is tested and committed. Disable can also take an optional message that will be reported by the 'puppet agent' at the next disabled run. 'puppet agent' uses the same lock file while it is running, so no more than one 'puppet agent' process is working at a time. 'puppet agent' exits after executing this.</description>
                 <required>0</required>
-                <type>entry</type>
+                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>logdest</formalParameterName>
@@ -1866,13 +1799,6 @@
                 <description>The port on which to contact the puppet master. </description>
                 <required>0</required>
                 <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>daemonize</formalParameterName>
-                <defaultValue/>
-                <description>Send the process into the background. This is the default.</description>
-                <required>0</required>
-                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>no_daemonize</formalParameterName>
@@ -1941,13 +1867,6 @@
                 <formalParameterName>debug</formalParameterName>
                 <defaultValue/>
                 <description>Enable full debugging.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>help</formalParameterName>
-                <defaultValue/>
-                <description>Print this help message.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>

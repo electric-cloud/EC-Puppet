@@ -77,15 +77,6 @@
     </formElement>
     <formElement>
         <type>checkbox</type>
-        <label>Help:</label>
-        <property>help</property>
-        <required>0</required>
-        <documentation>Print this help message.</documentation>
-        <checkedValue>1</checkedValue>
-        <uncheckedValue>0</uncheckedValue>
-    </formElement>
-    <formElement>
-        <type>checkbox</type>
         <label>Verbose:</label>
         <property>verbose</property>
         <required>0</required>
@@ -95,7 +86,7 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>Additional-Options:</label>
+        <label>Additional Options:</label>
         <value></value>
         <property>additional_options</property>
         <required>0</required>
