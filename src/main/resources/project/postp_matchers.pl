@@ -34,6 +34,12 @@ q{&addSimpleError("SyntaxError", "$1");setProperty("outcome", "error" );updateSu
         action =>
 q{&addSimpleError("GenericError", "Could not $1");setProperty("outcome", "error" );updateSummary();},
     },
+    {
+        id => "Warning",
+        pattern =>
+          q{.*no\scertificate\sfound\sand\swaitforcert\sis\sdisabled(.*)},
+        action => q{setProperty("outcome", "warning" );updateSummary();},
+    },
 );
 
 sub addSimpleError {
@@ -59,6 +65,10 @@ sub updateSummary() {
     $summary .=
       ( defined $::gProperties{"results"} )
       ? $::gProperties{"results"} . "\n"
+      : "";
+    $summary .=
+      ( defined $::gProperties{"Warning"} )
+      ? $::gProperties{"Warning"} . "\n"
       : "";
 
     setProperty( "summary", $summary );
