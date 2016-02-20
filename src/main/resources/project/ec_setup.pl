@@ -14,6 +14,13 @@
 #  limitations under the License.
 #
 
+my %ConfigureAgent = (
+    label       => "Puppet- Configure Agent",
+    procedure   => "ConfigureAgent",
+    description => "Used by the dynamic environment feature to configure the Puppet agent on the provisioned resource. Retrieves the client configuration from the Puppet Master and applies it to the resource based on the environment specified.",
+    category    => "Resource Management"
+);
+
 my %RunManifest = (
     label       => "Puppet - Run Manifest",
     procedure   => "RunManifest",
@@ -126,11 +133,15 @@ $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Puppet - RunAgent");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - RunAgent");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - ConfigureAgent");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - ConfigureAgent");
+
 @::createStepPickerSteps = (
     \%RunManifest,                   \%RunCommand,
     \%ManageCertificatesAndRequests, \%PuppetParser,
     \%PuppetModules,                 \%PuppetLint,
     \%PuppetUnitTest,                \%PuppetVersion,
-    \%RunAgent
+    \%RunAgent,                      \%ConfigureAgent,
 );
 
