@@ -843,7 +843,7 @@
         <h2>@PLUGIN_KEY@-1.2</h2>
 
         <ul>
-            <li>Added procedure <i>PuppetUnitTest</i> for unit testing puppet modules.</li>
+            <li>Added following functionalities: Puppet Version, Puppet Modules, Puppet Unit Test, Puppet Lint, Puppet Parser, Manage Certificates and Requests and the Run Agent procedures</li>
         </ul>
 
         <h2>@PLUGIN_KEY@-1.0.4</h2>
