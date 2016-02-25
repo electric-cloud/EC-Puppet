@@ -2015,7 +2015,7 @@
                 <type>entry</type>
             </formalParameter>
             <step>
-                <stepName>configureAgent</stepName>
+                <stepName>configureAgentEnable</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <condition/>
@@ -2032,11 +2032,9 @@
                 <subprocedure>RunAgent</subprocedure>
                 <subproject>/plugins/EC-Puppet/project</subproject>
                 <actualParameters>
-                    <!--Pass the values for the RunAgent procedure being invoked here-->
                     <property>
                         <propertyName>puppet_path</propertyName>
                         <expandable>1</expandable>
-                        <!--This is the parameter from the ConfigureAgent procedure-->
                         <value>$[puppet_path]</value>
                     </property>
                     <property>
@@ -2093,6 +2091,116 @@
                         <propertyName>enable</propertyName>
                         <expandable>1</expandable>
                         <value>1</value>
+                    </property>
+                    <property>
+                        <propertyName>disable</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>digest</propertyName>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>detailed_exitcodes</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>debug</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>certname</propertyName>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>additional_options</propertyName>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                </actualParameters>
+            </step>
+            <step>
+                <stepName>configureAgentTest</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <subprocedure>RunAgent</subprocedure>
+                <subproject>/plugins/EC-Puppet/project</subproject>
+                <actualParameters>
+                    <property>
+                        <propertyName>puppet_path</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[puppet_path]</value>
+                    </property>
+                    <property>
+                        <propertyName>waitforcert</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>verbose</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>test</propertyName>
+                        <expandable>0</expandable>
+                        <value>1</value>
+                    </property>
+                    <property>
+                        <propertyName>onetime</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>noop</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>no_daemonize</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>no_client</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>masterport</propertyName>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>logdest</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>fingerprint</propertyName>
+                        <expandable>1</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>enable</propertyName>
+                        <expandable>0</expandable>
+                        <value>0</value>
                     </property>
                     <property>
                         <propertyName>disable</propertyName>
