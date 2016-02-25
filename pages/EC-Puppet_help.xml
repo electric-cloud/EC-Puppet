@@ -103,9 +103,7 @@
                     <tr>
                         <td class='required'>Puppet Path</td>
 
-                        <td>Provide the path to the puppet
-                        executable e.g /usr/local/bin/puppet. This
-                        is the default value. (Required)</td>
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. This is the default value. (Required)</td>
                     </tr>
 
                     <tr>
@@ -158,7 +156,7 @@
             </table>
 
             <h2>Parameter
-            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-1.png"
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/RunManifest.png"
                  alt="form" />
         </div>
 
@@ -202,33 +200,651 @@
             </table>
 
             <h2>Parameter
-            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-7.png"
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/RunCommand.png"
+                 alt="form" />
+        </div>
+
+        <div id="PuppetVersion">
+            <a name='PuppetVersion'
+                 id="PuppetVersion"></a> 
+
+            <h3>PuppetVersion</h3>
+
+            <p>Displays the running version of Puppet.</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt;
+            --version.</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet
+                        executable e.g /usr/local/bin/puppet. This
+                        is the default value. (Required)</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetVersion.png"
+                 alt="form" />
+        </div>
+
+        <div id="PuppetModules">
+            <a name='PuppetModules'
+                 id="PuppetModules"></a> 
+
+            <h3>PuppetModules</h3>
+
+            <p>This command can find, install, and manage modules from the Puppet Forge,
+			a repository of user-contributed Puppet code. It can also generate empty
+			modules, and prepare locally developed modules for release on the Forge.</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt;
+            module &lt;action&gt; --environment &lt;environment_name&gt; 
+			--modulepath &lt;base_module_path&gt;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet
+                        executable e.g /usr/local/bin/puppet. This
+                        is the default value. (Required)</td>
+					</tr>	
+					<tr>
+                        <td class='required'>Action</td>
+
+                        <td>The action to be performed on puppet modules.
+						Available options are :build,changes,generate,install,
+						list,search,uninstall,upgrade executable e.g /usr/local/bin/puppet.
+						This is the default value. (Required)</td>
+					</tr>	
+					<tr>							
+                        <td>Module Name</td>
+
+                        <td>Provide the name of the puppet module.(Required except for list module action).</td>
+					</tr>	
+					<tr>							
+                        <td>Module Path</td>
+
+                        <td>Provide the path for the puppet module to be installed.</td>
+					</tr>	
+					<tr>							
+                        <td>Environment</td>
+
+                        <td>Environment puppet is installed in.</td>
+					</tr>	
+					<tr>													
+                        <td>Render as</td>
+
+                        <td>Rendering format to use.</td>
+					</tr>	
+					<tr>													
+                        <td>Debug</td>
+
+                        <td>If checked full debugging will be enabled.</td>
+					</tr>	
+					<tr>							
+                        <td>Force</td>
+
+                        <td>If checked same module will be reinstalled without dependencies.</td>
+					</tr>	
+					<tr>							
+                        <td>Ignore Dependencies</td>
+
+                        <td>If checked ignores dependencies.</td>
+					</tr>	
+					<tr>													
+                        <td>Ignore Changes</td>
+
+                        <td>If checked ignores changes.</td>	
+					</tr>	
+					<tr>													
+                        <td>Additional Options</td>
+
+                        <td>Provide additional options if needed.</td>						
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetModules.png"
+                 alt="form" />
+        </div>
+
+		<div id="PuppetUnitTest">
+            <a name='PuppetUnitTest'
+                 id="PuppetUnitTest"></a> 
+
+            <h3>PuppetUnitTest</h3>
+
+            <p>This command can be used for unit testing puppet modules using rspec</p>
+
+            <p>- Command to be executed: &lt;Rake Path&gt;
+            &lt;action&gt; -f &lt;RakeFile Path&gt;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Rake Path</td>
+
+                        <td>Provide the path to the rake binary.</td>
+					</tr>	
+					<tr>	
+                        <td class='required'>Rake File Path</td>
+
+                        <td>Provide the absolute path of the rake file(along with the rake file name)</td>
+					</tr>	
+					<tr>							
+                        <td class='required'>Rake Tasks</td>
+
+                        <td>Select the task for rake.</td>
+					</tr>	
+					<tr>							
+                        <td>Additional Options</td>
+
+                        <td>The additional arguments/options which need to be passed to the command.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetUnitTest.png"
+                 alt="form" />
+        </div>
+
+		<div id="PuppetLint">
+            <a name='PuppetLint'
+                 id="PuppetLint"></a> 
+
+            <h3>PuppetLint</h3>
+
+            <p>This command can be used for unit testing puppet modules using rspec</p>
+
+            <p>- Command to be executed: puppet-lint &lt;Absolute path of the Puppet manifest file.&gt; &lt;options;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>File Path</td>
+
+                        <td>Absolute path of the Puppet manifest. (Required)</td>
+					</tr>	
+					<tr>	
+                        <td>Config File (Path)</td>
+
+                        <td>Absolute path of the puppet-lint configuration file.</td>
+					</tr>	
+					<tr>							
+                        <td>Checks File (Path)</td>
+
+                        <td>Absolute path of the file containing custom puppet-lint checks.</td>
+					</tr>	
+					<tr>
+                        <td>Error Level</td>
+
+                        <td>The level of error to return (warning, error or all).</td>
+					</tr>	
+					<tr>							
+                        <td>Log Format</td>
+
+                        <td>Change the log format.</td>
+					</tr>	
+					<tr>
+                        <td>With Context</td>
+
+                        <td>Show where in the manifest the problem is.</td>
+					</tr>	
+					<tr>
+                        <td>With Filename</td>
+			
+                        <td>Display the filename before the warning.</td>
+					</tr>	
+					<tr>							
+                        <td>Fail on warnings</td>
+
+                        <td>Return a non-zero exit status for warnings.</td>
+					</tr>	
+					<tr>
+                        <td>Show ignored</td>
+
+                        <td>Show problems that have been ignored by control comments.</td>
+					</tr>	
+					<tr>								
+                        <td>Relative</td>
+
+                        <td>Compare module layout relative to the module root.</td>
+					</tr>	
+					<tr>
+                        <td>Fix</td>
+
+                        <td>Attempt to automatically fix errors.</td>
+					</tr>	
+					<tr>
+                        <td>Only Checks</td>
+			
+                        <td>A comma separated list of checks that should be run.</td>						
+					</tr>	
+					<tr>
+                        <td>Additional Options</td>
+			
+                        <td>Provide additional commands if needed.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetLint.png"
+                 alt="form" />
+        </div>		
+
+		<div id="RunAgent">
+            <a name='RunAgent'
+                 id="RunAgent"></a> 
+
+            <h3>RunAgent</h3>
+
+            <p>This command can be used for executing the agent on the puppet client
+			Retrieves the client configuration from the puppet master and
+			applies it to the local host.</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; agent --server &lt;hostname&gt; &lt;options&gt;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
+					</tr>	
+					<tr>	
+                        <td>Cert Name</td>
+
+                        <td>Set the certname (unique ID) of the client.
+						The master reads this unique identifying string,
+						which is usually set to the node's fully-qualified domain name,
+						to determine which configurations the node will receive.
+						Use this option to debug setup problems or implement 
+						unusual node identification schemes.</td>
+					</tr>	
+					<tr>							
+                        <td>Digest</td>
+
+                        <td>Set the digest for fingerprinting (defaults to the digest used when signing the cert). 
+						Valid values depends on your openssl and openssl ruby extension version.</td>
+					</tr>	
+					<tr>
+                        <td>Wait For Cert</td>
+
+                        <td>This option only matters for daemons that do not yet 
+						have certificates and it is enabled by default, with a 
+						value of 120 (seconds). This causes 'puppet agent' to 
+						connect to the server every 2 minutes and ask it to sign 
+						a certificate request. This is useful for the initial setup 
+						of a puppet client. You can turn off waiting for 
+						certificates by specifying a time of 0.</td>
+					</tr>	
+					<tr>							
+                        <td>Master Port</td>
+
+                        <td>The port on which to communicate with the puppet master.</td>
+					</tr>	
+					<tr>
+                        <td>Daemonize</td>
+
+                        <td>Send the process into the background. This is the default.</td>
+					</tr>	
+					<tr>
+                        <td>No-Daemonize</td>
+			
+                        <td>Do not send the process into the background.</td>
+					</tr>	
+					<tr>							
+                        <td>Enable</td>
+
+                        <td>Enable working on the local system. This removes any 
+						lock file, causing 'puppet agent' to start managing the 
+						local system again (although it will continue to use its 
+						normal scheduling, so it might not start for another half hour).</td>
+					</tr>	
+					<tr>
+                        <td>Disable</td>
+
+                        <td>Disable working on the local system. This puts a 
+						lock file in place, causing 'puppet agent' not to work 
+						on the system until the lock file is removed. This is 
+						useful if you are testing a configuration and do not want
+						the central configuration to override the local state
+						until everything is tested and committed. Disable can
+						also take an optional message that will be reported by 
+						the 'puppet agent' at the next disabled run. 'puppet agent' 
+						uses the same lock file while it is running, so no more than
+						one 'puppet agent' process is working at a time. 'puppet agent' 
+						exits after executing this.</td>
+					</tr>	
+					<tr>							
+                        <td>LogDest</td>
+
+                        <td>Where to send messages. Choose between syslog, the 
+						console, and a log file. Defaults to sending messages to 
+						syslog, or the console if debugging or verbosity is enabled.</td>
+					</tr>	
+					<tr>
+                        <td>Detailed Exit Codes</td>
+
+                        <td>Provide transaction information via exit codes. 
+						If this is enabled, an exit code of '2' means there were 
+						changes, an exit code of '4' means there were failures during
+						the transaction, and an exit code of '6' means 
+						there were both changes and failures.</td>
+					</tr>	
+					<tr>
+                        <td>Fingerprint</td>
+			
+                        <td>Display the current certificate or certificate signing 
+						request fingerprint and then exit. Use the '--digest' 
+						option to change the digest algorithm used.</td>						
+					</tr>	
+					<tr>
+                        <td>No-Client</td>
+
+                        <td>Do not create a config client. This will cause
+						the daemon to start but not check configuration unless 
+						it is triggered with puppet kick. This only makes sense 
+						when puppet agent is being run with listen = true in 
+						puppet.conf or was started with the --listen option.</td>
+					</tr>	
+					<tr>
+                        <td>Noop</td>
+			
+                        <td>Use 'noop' mode where the daemon runs in a no-op or 
+						dry-run mode. This is useful for seeing what changes 
+						Puppet will make without actually executing the changes.</td>
+					</tr>	
+					<tr>									
+                        <td>Test</td>
+
+                        <td>Enable the most common options used for testing. 
+						These are 'onetime', 'verbose', 'ignorecache', 'no-daemonize', 
+						'no-usecacheonfailure', 'detailed-exitcodes', 
+						'no-splay', and 'show_diff'</td>
+					</tr>	
+					<tr>
+                        <td>One Time</td>
+
+                        <td>Run the configuration once. Runs a single (normally daemonized) 
+						Puppet run. Useful for interactively running puppet agent 
+						when used in conjunction with the --no-daemonize option.</td>
+					</tr>	
+					<tr>									
+                        <td>Debug</td>
+
+                        <td>Enable full debugging.</td>
+					</tr>	
+					<tr>
+                        <td>Help</td>
+
+                        <td>Print this help message.</td>
+					</tr>	
+					<tr>
+                        <td>Verbose</td>
+			
+                        <td>Enable verbosity.</td>	
+					</tr>	
+					<tr>	
+                        <td>Additional Options</td>
+			
+                        <td>Provide additional commands if needed.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/RunAgent1.png"
+                 alt="form" />
+					 <img src="../../plugins/@PLUGIN_KEY@/images/RunAgent2.png"
+                 alt="form" />
+        </div>
+
+		<div id="PuppetParser">
+            <a name='PuppetParser'
+                 id="PuppetParser"></a> 
+
+            <h3>PuppetParser</h3>
+
+            <p>This command can be used to validat puppet DSL syntax without compiling a catalog or syncing any resources</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; parser &lt;options&gt; &lt;manifest file path&gt;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
+					</tr>	
+					<tr>	
+                        <td>File Path</td>
+
+                        <td>Provide the path to the file</td>
+					</tr>	
+					<tr>							
+                        <td>Debug</td>
+
+                        <td>If checked full debugging will be enabled.</td>
+					</tr>	
+					<tr>
+                        <td>Verbose Mode</td>
+
+                        <td>If checked the verbose mode is activated.</td>
+					</tr>	
+					<tr>								
+                        <td>Format</td>
+
+                        <td>The rendering format to use.</td>
+					</tr>	
+					<tr>
+                        <td>Additional Options</td>
+			
+                        <td>Provide additional commands if needed.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetParser.png"
+                 alt="form" />
+        </div>
+
+		<div id="ManageCertificatesAndRequests">
+            <a name='ManageCertificatesAndRequests'
+                 id="ManageCertificatesAndRequests"></a> 
+
+            <h3>ManageCertificatesAndRequests</h3>
+
+            <p>This command can be used to manage and sign certificate requests from puppet clients.</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; cert &lt;action&gt; &lt;options&gt;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
+					</tr>	
+					<tr>	
+                        <td>Host</td>
+
+                        <td>Provide the name of the host on which action has to be performed.</td>
+					</tr>	
+					<tr>							
+                        <td>Digest</td>
+
+                        <td>Set the digest for fingerprinting (defaults to the 
+						digest used when signing the cert). Valid values depends
+						on your openssl and openssl ruby extension version.</td>
+					</tr>	
+					<tr>	
+                        <td>Action</td>
+
+                        <td>Every action except 'list' and 'generate' requires a hostname 
+						to act on, unless the '--all' option is set. 
+						[clean]: Revoke a host's certificate (if applicable) and remove all 
+						files related to that host from puppet cert's storage. This is 
+						useful when rebuilding hosts, since new certificate signing 
+						requests will only be honored if puppet cert does not have a copy 
+						of a signed certificate for that host. If '--all' is specified 
+						then all host certificates, both signed and unsigned, will be removed. 
+						[fingerprint]: Print the DIGEST (defaults to the signing algorithm) 
+						fingerprint of a host's certificate. 
+						[generate]: Generate a certificate for a named client. A certificate/keypair 
+						will be generated for each client named on the command line. 
+						[list]: List outstanding certificate requests. If '--all' is 
+						specified, signed certificates are also listed, prefixed by '+ ', 
+						and revoked or invalid certificates are prefixed by '-' 
+						(the verification outcome is printed in parenthesis). 
+						[print]: Print the full-text version of a host's certificate. 
+						[revoke]: Revoke the certificate of a client. The certificate 
+						can be specified either by its serial number (given as a 
+						hexadecimal number prefixed by '0x') or by its hostname. 
+						The certificate is revoked by adding it to the Certificate 
+						Revocation List given by the 'cacrl' configuration option. 
+						Note that the puppet master needs to be restarted after revoking 
+						certificates. 
+						[sign]: Sign an outstanding certificate request. 
+						[verify]: Verify the named certificate against the local CA certificate. 
+						[reinventory]: Build an inventory of the issued certificates. 
+						This will destroy the current inventory file specified by 'cert_inventory' 
+						and recreate it from the certificates found in the 'certdir'. 
+						Ensure the puppet master is stopped before running this action</td>
+					</tr>	
+					<tr>							
+                        <td>All</td>
+
+                        <td>Operate on all items. Currently only makes sense 
+						with the 'sign', 'clean', 'list', and 'fingerprint' actions.</td>
+					</tr>	
+					<tr>
+                        <td>Debug</td>
+			
+                        <td>Enable full debugging.</td>
+					</tr>	
+					<tr>	
+                        <td>Help</td>
+
+                        <td>Print this help message.</td>
+					</tr>	
+					<tr>							
+                        <td>Verbose</td>
+
+                        <td>Enable verbosity.</td>
+					</tr>	
+					<tr>
+                        <td>Addtional Commands</td>
+			
+                        <td>Provide additional commands if needed.</td>						
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/ManageCertificatesAndRequests.png"
                  alt="form" />
         </div>
 
         <h1>Examples and Use Cases</h1>
 
         <h2>Run manifest file
-        example</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-2.png"
+        example</h2><img src="../../plugins/@PLUGIN_KEY@/images/Example1.png"
              alt="screenshot" /> 
 
         <h2>Log
-        generated</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-3.png"
+        generated</h2><img src="../../plugins/@PLUGIN_KEY@/images/Example2.png"
              alt="screenshot" /> 
 
         <h2>Run manifest text-area
-        example</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-4.png"
+        example</h2><img src="../../plugins/@PLUGIN_KEY@/images/Example3.png"
              alt="screenshot" /> 
 
         <h2>Log
-        generated</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-5.png"
+        generated</h2><img src="../../plugins/@PLUGIN_KEY@/images/Example4.png"
              alt="screenshot" /> 
 
         <h2>Job
-        Summary</h2><img src="../../plugins/@PLUGIN_KEY@/images/Puppet-6.png"
+        Summary</h2><img src="../../plugins/@PLUGIN_KEY@/images/Example5.png"
              alt="screenshot" /> 
 
         <h1>Release Notes</h1>
+
+        <h2>@PLUGIN_KEY@-1.2</h2>
+
+        <ul>
+            <li>Added procedure <i>PuppetUnitTest</i> for unit testing puppet modules.</li>
+        </ul>
 
         <h2>@PLUGIN_KEY@-1.0.4</h2>
 
