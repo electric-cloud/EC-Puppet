@@ -60,8 +60,7 @@ sub main {
     my $environment =
       ( $ec->getProperty("environment") )->findvalue('//value')->string_value;
 	my $additional_options =
-      ( $ec->getProperty("additional_options") )->findvalue('//value')->string_value;  
-  
+      ( $ec->getProperty("additional_options") )->findvalue('//value')->string_value;
 	$ec->abortOnError(1);
 
     my @cmd;
@@ -90,20 +89,31 @@ sub main {
 		print "Command to be executed: \n$command \n\n";
 		system("$command");
     }
-	#elsif ( $additional_options && $additional_options ne '' ) {
-        # $command = $command . " --environment" .$additional_options ." --section agent";
-		# print "Command to be executed: \n$command \n\n";
-		# system("$command");    }
-
-    #Executes the command into puppet
-   ## system("$command");
-
+	#Executes the command into puppet
+	#system("$command");
+	elsif ( $additional_options && $additional_options ne '' ) {
+		my ($key, $val);
+		my @defaultvalues=split(',', $additional_options);
+		foreach my $val (@defaultvalues)
+		{
+		$val =~ s/\"//g; 	
+		my @pairs = split(/\s+/,$val);
+		my %hash = map { split(/:/, $_, 2) } @pairs;
+	    while (my ($key, $val) = each %hash) 
+		 {
+		print "Key=$key Value=$val\n";
+   		$command = $command ." ".$key ." ".$val ." --section agent";
+	    print "Command to be executed: \n$command \n\n";
+	    system("$command"); 
+		$command=0;
+		$command=$puppet_path . " config set";
+         }
+		}
+	}
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
 
     # Set outcome
     setOutcomeFromExitCode( $ec, $exitCode );
-
 }
-
 main();

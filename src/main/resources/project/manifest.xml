@@ -61,8 +61,8 @@
         <xpath>//procedure[procedureName="PuppetVersion"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
 	<file>
-        <path>procedures/PuppetAgentSetConfig/form.xml</path>
-        <xpath>//procedure[procedureName="PuppetAgentSetConfig"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+        <path>procedures/UpdateAgentConfiguration/form.xml</path>
+        <xpath>//procedure[procedureName="UpdateAgentConfiguration"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
     <file>
         <path>procedures/RunCommand/driver.pl</path>
@@ -101,8 +101,8 @@
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="PuppetVersion"]/value</xpath>
     </file>
 	<file>
-        <path>procedures/PuppetAgentSetConfig/driver.pl</path>
-        <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="PuppetAgentSetConfig"]/value</xpath>
+        <path>procedures/UpdateAgentConfiguration/driver.pl</path>
+        <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="UpdateAgentConfiguration"]/value</xpath>
     </file>
     <file>
         <path>procedures/PuppetHelper.pm</path>

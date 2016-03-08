@@ -120,8 +120,8 @@
                         <value/>
                     </property>
 					<property>
-                        <propertyName>PuppetAgentSetConfig</propertyName>
-                        <description>PuppetAgentSetConfig.</description>
+                        <propertyName>UpdateAgentConfiguration</propertyName>
+                        <description>UpdateAgentConfiguration.</description>
                         <expandable>1</expandable>
                         <value/>
                     </property>
@@ -3660,7 +3660,7 @@
             </step>
         </procedure>
 		<procedure>
-            <procedureName>PuppetAgentSetConfig</procedureName>
+            <procedureName>UpdateAgentConfiguration</procedureName>
             <description>Puppet loads most of its settings from the puppet.conf config file. You can edit this file directly, or you can change individual settings with the puppet config set command</description>
             <jobNameTemplate/>
             <resourceName/>
@@ -3770,10 +3770,10 @@
                 <type>entry</type>
             </formalParameter>
             <step>
-                <stepName>PuppetAgentSetConfig</stepName>
+                <stepName>UpdateAgentConfiguration</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetAgentSetConfig];</command>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/UpdateAgentConfiguration];</command>
                 <condition/>
                 <description/>
                 <errorHandling>failProcedure</errorHandling>
@@ -3789,7 +3789,7 @@
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>PuppetAgentSetConfig</procedureName>
+                <procedureName>UpdateAgentConfiguration</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
