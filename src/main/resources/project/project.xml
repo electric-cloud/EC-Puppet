@@ -119,6 +119,12 @@
                         <expandable>1</expandable>
                         <value/>
                     </property>
+					<property>
+                        <propertyName>PuppetAgentSetConfig</propertyName>
+                        <description>PuppetAgentSetConfig.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -1230,6 +1236,131 @@
                         </propertySheet>
                     </property>
                 </propertySheet>
+            </step>
+        </procedure>
+		<procedure>
+            <procedureName>DeleteAgent</procedureName>
+            <description>Delete the Agent and call puppet clean.</description>
+            <jobNameTemplate/>
+            <resourceName/>
+            <workspaceName/>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>puppet_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>host</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>host</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the name of the node. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>deleteAgent</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+				<subprocedure>ManageCertificatesAndRequests</subprocedure>
+                <subproject>/plugins/EC-Puppet/project</subproject>
+                <workingDirectory/>
+                <workspaceName/>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <actualParameters>
+                    <property>
+                        <propertyName>puppet_path</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[puppet_path]</value>
+                    </property>
+                    <property>
+                        <propertyName>additional_options</propertyName>
+                        <expandable>0</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>verbose</propertyName>
+                        <expandable>0</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>debug</propertyName>
+                        <expandable>0</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>digest</propertyName>
+                        <expandable>0</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>all</propertyName>
+                        <expandable>0</expandable>
+                        <value>0</value>
+                    </property>
+                    <property>
+                        <propertyName>action</propertyName>
+                        <expandable>0</expandable>
+                        <value>clean</value>
+                    </property>
+                    <property>
+                        <propertyName>host</propertyName>
+                        <expandable>0</expandable>
+                        <value>$[host]</value>
+                    </property> 
+                </actualParameters>
             </step>
         </procedure>
         <procedure>
@@ -3513,6 +3644,152 @@
                 <workingDirectory/>
                 <workspaceName/>
                 <procedureName>PuppetVersion</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+		<procedure>
+            <procedureName>PuppetAgentSetConfig</procedureName>
+            <description>Puppet loads most of its settings from the puppet.conf config file. You can edit this file directly, or you can change individual settings with the puppet config set command</description>
+            <jobNameTemplate/>
+            <resourceName/>
+            <workspaceName/>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>puppet_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>cert_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+								<property>
+                                    <propertyName>server</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+								<property>
+                                    <propertyName>environment</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+								<property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description/>
+                    <expandable>0</expandable>
+                    <value/>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>puppet_path</formalParameterName>
+                <defaultValue>/usr/local/bin/puppet</defaultValue>
+                <description>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cert_name</formalParameterName>
+                <defaultValue/>
+                <description>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+			<formalParameter>
+                <formalParameterName>server</formalParameterName>
+                <defaultValue/>
+                <description>The puppet master server to which the puppet agent should connect.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>environment</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+			<formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The additional arguments/options which need to be passed to the command.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>PuppetAgentSetConfig</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/PuppetAgentSetConfig];</command>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <procedureName>PuppetAgentSetConfig</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>

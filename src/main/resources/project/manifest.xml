@@ -28,6 +28,10 @@
         <path>procedures/ManageCertificatesAndRequests/form.xml</path>
         <xpath>//procedure[procedureName="ManageCertificatesAndRequests"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
+	<file>
+        <path>procedures/DeleteAgent/form.xml</path>
+        <xpath>//procedure[procedureName="DeleteAgent"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+    </file>
     <file>
         <path>procedures/PuppetParser/form.xml</path>
         <xpath>//procedure[procedureName="PuppetParser"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
@@ -55,6 +59,10 @@
     <file>
         <path>procedures/PuppetVersion/form.xml</path>
         <xpath>//procedure[procedureName="PuppetVersion"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+    </file>
+	<file>
+        <path>procedures/PuppetAgentSetConfig/form.xml</path>
+        <xpath>//procedure[procedureName="PuppetAgentSetConfig"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
     <file>
         <path>procedures/RunCommand/driver.pl</path>
@@ -91,6 +99,10 @@
     <file>
         <path>procedures/PuppetVersion/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="PuppetVersion"]/value</xpath>
+    </file>
+	<file>
+        <path>procedures/PuppetAgentSetConfig/driver.pl</path>
+        <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="PuppetAgentSetConfig"]/value</xpath>
     </file>
     <file>
         <path>procedures/PuppetHelper.pm</path>
