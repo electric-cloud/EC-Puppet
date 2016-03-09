@@ -2127,6 +2127,36 @@
                                         </property>
                                     </propertySheet>
                                 </property>
+								<property>
+                                    <propertyName>cert_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+								<property>
+                                    <propertyName>server</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+								<property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -2145,6 +2175,79 @@
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
+			<formalParameter>
+                <formalParameterName>cert_name</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+			<formalParameter>
+                <formalParameterName>server</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The puppet master server to which the puppet agent should connect.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+			<formalParameter>
+                <formalParameterName>environment</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+			<formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198.168.1.12","node:true" and so on. </description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+			<step>
+                <stepName>AgentConfiguration</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <subprocedure>UpdateAgentConfiguration</subprocedure>
+                <subproject>/plugins/EC-Puppet/project</subproject>
+                <actualParameters>
+                    <property>
+                        <propertyName>puppet_path</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[puppet_path]</value>
+                    </property>
+                    <property>
+                        <propertyName>cert_name</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[cert_name]</value>
+                    </property>
+                    <property>
+                        <propertyName>server</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[server]</value>
+                    </property>
+                    <property>
+                        <propertyName>environment</propertyName>
+                        <expandable>0</expandable>
+                        <value>$[environment]</value>
+                    </property>
+                    <property>
+                        <propertyName>additional_options</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[additional_options]</value>
+                    </property>
+                </actualParameters>
+			</step>
             <step>
                 <stepName>configureAgentEnable</stepName>
                 <alwaysRun>0</alwaysRun>
