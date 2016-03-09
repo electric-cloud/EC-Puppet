@@ -91,9 +91,9 @@ my %PuppetVersion = (
     description => "Puppet version",
     category    => "Resource Management"
 );
-my %PuppetAgentSetConfig = (
-    label       => "Puppet - AgentSetConfig",
-    procedure   => "PuppetAgentSetConfig",
+my %UpdateAgentConfiguration = (
+    label       => "Puppet - UpdateAgentConfiguration",
+    procedure   => "UpdateAgentConfiguration",
     description => "Puppet configuration set up for Agent",
     category    => "Resource Management"
 );
@@ -153,9 +153,9 @@ $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Puppet - ConfigureAgent");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Puppet - ConfigureAgent");
 $batch->deleteProperty(
-    "/server/ec_customEditors/pickerStep/EC-Puppet - PuppetAgentSetConfig");
+    "/server/ec_customEditors/pickerStep/EC-Puppet - UpdateAgentConfiguration");
 $batch->deleteProperty(
-    "/server/ec_customEditors/pickerStep/Puppet - PuppetAgentSetConfig");
+    "/server/ec_customEditors/pickerStep/Puppet - UpdateAgentConfiguration");
 
 @::createStepPickerSteps = (
     \%RunManifest,                   \%RunCommand,
@@ -163,6 +163,6 @@ $batch->deleteProperty(
     \%PuppetModules,                 \%PuppetLint,
     \%PuppetUnitTest,                \%PuppetVersion,
     \%RunAgent,                      \%ConfigureAgent,
-	\%PuppetAgentSetConfig,			  \%DeleteAgent,
+	\%UpdateAgentConfiguration,		 \%DeleteAgent,
 );
 
