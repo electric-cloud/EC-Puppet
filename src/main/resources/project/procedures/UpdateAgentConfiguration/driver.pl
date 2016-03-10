@@ -79,19 +79,25 @@ sub main {
 		print "Command to be executed: \n$command \n\n";
 		system("$command");
     }
-	elsif ( $server && $server ne '' ) {
+	$command = "";
+	$command=$puppet_path . " config set";
+	if ( $server && $server ne '' ) {
         $command = $command . " server " .$server ." --section agent";
 		print "Command to be executed: \n$command \n\n";
 		system("$command");
     }
-	elsif ( $environment && $environment ne '' ) {
+	$command = "";
+	$command=$puppet_path . " config set";
+	if ( $environment && $environment ne '' ) {
         $command = $command . " environment " .$environment ." --section agent";
 		print "Command to be executed: \n$command \n\n";
 		system("$command");
     }
+	$command = "";
+	$command=$puppet_path . " config set";
 	#Executes the command into puppet
 	#system("$command");
-	elsif ( $additional_options && $additional_options ne '' ) {
+	if ( $additional_options && $additional_options ne '' ) {
 		my ($key, $val);
 		my @defaultvalues=split(',', $additional_options);
 		foreach my $val (@defaultvalues)
@@ -101,7 +107,6 @@ sub main {
 		my %hash = map { split(/:/, $_, 2) } @pairs;
 	    while (my ($key, $val) = each %hash) 
 		 {
-		print "Key=$key Value=$val\n";
    		$command = $command ." ".$key ." ".$val ." --section agent";
 	    print "Command to be executed: \n$command \n\n";
 	    system("$command"); 
