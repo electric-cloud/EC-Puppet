@@ -116,20 +116,4 @@
         <path>postp_matchers.pl</path>
         <xpath>//property[propertyName="postp_matchers"]/value</xpath>
     </file>
-    <file>
-        <path>ui_forms/CreateConfigForm.xml</path>
-        <xpath>//property[propertyName='ui_forms']/propertySheet/property[propertyName='CreateConfigForm']/value</xpath>
-    </file>
-    <file>
-        <path>ui_forms/EditConfigForm.xml</path>
-        <xpath>//property[propertyName='ui_forms']/propertySheet/property[propertyName='EditConfigForm']/value</xpath>
-    </file>
-    <file>
-        <path>conf/createcfg.pl</path>
-        <xpath>//procedure[procedureName='CreateConfiguration']/step[stepName='CreateConfiguration']/command</xpath>
-    </file>
-    <file>
-        <path>conf/deletecfg.pl</path>
-        <xpath>//procedure[procedureName='DeleteConfiguration']/step[stepName='DeleteConfiguration']/command</xpath>
-    </file>
 </fileset>
