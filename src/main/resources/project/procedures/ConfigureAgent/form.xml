@@ -25,5 +25,33 @@
         <required>1</required>
         <documentation>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required) </documentation>
     </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Certname:</label>
+        <property>cert_name</property>
+        <required>0</required>
+        <documentation>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Server:</label>
+        <property>server</property>
+        <required>0</required>
+        <documentation>The puppet master server to which the puppet agent should connect.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Environment:</label>
+        <property>environment</property>
+        <required>0</required>
+        <documentation>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Additional Options:</label>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198.168.1.12","node:true" and so on. Please use correct names as they are not validated. </documentation>
+    </formElement>
 </editor>
 

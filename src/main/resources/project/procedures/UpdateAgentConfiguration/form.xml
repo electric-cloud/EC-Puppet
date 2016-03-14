@@ -51,7 +51,7 @@
         <label>Additional Options:</label>
         <property>additional_options</property>
         <required>0</required>
-        <documentation>The additional arguments/options which need to be passed to the command.</documentation>
+        <documentation>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple  input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198. 168.1.12","node:true" and so on. Please use correct names as they are not validated.</documentation>
     </formElement>
  
 </editor>
