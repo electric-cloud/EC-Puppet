@@ -599,47 +599,45 @@
 						it is triggered with puppet kick. This only makes sense 
 						when puppet agent is being run with listen = true in 
 						puppet.conf or was started with the --listen option.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Noop</td>
-			
                         <td>Use 'noop' mode where the daemon runs in a no-op or 
 						dry-run mode. This is useful for seeing what changes 
 						Puppet will make without actually executing the changes.</td>
-					</tr>	
-					<tr>									
+					</tr>
+					<tr>
                         <td>Test</td>
 
                         <td>Enable the most common options used for testing. 
 						These are 'onetime', 'verbose', 'ignorecache', 'no-daemonize', 
 						'no-usecacheonfailure', 'detailed-exitcodes', 
 						'no-splay', and 'show_diff'</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>One Time</td>
 
                         <td>Run the configuration once. Runs a single (normally daemonized) 
 						Puppet run. Useful for interactively running puppet agent 
 						when used in conjunction with the --no-daemonize option.</td>
-					</tr>	
-					<tr>									
+					</tr>
+					<tr>
                         <td>Debug</td>
 
                         <td>Enable full debugging.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Help</td>
 
                         <td>Print this help message.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Verbose</td>
 			
                         <td>Enable verbosity.</td>	
-					</tr>	
-					<tr>	
+					</tr>
+					<tr>
                         <td>Additional Options</td>
-			
                         <td>Provide additional commands if needed.</td>
                     </tr>
                 </tbody>
@@ -676,30 +674,29 @@
                         <td class='required'>Puppet Path</td>
 
                         <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
-					</tr>	
-					<tr>	
+					</tr>
+					<tr>
                         <td>File Path</td>
 
                         <td>Provide the path to the file</td>
-					</tr>	
-					<tr>							
+					</tr>
+					<tr>
                         <td>Debug</td>
 
                         <td>If checked full debugging will be enabled.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Verbose Mode</td>
 
                         <td>If checked the verbose mode is activated.</td>
-					</tr>	
-					<tr>								
+					</tr>
+					<tr>
                         <td>Format</td>
 
                         <td>The rendering format to use.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Additional Options</td>
-			
                         <td>Provide additional commands if needed.</td>
                     </tr>
                 </tbody>
@@ -734,20 +731,20 @@
                         <td class='required'>Puppet Path</td>
 
                         <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
-					</tr>	
-					<tr>	
+					</tr>
+					<tr>
                         <td>Host</td>
 
                         <td>Provide the name of the host on which action has to be performed.</td>
-					</tr>	
-					<tr>							
+					</tr>
+					<tr>
                         <td>Digest</td>
 
                         <td>Set the digest for fingerprinting (defaults to the 
 						digest used when signing the cert). Valid values depends
 						on your openssl and openssl ruby extension version.</td>
-					</tr>	
-					<tr>	
+					</tr>
+					<tr>
                         <td>Action</td>
 
                         <td>Every action except 'list' and 'generate' requires a hostname 
@@ -780,32 +777,30 @@
 						This will destroy the current inventory file specified by 'cert_inventory' 
 						and recreate it from the certificates found in the 'certdir'. 
 						Ensure the puppet master is stopped before running this action</td>
-					</tr>	
-					<tr>							
+					</tr>
+					<tr>
                         <td>All</td>
 
                         <td>Operate on all items. Currently only makes sense 
 						with the 'sign', 'clean', 'list', and 'fingerprint' actions.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Debug</td>
-			
                         <td>Enable full debugging.</td>
-					</tr>	
-					<tr>	
+					</tr>
+					<tr>
                         <td>Help</td>
 
                         <td>Print this help message.</td>
-					</tr>	
-					<tr>							
+					</tr>
+					<tr>
                         <td>Verbose</td>
 
                         <td>Enable verbosity.</td>
-					</tr>	
+					</tr>
 					<tr>
                         <td>Addtional Commands</td>
-			
-                        <td>Provide additional commands if needed.</td>						
+                        <td>Provide additional commands if needed.</td>
 
                     </tr>
                 </tbody>
@@ -816,6 +811,145 @@
                  alt="form" />
         </div>
 
+		<div id="PuppetDeleteAgent">
+            <a name='PuppetDeleteAgent'
+                 id="PuppetDeleteAgent"></a> 
+
+            <h3>PuppetDeleteAgent</h3>
+
+            <p>This command can be used to disassociate the puppet clients from the puppet master</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; cert clean &lt;NodeName&gt;</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
+					</tr>
+					<tr>
+                        <td>Node Name</td>
+
+                        <td>Provide the name of the node.</td>
+					</tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetDeleteAgent.png"
+                 alt="form" />
+        </div>
+		<div id="PuppetUpdateAgentConfiguration">
+            <a name='PuppetUpdateAgentConfiguration'
+                 id="PuppetUpdateAgentConfiguration"></a> 
+
+            <h3>PuppetUpdateAgentConfiguration</h3>
+
+            <p>This command can be used to edit the puppet.conf file on the puppet clients</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; config set &lt;options&gt; --section agent</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
+					</tr>
+					<tr>
+                        <td>CertName</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+					</tr>
+					<tr>
+                        <td>Server</td>
+
+                        <td>The puppet master server to which the puppet agent should connect.</td>
+					</tr>
+					<tr>
+                        <td>Environment</td>
+
+                        <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
+					</tr>
+					<tr>
+                        <td>Additional Commands</td>
+                        <td>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198.168.1.12","node:true" and so on.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetUpdateAgentConfiguration.png"
+                 alt="form" />
+        </div>
+		<div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>PuppetConfigureAgent</h3>
+
+            <p>This command can be used to edit the puppet.conf file on the puppet clients and then associate the puppet agents with the puppet master</p>
+
+            <p>- Command to be executed: &lt;Puppet Path&gt; config set &lt;options&gt; --section agent</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>Puppet Path</td>
+
+                        <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
+					</tr>
+					<tr>
+                        <td>CertName</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+					</tr>
+					<tr>
+                        <td>Server</td>
+
+                        <td>The puppet master server to which the puppet agent should connect.</td>
+					</tr>
+					<tr>
+                        <td>Environment</td>
+
+                        <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
+					</tr>
+					<tr>
+                        <td>Additional Commands</td>
+                        <td>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198.168.1.12","node:true" and so on.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Parameter
+            form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetConfigureAgent.png"
+                 alt="form" />
+        </div>
         <h1>Examples and Use Cases</h1>
 
         <h2>Run manifest file
@@ -839,6 +973,21 @@
              alt="screenshot" /> 
 
         <h1>Release Notes</h1>
+        <h2>@PLUGIN_KEY@-1.1.0</h2>
+
+        <ul>
+            <p>Added the following new procedures:</p>
+			<li>Puppet Version</li>
+			<li>Puppet Modules</li>
+			<li>Puppet Unit Test</li>
+			<li>Puppet Lint</li>
+			<li>Run Agent</li>
+			<li>Puppet Parser</li>
+			<li>Manage Certificates and Requests</li>
+			<li>Puppet Delete Agent</li>
+			<li>Puppet Update Agent Configuration</li>
+			<li>Puppet Configure Agent</li>
+        </ul>
 
         <h2>@PLUGIN_KEY@-1.2</h2>
 
