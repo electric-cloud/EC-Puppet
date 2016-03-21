@@ -85,6 +85,10 @@
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunAgent"]/value</xpath>
     </file>
     <file>
+        <path>procedures/ConfigureAgent/driver.pl</path>
+        <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="ConfigureAgent"]/value</xpath>
+    </file>
+    <file>
         <path>procedures/PuppetModules/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="PuppetModules"]/value</xpath>
     </file>

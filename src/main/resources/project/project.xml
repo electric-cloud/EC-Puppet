@@ -96,6 +96,12 @@
                         <value/>
                     </property>
                     <property>
+                        <propertyName>ConfigureAgent</propertyName>
+                        <description>Used by the dynamic environment feature to configure the Puppet agent on the provisioned resource. Retrieves the client configuration from the Puppet Master and applies it to the resource based on the environment specified.</description>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                    <property>
                         <propertyName>PuppetModules</propertyName>
                         <description>Finds, installs, and manages modules from the Puppet Forge,a repository of user-contributed Puppet code.Also generates empty modules, and prepare locally developed modules for release on the Forge.</description>
                         <expandable>1</expandable>
@@ -1868,7 +1874,7 @@
                 <formalParameterName>cert_name</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
 			<formalParameter>
@@ -1878,13 +1884,13 @@
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
-			<formalParameter>
+			<!--<formalParameter>
                 <formalParameterName>environment</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
+            </formalParameter>-->
 			<formalParameter>
                 <formalParameterName>additional_options</formalParameterName>
                 <defaultValue></defaultValue>
@@ -1892,270 +1898,40 @@
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
-			<step>
-                <stepName>AgentConfiguration</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <condition/>
-                <description/>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName/>
-                <retries>0</retries>
-                <timeLimit/>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <subprocedure>UpdateAgentConfiguration</subprocedure>
-                <subproject>/plugins/EC-Puppet/project</subproject>
-                <actualParameters>
-                    <property>
-                        <propertyName>puppet_path</propertyName>
-                        <expandable>1</expandable>
-                        <value>$[puppet_path]</value>
-                    </property>
-                    <property>
-                        <propertyName>cert_name</propertyName>
-                        <expandable>1</expandable>
-                        <value>$[cert_name]</value>
-                    </property>
-                    <property>
-                        <propertyName>server</propertyName>
-                        <expandable>1</expandable>
-                        <value>$[server]</value>
-                    </property>
-                    <property>
-                        <propertyName>environment</propertyName>
-                        <expandable>0</expandable>
-                        <value>$[environment]</value>
-                    </property>
-                    <property>
-                        <propertyName>additional_options</propertyName>
-                        <expandable>1</expandable>
-                        <value>$[additional_options]</value>
-                    </property>
-                </actualParameters>
-			</step>
             <step>
-                <stepName>configureAgentEnable</stepName>
+                <stepName>ConfigureAgent</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ConfigureAgent];</command>
                 <condition/>
                 <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
+                <logFileName/>
                 <parallel>0</parallel>
                 <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
+                <shell>ec-perl</shell>
                 <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
-                <subprocedure>RunAgent</subprocedure>
-                <subproject>/plugins/EC-Puppet/project</subproject>
-                <actualParameters>
+                <workingDirectory/>
+                <workspaceName/>
+                <procedureName>ConfigureAgent</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
                     <property>
-                        <propertyName>puppet_path</propertyName>
-                        <expandable>1</expandable>
-                        <value>$[puppet_path]</value>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
                     </property>
-                    <property>
-                        <propertyName>waitforcert</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>verbose</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>test</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>onetime</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>noop</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>no_daemonize</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>no_client</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>masterport</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                    <property>
-                        <propertyName>logdest</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>fingerprint</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>enable</propertyName>
-                        <expandable>1</expandable>
-                        <value>1</value>
-                    </property>
-                    <property>
-                        <propertyName>disable</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>digest</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                    <property>
-                        <propertyName>detailed_exitcodes</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>debug</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>certname</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                    <property>
-                        <propertyName>additional_options</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                </actualParameters>
-            </step>
-            <step>
-                <stepName>configureAgentTest</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <condition/>
-                <description/>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName/>
-                <retries>0</retries>
-                <timeLimit/>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <subprocedure>RunAgent</subprocedure>
-                <subproject>/plugins/EC-Puppet/project</subproject>
-                <actualParameters>
-                    <property>
-                        <propertyName>puppet_path</propertyName>
-                        <expandable>1</expandable>
-                        <value>$[puppet_path]</value>
-                    </property>
-                    <property>
-                        <propertyName>waitforcert</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>verbose</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>test</propertyName>
-                        <expandable>0</expandable>
-                        <value>1</value>
-                    </property>
-                    <property>
-                        <propertyName>onetime</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>noop</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>no_daemonize</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>no_client</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>masterport</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                    <property>
-                        <propertyName>logdest</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>fingerprint</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>enable</propertyName>
-                        <expandable>0</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>disable</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>digest</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                    <property>
-                        <propertyName>detailed_exitcodes</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>debug</propertyName>
-                        <expandable>1</expandable>
-                        <value>0</value>
-                    </property>
-                    <property>
-                        <propertyName>certname</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                    <property>
-                        <propertyName>additional_options</propertyName>
-                        <expandable>1</expandable>
-                        <value></value>
-                    </property>
-                </actualParameters>
+                </propertySheet>
             </step>
         </procedure>
         <procedure>

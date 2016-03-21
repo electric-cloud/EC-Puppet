@@ -21,7 +21,7 @@ use strict;
 use warnings;
 use ElectricCommander;
 use Exporter 'import';
-our @EXPORT = qw(setOutcomeFromExitCode);
+our @EXPORT = qw(setOutcomeFromExitCode runPuppetAgent);
 
 $|=1;
 
@@ -44,7 +44,7 @@ sub setOutcomeFromExitCode {
   # More details here
   # https://docs.puppetlabs.com/references/3.7.0/man/apply.html
   if ( $exitCode == 0 ) {
-    print "Success: No changes applied\n";
+    # print "Success: No changes applied\n";
   } elsif ($exitCode == 2){
     print "Success: Changes applied\n";
   } else {
@@ -57,5 +57,53 @@ sub setOutcomeFromExitCode {
 
 
 }
+
+sub runPuppetAgent {
+
+   my ($puppet_path, $cert_name, $master_host, $master_port, $enable, $test, $debug, $additional_options) = @_;
+
+    my $ec = ElectricCommander->new();
+    $ec->abortOnError(1);
+
+    my @cmd;
+    my %props;
+
+    #Parameters are checked to see which should be included
+    my $command = $puppet_path . " agent";
+
+    #Variable that stores the command to be executed
+    if ( $cert_name ne '' ) {
+        $command = $command . " --certname " . $cert_name;
+    }
+    if ( $master_host ne '' ) {
+        $command = $command . " --server " . $master_host;
+    }
+    if ( $master_port ne '' ) {
+        $command = $command . " --masterport " . $master_port;
+    }
+    if ( $enable eq '1' ) {
+        $command = $command . " --enable";
+    }
+    if ( $test eq '1' ) {
+        $command = $command . " --test";
+    }
+    if ( $debug eq '1' ) {
+        $command = $command . " --debug";
+    }
+    if ( $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
+    }
+    print "Command to be executed: \n$command \n\n";
+
+    #Executes the command into puppet
+    system("$command");
+
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+
+    return $exitCode;
+
+}
+
 
 1;
