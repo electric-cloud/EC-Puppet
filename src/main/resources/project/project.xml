@@ -3537,7 +3537,7 @@
                 <formalParameterName>cert_name</formalParameterName>
                 <defaultValue/>
                 <description>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
 			<formalParameter>
