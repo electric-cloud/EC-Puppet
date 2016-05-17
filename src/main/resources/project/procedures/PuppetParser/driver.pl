@@ -32,6 +32,7 @@ use PuppetHelper;
 
 $|=1;
 
+$[/myProject/preamble]
 
 # -------------------------------------------------------------------------
 # Main functions

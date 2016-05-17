@@ -116,4 +116,8 @@
         <path>postp_matchers.pl</path>
         <xpath>//property[propertyName="postp_matchers"]/value</xpath>
     </file>
+    <file>
+        <path>procedures/preamble.pl</path>
+        <xpath>//property[propertyName="preamble"]/value</xpath>
+    </file>
 </fileset>
