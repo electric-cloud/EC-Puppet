@@ -27,6 +27,8 @@ use PuppetHelper;
 
 $| = 1;
 
+$[/myProject/preamble]
+
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
@@ -52,7 +54,7 @@ sub main {
     # Parameters
     # -------------------------------------------------------------------------
     my $puppet_path =
-      ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
+        ( $ec->getProperty("puppet_path") )->findvalue('//value')->string_value;
     my $certname =
       ( $ec->getProperty("certname") )->findvalue('//value')->string_value;
     my $waitforcert =

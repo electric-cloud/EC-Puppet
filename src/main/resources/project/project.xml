@@ -7,6 +7,11 @@
         <workspaceName/>
         <propertySheet>
             <property>
+    	        <propertyName>preamble</propertyName>
+	            <value/>
+	            <expandable>0</expandable>
+            </property>
+            <property>
                 <propertyName>ec_configurationmanagement_plugin</propertyName>
                 <description></description>
                 <propertySheet>
@@ -1889,7 +1894,7 @@
                 <formalParameterName>additional_options</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198.168.1.12","node:true" and so on. </description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
 			<step>

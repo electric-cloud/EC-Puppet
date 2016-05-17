@@ -27,6 +27,8 @@ use PuppetHelper;
 
 $| = 1;
 
+$[/myProject/preamble]
+
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
@@ -99,20 +101,25 @@ sub main {
 	#system("$command");
 	if ( $additional_options && $additional_options ne '' ) {
 		my ($key, $val);
-		my @defaultvalues=split(',', $additional_options);
-		foreach my $val (@defaultvalues)
-		{
-		$val =~ s/\"//g; 	
-		my @pairs = split(/\s+/,$val);
-		my %hash = map { split(/:/, $_, 2) } @pairs;
-	    while (my ($key, $val) = each %hash) 
-		 {
-   		$command = $command ." ".$key ." ".$val ." --section agent";
-	    print "Command to be executed: \n$command \n\n";
-	    system("$command"); 
-		$command=0;
-		$command=$puppet_path . " config set";
-         }
+		my @defaultvalues = split(',', $additional_options);
+		foreach my $val (@defaultvalues) {
+            $val =~ s/\"//g;
+            my @pairs = split(/\s+/,$val);
+            my @hash = map { split(/:/, $_, 2) } @pairs;
+
+            if (scalar @hash & 1) {
+                print "Wrong additional_options format...\n";
+                exit 1;
+            }
+
+            my %hash = @hash;
+            while (my ($key, $val) = each %hash) {
+                $command = $command ." ".$key ." ".$val ." --section agent";
+                print "Command to be executed: \n$command \n\n";
+                system("$command"); 
+                $command=0;
+                $command=$puppet_path . " config set";
+            }
 		}
 	}
     # To get exit code of process shift right by 8
@@ -121,4 +128,6 @@ sub main {
     # Set outcome
     setOutcomeFromExitCode( $ec, $exitCode );
 }
+
 main();
+
