@@ -31,5 +31,4 @@
             <javascript>war/ecplugins.puppet.ConfigurationManagement/ecplugins.puppet.ConfigurationManagement.nocache.js</javascript>
         </component>
     </components>
-    <configure>configurations.xml</configure>
 </plugin>
