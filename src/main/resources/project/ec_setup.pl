@@ -1,5 +1,5 @@
 #
-#  Copyright 2015 Electric Cloud, Inc.
+#  Copyright 2017 Electric Cloud, Inc.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -98,10 +98,150 @@ my %UpdateAgentConfiguration = (
     category    => "Resource Management"
 );
 
+# my %Run_stub_1 = (
+#     label       => "Puppet - Run_stub_1",
+#     procedure   => "Run_stub_1",
+#     description => "nodesc",
+#     category    => "Resource Management"
+# );
+
+my %GetCatalog = (
+    label       => "Puppet - GetCatalog",
+    procedure   => "GetCatalog",
+    description => "Retrieve a catalog",
+    category    => "Resource Management"
+);
+
+my %GetNode = (
+    label       => "Puppet - GetNode",
+    procedure   => "GetNode",
+    description => "Retrieve data for a node",
+    category    => "Resource Management"
+);
+
+my %GetFileBucketFile = (
+    label       => "Puppet - GetFileBucketFile",
+    procedure   => "GetFileBucketFile",
+    description => "Retrieve the contents of a file",
+    category    => "Resource Management"
+);
+
+my %GetFileContent = (
+    label       => "Puppet - GetFileContent",
+    procedure   => "GetFileContent",
+    description => "Get a file",
+    category    => "Resource Management"
+);
+
+my %GetFileMetadata = (
+    label       => "Puppet - GetFileMetadata",
+    procedure   => "GetFileMetadata",
+    description => "Get file metadata for a single file",
+    category    => "Resource Management"
+);
+
+my %GetReport = (
+    label       => "Puppet - GetReport",
+    procedure   => "GetReport",
+    description => "The http(s) endpoint for sending reports to the master",
+    category    => "Resource Management"
+);
+
+my %GetStatus = (
+    label       => "Puppet - GetStatus",
+    procedure   => "GetStatus",
+    description => "Get status for a master",
+    category    => "Resource Management"
+);
+
+my %GetCertificate = (
+    label       => "Puppet - GetCertificate",
+    procedure   => "GetCertificate",
+    description => "Get a certificate",
+    category    => "Resource Management"
+);
+
+my %GetCertificateSigningRequests = (
+    label       => "Puppet - GetCertificateSigningRequests",
+    procedure   => "GetCertificateSigningRequests",
+    description => "Get a submitted CSR",
+    category    => "Resource Management"
+);
+
+my %GetCertificateStatus = (
+    label       => "Puppet - GetCertificateStatus",
+    procedure   => "GetCertificateStatus",
+    description => "Retrieve information about the specified certificate",
+    category    => "Resource Management"
+);
+
+my %GetCertificateRevocationList = (
+    label       => "Puppet - GetCertificateRevocationList",
+    procedure   => "GetCertificateRevocationList",
+    description => "Get the submitted CRL",
+    category    => "Resource Management"
+);
+
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Puppet - RunManifest");
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Puppet - Run Manifest");
+
+
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/EC-Puppet - Run_stub_1");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/Puppet - Run_stub_1");
+
+# g1
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - GetCatalog");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - GetCatalog");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - GetNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - GetNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - GetFileBucketFile");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - GetFileBucketFile");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - GetFileContent");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - GetFileContent");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - GetFileMetadata");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - GetFileMetadata");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/EC-Puppet - GetReport");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/Puppet - GetReport");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Puppet - GetStatus");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Puppet - GetStatus");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/EC-Puppet - GetCertificate");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/Puppet - GetCertificate");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/EC-Puppet - GetCertificateSigningRequests");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/Puppet - GetCertificateSigningRequests");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/EC-Puppet - GetCertificateStatus");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/Puppet - GetCertificateStatus");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/EC-Puppet - GetCertificateRevocationList");
+# $batch->deleteProperty(
+#     "/server/ec_customEditors/pickerStep/Puppet - GetCertificateRevocationList");
+
+
+# g2
 
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Puppet - RunCommand");
@@ -164,5 +304,6 @@ $batch->deleteProperty(
     \%PuppetUnitTest,                \%PuppetVersion,
     \%RunAgent,                      \%ConfigureAgent,
 	\%UpdateAgentConfiguration,		 \%DeleteAgent,
+    \%GetCatalog,\%GetNode,\%GetFileBucketFile,\%GetFileContent,\%GetFileMetadata,\%GetStatus
 );
 
