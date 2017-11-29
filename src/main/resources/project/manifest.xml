@@ -21,14 +21,10 @@
         <xpath>//procedure[procedureName="RunCommand"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
     <file>
-        <path>procedures/RunManifest/form.xml</path>
-        <xpath>//procedure[procedureName="RunManifest"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
-    </file>
-    <file>
         <path>procedures/ManageCertificatesAndRequests/form.xml</path>
         <xpath>//procedure[procedureName="ManageCertificatesAndRequests"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
-	<file>
+    <file>
         <path>procedures/DeleteAgent/form.xml</path>
         <xpath>//procedure[procedureName="DeleteAgent"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
@@ -60,7 +56,7 @@
         <path>procedures/PuppetVersion/form.xml</path>
         <xpath>//procedure[procedureName="PuppetVersion"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
-	<file>
+    <file>
         <path>procedures/UpdateAgentConfiguration/form.xml</path>
         <xpath>//procedure[procedureName="UpdateAgentConfiguration"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
     </file>
@@ -68,10 +64,130 @@
         <path>procedures/RunCommand/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunCommand"]/value</xpath>
     </file>
+<!-- old, ok -->
     <file>
         <path>procedures/RunManifest/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="RunManifest"]/value</xpath>
     </file>
+    <file>
+        <path>procedures/RunManifest/form.xml</path>
+        <xpath>//procedure[procedureName="RunManifest"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+    </file>
+<!-- new, stub -->
+    <file>
+        <path>procedures/Run_stub_1/driver.pl</path>
+        <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="Run_stub_1"]/value</xpath>
+    </file>
+    <file>
+        <path>procedures/Run_stub_1/form.xml</path>
+        <xpath>//procedure[procedureName="Run_stub_1"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+    </file>
+
+<!-- g1 -->
+
+<file>
+    <path>procedures/GetCatalog/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetCatalog"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetCatalog/form.xml</path>
+    <xpath>//procedure[procedureName="GetCatalog"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetNode/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetNode"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetNode/form.xml</path>
+    <xpath>//procedure[procedureName="GetNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetFileBucketFile/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetFileBucketFile"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetFileBucketFile/form.xml</path>
+    <xpath>//procedure[procedureName="GetFileBucketFile"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetFileContent/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetFileContent"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetFileContent/form.xml</path>
+    <xpath>//procedure[procedureName="GetFileContent"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetFileMetadata/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetFileMetadata"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetFileMetadata/form.xml</path>
+    <xpath>//procedure[procedureName="GetFileMetadata"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetReport/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetReport"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetReport/form.xml</path>
+    <xpath>//procedure[procedureName="GetReport"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetStatus/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetStatus"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetStatus/form.xml</path>
+    <xpath>//procedure[procedureName="GetStatus"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetCertificate/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetCertificate"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetCertificate/form.xml</path>
+    <xpath>//procedure[procedureName="GetCertificate"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetCertificateSigningRequests/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetCertificateSigningRequests"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetCertificateSigningRequests/form.xml</path>
+    <xpath>//procedure[procedureName="GetCertificateSigningRequests"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetCertificateStatus/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetCertificateStatus"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetCertificateStatus/form.xml</path>
+    <xpath>//procedure[procedureName="GetCertificateStatus"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+<file>
+    <path>procedures/GetCertificateRevocationList/driver.pl</path>
+    <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="GetCertificateRevocationList"]/value</xpath>
+</file>
+<file>
+    <path>procedures/GetCertificateRevocationList/form.xml</path>
+    <xpath>//procedure[procedureName="GetCertificateRevocationList"]/propertySheet/property[propertyName="ec_parameterForm"]/value</xpath>
+</file>
+
+
+
+<!-- g2 -->
+
     <file>
         <path>procedures/ManageCertificatesAndRequests/driver.pl</path>
         <xpath>//property[propertyName="scripts"]/propertySheet/property[propertyName="ManageCertificatesAndRequests"]/value</xpath>

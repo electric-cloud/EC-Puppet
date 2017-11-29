@@ -899,7 +899,7 @@
             form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetUpdateAgentConfiguration.png"
                  alt="form" />
         </div>
-		<div id="PuppetConfigureAgent">
+        <div id="PuppetConfigureAgent">
             <a name='PuppetConfigureAgent'
                  id="PuppetConfigureAgent"></a> 
 
@@ -923,23 +923,23 @@
                         <td class='required'>Puppet Path</td>
 
                         <td>Provide the path to the puppet executable e.g /usr/local/bin/puppet. (Required)</td>
-					</tr>
-					<tr>
+                    </tr>
+                    <tr>
                         <td>CertName</td>
 
                         <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
-					</tr>
-					<tr>
+                    </tr>
+                    <tr>
                         <td>Server</td>
 
                         <td>The puppet master server to which the puppet agent should connect.</td>
-					</tr>
-					<tr>
+                    </tr>
+                    <tr>
                         <td>Environment</td>
 
                         <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
-					</tr>
-					<tr>
+                    </tr>
+                    <tr>
                         <td>Additional Commands</td>
                         <td>The additional arguments/options which need to be passed to the command should be in a specific format wherein multiple input variables can also be input as key:value pair(in double quotes) and then be comma-seperated(,).e.g.."trusted_node_data:true","server:198.168.1.12","node:true" and so on.</td>
                     </tr>
@@ -950,6 +950,362 @@
             form</h2><img src="../../plugins/@PLUGIN_KEY@/images/PuppetConfigureAgent.png"
                  alt="form" />
         </div>
+
+        <!-- REST -->
+        <!-- GetCatalog -->
+        <div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>Puppet REST API: GetCatalog</h3>
+
+            <p>The catalog endpoint returns a catalog for the specified node name given the provided facts.</p>
+
+            <p>Request to be executed: GET /puppet/v3/catalog/:nodename?environment=:environment</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>puppet_master_url</td>
+
+                        <td>The URL address to Puppet master server (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>nodename</td>
+
+                        <td>The name of the remote puppet Node</td>
+                    </tr>
+                    <tr>
+                        <td>environment</td>
+
+                        <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
+                    </tr>
+                    <tr>
+                        <td>ca_certificate_path</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+                    </tr>
+                    <tr>
+                        <td>node_certificate_path</td>
+
+                        <td>The path to Node certificate</td>
+                    </tr>
+                    <tr>
+                        <td>private_key_path</td>
+
+                        <td>The path to Node private key</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- GetNode -->
+        <div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>Puppet REST API: GetNode</h3>
+
+            <p>The node endpoint is used by the puppet agent to get basic information about a node. The returned information includes the node name and environment, and optionally any classes set by an External Node Classifier and a hash of parameters which may include the node’s facts. The returned node may have a different environment from the one given in the request if Puppet is configured with an ENC.</p>
+
+            <p>Request to be executed: GET /puppet/v3/node/:certname?environment=:environment&amp;=:transaction_uuid&amp;configured_environment=:environment</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>puppet_master_url</td>
+
+                        <td>The URL address to Puppet master server (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>nodename</td>
+
+                        <td>The name of the remote puppet Node</td>
+                    </tr>
+                    <tr>
+                        <td>environment</td>
+
+                        <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
+                    </tr>
+                    <tr>
+                        <td>transaction_uuid</td>
+
+                        <td>A transaction uuid identifying the entire transaction (shows up in the report as well)</td>
+                    </tr>
+                    <tr>
+                        <td>ca_certificate_path</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+                    </tr>
+                    <tr>
+                        <td>node_certificate_path</td>
+
+                        <td>The path to Node certificate</td>
+                    </tr>
+                    <tr>
+                        <td>private_key_path</td>
+
+                        <td>The path to Node private key</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- GetBucketFile -->
+        <div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>Puppet REST API: GetBucketFile</h3>
+
+            <p>The file_bucket_file endpoint manages the contents of files in the file bucket. All access to files is managed with the md5 checksum of the file contents, represented as :md5. Where used, :filename means the full absolute path of the file on the client system. This is usually optional and used as an error check to make sure correct file is retrieved. The environment is required in all requests but ignored, as the file bucket does not distinguish between environments.</p>
+
+            <p>Request to be executed: GET /puppet/v3/file_bucket_file/:md5/:original_path?environment=:environment</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>puppet_master_url</td>
+
+                        <td>The URL address to Puppet master server (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>nodename</td>
+
+                        <td>The name of the remote puppet Node</td>
+                    </tr>
+                    <tr>
+                        <td>environment</td>
+
+                        <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
+                    </tr>
+                    <tr>
+                        <td>md5</td>
+
+                        <td>MD5 hash of the original file</td>
+                    </tr>
+                    <tr>
+                        <td>original_path</td>
+
+                        <td>The path to the original file</td>
+                    </tr>
+                    <tr>
+                        <td>ca_certificate_path</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+                    </tr>
+                    <tr>
+                        <td>node_certificate_path</td>
+
+                        <td>The path to Node certificate</td>
+                    </tr>
+                    <tr>
+                        <td>private_key_path</td>
+
+                        <td>The path to Node private key</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GetFileContent -->
+        <div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>Puppet REST API: GetFileContent</h3>
+
+            <p>The file_content endpoint returns the contents of the specified file.</p>
+
+            <p>Request to be executed: GET /puppet/v3/file_content/:mount_point/:name</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>puppet_master_url</td>
+
+                        <td>The URL address to Puppet master server (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>nodename</td>
+
+                        <td>The name of the remote puppet Node</td>
+                    </tr>
+                    <tr>
+                        <td>mount_point</td>
+
+                        <td>The mount point of the original file</td>
+                    </tr>
+                    <tr>
+                        <td>destination_path</td>
+
+                        <td>The path to the destination file</td>
+                    </tr>
+                    <tr>
+                        <td>original_path</td>
+
+                        <td>The path to the original file</td>
+                    </tr>
+                    <tr>
+                        <td>ca_certificate_path</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+                    </tr>
+                    <tr>
+                        <td>node_certificate_path</td>
+
+                        <td>The path to Node certificate</td>
+                    </tr>
+                    <tr>
+                        <td>private_key_path</td>
+
+                        <td>The path to Node private key</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GetFileMetadata -->
+		<div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>Puppet REST API: GetFileMetadata</h3>
+
+            <p>The file_metadata endpoint returns select metadata for a single file or many files. There are find and search variants of the endpoint; the search variant has a trailing -s- so is actually file_metadatas.</p>
+
+            <p>Request to be executed: GET /puppet/v3/file_metadata/:mount/path/to/file?environment=:environment</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>puppet_master_url</td>
+
+                        <td>The URL address to Puppet master server (Required)</td>
+					</tr>
+                    <tr>
+                        <td>path_to_file</td>
+
+                        <td>The path to the destination file</td>
+                    </tr>
+                    <tr>
+                        <td>ca_certificate_path</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+                    </tr>
+                    <tr>
+                        <td>node_certificate_path</td>
+
+                        <td>The path to Node certificate</td>
+                    </tr>
+                    <tr>
+                        <td>private_key_path</td>
+
+                        <td>The path to Node private key</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!-- GetStatus -->
+        <div id="PuppetConfigureAgent">
+            <a name='PuppetConfigureAgent'
+                 id="PuppetConfigureAgent"></a> 
+
+            <h3>Puppet REST API: GetStatus</h3>
+
+            <p>The status endpoint provides information about a running master.</p>
+
+            <p>Request to be executed: GET /puppet/v3/status/:name?environment=:environment</p>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class='required'>puppet_master_url</td>
+
+                        <td>The URL address to Puppet master server (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+
+                        <td>Any name, have no effect on the response</td>
+                    </tr>
+                    <tr>
+                        <td>environment</td>
+
+                        <td>The environment Puppet is running in. For clients (e.g., puppet agent) this determines the environment itself, which is used to find modules and much more. For servers (i.e., puppet master) this provides the default environment for nodes.</td>
+                    </tr>
+                    <tr>
+                        <td>ca_certificate_path</td>
+
+                        <td>The name to use when handling certificates. When a node requests a certificate from the CA puppet master, it uses the value of the certname setting as its requested Subject CN.</td>
+                    </tr>
+                    <tr>
+                        <td>node_certificate_path</td>
+
+                        <td>The path to Node certificate</td>
+                    </tr>
+                    <tr>
+                        <td>private_key_path</td>
+
+                        <td>The path to Node private key</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <h1>Examples and Use Cases</h1>
 
         <h2>Run manifest file
@@ -973,6 +1329,20 @@
              alt="screenshot" /> 
 
         <h1>Release Notes</h1>
+
+        <h2>@PLUGIN_KEY@-1.1.3</h2>
+
+        <ul>
+            <p>Extended the plugin with the support of a limited set of Puppet REST API calls. Added the following new procedures:</p>
+
+            <li>Puppet REST API: GetCatalog</li>
+            <li>Puppet REST API: GetNode</li>
+            <li>Puppet REST API: GetFileBucketFile</li>
+            <li>Puppet REST API: GetFileContent</li>
+            <li>Puppet REST API: GetFileMetadata</li>
+            <li>Puppet REST API: GetStatus</li>
+        </ul>
+
         <h2>@PLUGIN_KEY@-1.1.0</h2>
 
         <ul>
