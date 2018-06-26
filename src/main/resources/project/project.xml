@@ -6,6 +6,12 @@
         <description>Integration with Puppet</description>
         <workspaceName/>
         <propertySheet>
+            <!-- Improvements for ECPRESOURCEPUPPET-28 -->
+            <property>
+                <propertyName>ec_formXmlCompliant</propertyName>
+                <value>true</value>
+            </property>
+            <!-- End of ECPRESOURCEPUPPET-28 improvements -->
             <property>
     	        <propertyName>preamble</propertyName>
 	            <value/>
