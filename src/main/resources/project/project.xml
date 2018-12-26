@@ -12,6 +12,12 @@
                 <value>true</value>
             </property>
             <!-- End of ECPRESOURCEPUPPET-28 improvements -->
+            <!-- Improvement for ECPRESOURCEPUPPET-30 -->
+            <property>
+                <propertyName>ec_icon</propertyName>
+                <value>images/icon-plugin.svg</value>
+            </property>
+            <!-- End of improvement for ECPRESOURCEPUPPET-30 -->
             <property>
     	        <propertyName>preamble</propertyName>
 	            <value/>
