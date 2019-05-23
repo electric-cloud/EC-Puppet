@@ -8,7 +8,7 @@
     <meta content="text/html; charset=us-ascii"
           http-equiv="content-type" />
 
-    <title>ElectricFlow Plugin for Puppet</title>
+    <title>CloudBees Flow Plugin for Puppet</title>
     <link rel="stylesheet"
           href="../../plugins/@PLUGIN_KEY@/pluginhelp.css"
           type="text/css"
@@ -21,7 +21,7 @@
 
         <p>Plugin Version @PLUGIN_VERSION@</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-        <p>Revised on December 25, 2018</p>
+        <p>Revised on May 23, 2019</p>
 
         <p>Puppet is a tool designed to manage the configuration of
         Unix-like and Microsoft Windows systems declaratively. The
@@ -49,7 +49,7 @@
         <p>More information can be found at
         <a href="http://puppetlabs.com/">Puppet Home</a>.</p>
 
-        <h2>ElectricFlow Integration to Puppet</h2>
+        <h2>CloudBees Flow Integration to Puppet</h2>
 
         <p>The plugin interacts with the Puppet's shell trough
         commander agent, the Puppet utility allows you to perform
@@ -61,7 +61,7 @@
         any desired Puppet command, extending the manifests
         funcionality.</p>
 
-        <p>ElectricFlow itself provides some advantages like
+        <p>CloudBees Flow itself provides some advantages like
         parameters checking, easy functionality selection using
         only check boxes, combo buttons, historical log reports,
         procedure duration statistics, simple credentials
@@ -973,6 +973,10 @@
              alt="screenshot" /> 
 
         <h1>Release Notes</h1>
+
+    <h2 id="1.1.5">@PLUGIN_KEY@ 1.1.5</h2>
+    <p>Renaming from "Electric Cloud" to "CloudBees"</p>
+
         <h2>@PLUGIN_KEY@-1.1.4</h2>
         <ul>
             <li>The plugin icon has been updated.</li>
