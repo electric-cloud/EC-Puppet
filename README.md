@@ -1,11 +1,11 @@
 EC-Puppet
 ============
 
-The ElectricFlow Puppet integration
+The CloudBees Flow Puppet integration
 
 ####Prerequisite installation:####
     0.Install puppet agent and puppet master on two independent machines.
-    1.Install Electric Flow Agent on both of them.
+    1.Install CloudBees Flow Agent on both of them.
       --Failure /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
         sudo apt-get install lib32bz2-1.0
 
