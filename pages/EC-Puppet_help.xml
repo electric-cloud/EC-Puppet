@@ -21,7 +21,7 @@
 
         <p>Plugin Version @PLUGIN_VERSION@</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-        <p>Revised on May 27, 2019</p>
+        <p>Revised on May 7, 2020</p>
 
         <p>Puppet is a tool designed to manage the configuration of
         Unix-like and Microsoft Windows systems declaratively. The
@@ -974,9 +974,14 @@
 
         <h1>Release Notes</h1>
 
-    <h2 id="1.1.5">@PLUGIN_KEY@ 1.1.5</h2>
-    <p>Renaming from "Electric Cloud" to "CloudBees"</p>
-
+        <h2>@PLUGIN_KEY@-1.1.6</h2>
+        <ul>
+            <li>Renaming from "CloudBees Flow" to "CloudBees CD".</li>
+        </ul>
+        <h2>@PLUGIN_KEY@ 1.1.5</h2>
+        <ul>
+            <li>Renaming from "Electric Cloud" to "CloudBees"</li>
+        </ul>
         <h2>@PLUGIN_KEY@-1.1.4</h2>
         <ul>
             <li>The plugin icon has been updated.</li>
