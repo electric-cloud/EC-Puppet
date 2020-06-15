@@ -8,7 +8,7 @@
     <meta content="text/html; charset=us-ascii"
           http-equiv="content-type" />
 
-    <title>CloudBees Flow Plugin for Puppet</title>
+    <title>CloudBees CD Plugin for Puppet</title>
     <link rel="stylesheet"
           href="../../plugins/@PLUGIN_KEY@/pluginhelp.css"
           type="text/css"
@@ -49,10 +49,10 @@
         <p>More information can be found at
         <a href="http://puppetlabs.com/">Puppet Home</a>.</p>
 
-        <h2>CloudBees Flow Integration to Puppet</h2>
+        <h2>CloudBees CD Integration to Puppet</h2>
 
         <p>The plugin interacts with the Puppet's shell trough
-        commander agent, the Puppet utility allows you to perform
+        CloudBees CD agent, the Puppet utility allows you to perform
         different actions getting the same results that you would
         get from the web-based interface and command line. This
         plugin offers two main funcionalities, first the ability to
@@ -61,7 +61,7 @@
         any desired Puppet command, extending the manifests
         funcionality.</p>
 
-        <p>CloudBees Flow itself provides some advantages like
+        <p>CloudBees CD itself provides some advantages like
         parameters checking, easy functionality selection using
         only check boxes, combo buttons, historical log reports,
         procedure duration statistics, simple credentials
